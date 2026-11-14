@@ -1,0 +1,908 @@
+// Prisma Schema for Zulaid Chaudhary Foundation (ZulaidChaudharyFoundation.com)
+// Multi-country, multi-language (EN/UR), multi-currency, role-based architecture.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------
+// 1. ENUMS
+// ---------------------------------------------------------
+
+enum Role {
+  SUPER_ADMIN          // Founder (Full global control)
+  ADMIN                // Foundation Administrator
+  CONTENT_EDITOR       // CMS, Articles, Media, Updates
+  MEDICAL_COORDINATOR  // Clinical cases, hospital updates, patient vetting
+  FINANCE_OFFICER      // Donations, bank verification, receipts, financial reports
+  VOLUNTEER_COORDINATOR// Volunteer & Membership vetting and assignment
+  COUNTRY_COORDINATOR  // Scoped to specific country / chapter
+  DONOR_USER           // Authenticated donor / supporter
+  VOLUNTEER_USER       // Authenticated volunteer applicant
+  MEMBER_USER          // Authenticated formal member
+}
+
+enum ApplicationStatus {
+  PENDING
+  UNDER_REVIEW
+  INTERVIEW_SCHEDULED
+  APPROVED
+  REJECTED
+  ARCHIVED
+}
+
+enum ProjectStatus {
+  PLANNED
+  ONGOING
+  COMPLETED
+  SUSPENDED
+}
+
+enum ProjectCategory {
+  HEALTHCARE_ASSISTANCE
+  HOSPITAL_CONSTRUCTION
+  FOOD_AND_RATION
+  MEDICINE_AID
+  EDUCATION_SUPPORT
+  HUMAN_RIGHTS_ADVOCACY
+  ENVIRONMENT_AND_WATER
+  ANIMAL_WELFARE
+  EMERGENCY_DISASTER_RELIEF
+}
+
+enum Currency {
+  PKR
+  USD
+  GBP
+  EUR
+  CAD
+  AED
+}
+
+enum PaymentMethod {
+  STRIPE_CARD
+  RAAST_INSTANT
+  BANK_TRANSFER
+  JAZZCASH
+  EASYPAISA
+  MANUAL_CASH
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+  DISPUTED
+}
+
+enum DonationFrequency {
+  ONE_TIME
+  MONTHLY
+  ANNUAL
+}
+
+enum MedicalCaseStatus {
+  INQUIRY
+  PENDING_VETTING
+  APPROVED
+  IN_TREATMENT
+  COMPLETED
+  DECLINED
+}
+
+enum AssistancePriority {
+  ROUTINE
+  URGENT
+  EMERGENCY_CRITICAL
+}
+
+enum AssistanceType {
+  MEDICAL_SURGERY
+  CHRONIC_MEDICATION
+  FOOD_RATION
+  EMERGENCY_FINANCIAL_AID
+  EDUCATION_FEE
+  WIDOW_SUPPORT
+  ANIMAL_RESCUE
+}
+
+enum ArticleStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum ComplaintStatus {
+  SUBMITTED
+  UNDER_INVESTIGATION
+  ACTION_TAKEN
+  RESOLVED
+  DISMISSED
+}
+
+enum ComplaintCategory {
+  FINANCIAL_TRANSPARENCY
+  VOLUNTEER_CONDUCT
+  MEDICAL_DISBURSEMENT
+  STAFF_MISCONDUCT
+  DONOR_PRIVACY
+  GENERAL_FEEDBACK
+}
+
+enum AuditAction {
+  CREATE
+  UPDATE
+  DELETE
+  APPROVE
+  REJECT
+  STATUS_CHANGE
+  LOGIN_SUCCESS
+  LOGIN_FAILED
+  SENSITIVE_VIEW
+}
+
+// ---------------------------------------------------------
+// 2. AUTHENTICATION & USER MANAGEMENT
+// ---------------------------------------------------------
+
+model User {
+  id                    String            @id @default(cuid())
+  name                  String
+  email                 String            @unique
+  emailVerified         DateTime?
+  passwordHash          String?           // Hashed using Argon2 or Bcrypt
+  image                 String?
+  phoneNumber           String?
+  role                  Role              @default(DONOR_USER)
+  isActive              Boolean           @default(true)
+  isTwoFactorEnabled    Boolean           @default(false)
+  twoFactorSecret       String?           // TOTP encrypted secret for admin 2FA
+  preferredLanguage     String            @default("en") // 'en' or 'ur'
+  preferredCurrency     Currency          @default(PKR)
+
+  // Scoped permissions for Country Coordinators
+  countryScopeId        String?
+  countryScope          Country?          @relation(fields: [countryScopeId], references: [id])
+
+  // Relations
+  accounts              Account[]
+  sessions              Session[]
+  donations             Donation[]
+  volunteerApplications VolunteerApplication[]
+  memberships           Membership[]
+  medicalCasesCreated   MedicalCase[]     @relation("MedicalCaseCreator")
+  assistanceRequests    AssistanceRequest[]
+  auditLogs             AuditLog[]        @relation("UserAuditLogs")
+  articlesWritten       Article[]         @relation("ArticleAuthor")
+  verifiedImpactMetrics ImpactMetric[]    @relation("MetricVerifier")
+  notifications         Notification[]
+
+  createdAt             DateTime          @default(now())
+  updatedAt             DateTime          @updatedAt
+
+  @@index([email])
+  @@index([role])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ---------------------------------------------------------
+// 3. GEOGRAPHY & CHAPTERS
+// ---------------------------------------------------------
+
+model Country {
+  id           String    @id @default(cuid())
+  code         String    @unique // ISO 3166-1 alpha-2 (e.g., 'PK', 'US', 'GB')
+  nameEn       String
+  nameUr       String
+  currency     Currency  @default(PKR)
+  isActive     Boolean   @default(true)
+
+  cities       City[]
+  chapters     Chapter[]
+  users        User[]
+  projects     Project[]
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model City {
+  id           String    @id @default(cuid())
+  countryId    String
+  country      Country   @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  nameEn       String
+  nameUr       String
+  isActive     Boolean   @default(true)
+
+  chapters     Chapter[]
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([countryId])
+}
+
+model Chapter {
+  id           String    @id @default(cuid())
+  nameEn       String
+  nameUr       String
+  countryId    String
+  country      Country   @relation(fields: [countryId], references: [id])
+  cityId       String?
+  city         City?     @relation(fields: [cityId], references: [id])
+  leaderName   String?
+  leaderEmail  String?
+  leaderPhone  String?
+  isActive     Boolean   @default(true)
+
+  volunteers   VolunteerApplication[]
+  memberships  Membership[]
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([countryId])
+}
+
+// ---------------------------------------------------------
+// 4. VOLUNTEERS & MEMBERSHIPS
+// ---------------------------------------------------------
+
+model VolunteerApplication {
+  id                  String            @id @default(cuid())
+  applicationNumber   String            @unique // e.g. V-2026-0001
+  userId              String?
+  user                User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  fullName            String
+  email               String
+  phone               String
+  cnicOrPassport      String?           // Encrypted at rest
+  address             String?
+  chapterId           String?
+  chapter             Chapter?          @relation(fields: [chapterId], references: [id])
+  profession          String?
+  skills              String[]          // e.g. ["Medical", "Translation", "Logistics", "Media"]
+  availabilityHours   Int?              // Hours per week
+  motivation          String            @db.Text
+  emergencyContact    String?
+
+  status              ApplicationStatus @default(PENDING)
+  reviewedByUserId    String?
+  reviewedAt          DateTime?
+  rejectionReason     String?
+  isPubliclyVisible   Boolean           @default(false) // Only shows publicly with admin + volunteer consent
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([status])
+  @@index([email])
+}
+
+model Membership {
+  id                  String            @id @default(cuid())
+  membershipNumber    String            @unique // e.g. ZCF-MEM-2026-001
+  userId              String?
+  user                User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+  fullName            String
+  email               String
+  phone               String
+  chapterId           String?
+  chapter             Chapter?          @relation(fields: [chapterId], references: [id])
+  tier                String            @default("Standard") // Standard, Supporting, Founding Member
+  membershipStart     DateTime?
+  membershipExpires   DateTime?
+  status              ApplicationStatus @default(PENDING)
+  reviewedByUserId    String?
+  reviewedAt          DateTime?
+  notes               String?           @db.Text
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([status])
+  @@index([membershipNumber])
+}
+
+// ---------------------------------------------------------
+// 5. PROJECTS & CAMPAIGNS
+// ---------------------------------------------------------
+
+model Project {
+  id                  String            @id @default(cuid())
+  slug                String            @unique
+  titleEn             String
+  titleUr             String
+  summaryEn           String            @db.Text
+  summaryUr           String            @db.Text
+  descriptionEn       String            @db.Text
+  descriptionUr       String            @db.Text
+  category            ProjectCategory
+  status              ProjectStatus     @default(PLANNED)
+
+  targetBudget        Decimal           @db.Decimal(12, 2)
+  raisedAmount        Decimal           @default(0.00) @db.Decimal(12, 2)
+  currency            Currency          @default(PKR)
+
+  countryId           String?
+  country             Country?          @relation(fields: [countryId], references: [id])
+  locationName        String?
+
+  coverImageUrl       String?
+  galleryImageUrls    String[]
+  startDate           DateTime?
+  targetEndDate       DateTime?
+  completedDate       DateTime?
+
+  isFeatured          Boolean           @default(false)
+  isVerifiedMilestone Boolean           @default(true) // Enforces no unverified claim
+
+  donations           Donation[]
+  stories             Story[]
+  impactReports       ProjectImpactReport[]
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([category])
+  @@index([status])
+  @@index([slug])
+}
+
+model ProjectImpactReport {
+  id                  String            @id @default(cuid())
+  projectId           String
+  project             Project           @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  titleEn             String
+  titleUr             String
+  contentEn           String            @db.Text
+  contentUr           String            @db.Text
+  metricsSummary      Json?             // Structured metrics { "peopleServed": 500, "wellsBuilt": 2 }
+  pdfReportUrl        String?
+  verifiedBy          String
+  publishedAt         DateTime          @default(now())
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([projectId])
+}
+
+model Campaign {
+  id                  String            @id @default(cuid())
+  slug                String            @unique
+  titleEn             String
+  titleUr             String
+  headlineEn          String
+  headlineUr          String
+  contentEn           String            @db.Text
+  contentUr           String            @db.Text
+  targetSignatures    Int?              // For advocacy campaigns
+  currentSignatures   Int               @default(0)
+  targetGoalAmount    Decimal?          @db.Decimal(12, 2)
+  currentAmount       Decimal           @default(0.00) @db.Decimal(12, 2)
+  currency            Currency          @default(PKR)
+  isActive            Boolean           @default(true)
+  startDate           DateTime          @default(now())
+  endDate             DateTime?
+  bannerImageUrl      String?
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([slug])
+  @@index([isActive])
+}
+
+// ---------------------------------------------------------
+// 6. DONATIONS, RECEIPTS & FINANCIAL TRANSPARENCY
+// ---------------------------------------------------------
+
+model Donation {
+  id                  String            @id @default(cuid())
+  receiptNumber       String            @unique // e.g. ZCF-REC-2026-00001
+  userId              String?
+  user                User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  // Donor Details (NO CARD DATA IS EVER STORED)
+  donorName           String?
+  donorEmail          String
+  donorPhone          String?
+  isAnonymous         Boolean           @default(false)
+
+  // Amount & Allocation
+  amount              Decimal           @db.Decimal(12, 2)
+  currency            Currency          @default(PKR)
+  frequency           DonationFrequency @default(ONE_TIME)
+
+  projectId           String?
+  project             Project?          @relation(fields: [projectId], references: [id], onDelete: SetNull)
+  causeTag            String?           // e.g. "Hospital Brick", "General Healthcare", "Patient Surgery"
+  dedicationName      String?           // For name plaques or Esaal-e-Sawab
+
+  // Payment Execution
+  paymentMethod       PaymentMethod
+  paymentStatus       PaymentStatus     @default(PENDING)
+  providerReference   String?           // Stripe PaymentIntent ID / Bank Reference / Raast Txn
+  bankProofImageUrl   String?           // Customer uploaded bank wire slip screenshot
+
+  // Audit & Verification
+  verifiedByUserId    String?
+  verifiedAt          DateTime?
+
+  receipt             Receipt?
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([receiptNumber])
+  @@index([paymentStatus])
+  @@index([donorEmail])
+  @@index([projectId])
+}
+
+model Receipt {
+  id                  String            @id @default(cuid())
+  donationId          String            @unique
+  donation            Donation          @relation(fields: [donationId], references: [id], onDelete: Cascade)
+  receiptNumber       String            @unique
+  pdfUrl              String?           // Storage key or CDN link to generated PDF
+  issuedAt            DateTime          @default(now())
+  taxExemptDeductible Boolean           @default(false) // False until legal registration is confirmed
+  disclaimerText      String            @db.Text
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([receiptNumber])
+}
+
+model FinancialReport {
+  id                  String            @id @default(cuid())
+  fiscalPeriod        String            // e.g. "2025-2026 Q1", "Annual Audit 2025"
+  titleEn             String
+  titleUr             String
+  totalReceipts       Decimal           @db.Decimal(14, 2)
+  totalDisbursements  Decimal           @db.Decimal(14, 2)
+  auditFirmName       String?           // Independent auditor firm
+  auditOpinion        String?           // e.g. "Unqualified Opinion"
+  pdfDocumentUrl      String            // Signed audit statement PDF
+  isVerified          Boolean           @default(false) // Must be verified by super-admin
+  publishedAt         DateTime?
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([isVerified])
+}
+
+// ---------------------------------------------------------
+// 7. MEDICAL ASSISTANCE & PATIENT CARE (CONFIDENTIAL)
+// ---------------------------------------------------------
+
+model MedicalCase {
+  id                  String            @id @default(cuid())
+  caseReferenceNumber String            @unique // e.g. ZCF-MED-2026-0042
+  patientFullName     String            // Encrypted at rest
+  guardianName        String?
+  contactPhone        String            // Encrypted at rest
+  cnicNumber          String?           // Encrypted at rest
+  city                String
+  age                 Int?
+  gender              String?
+
+  diagnosisSummary    String            @db.Text
+  recommendedHospital String?
+  treatingPhysician   String?
+  estimatedCost       Decimal           @db.Decimal(10, 2)
+  fundedAmount        Decimal           @default(0.00) @db.Decimal(10, 2)
+  currency            Currency          @default(PKR)
+
+  status              MedicalCaseStatus @default(INQUIRY)
+  priority            AssistancePriority@default(ROUTINE)
+
+  // Consent & Privacy Safeguards (NON-NEGOTIABLE)
+  hasInformedConsent  Boolean           @default(false)
+  consentSignedDate   DateTime?
+  consentDocumentUrl  String?           // Encrypted signed consent form
+  allowPublicStory    Boolean           @default(false) // Even if true, names anonymized unless approved
+
+  // Medical Documentation (Private Object Storage)
+  medicalReportUrls   String[]          // Doctor prescriptions, lab tests, hospital bills
+
+  createdById         String
+  createdBy           User              @relation("MedicalCaseCreator", fields: [createdById], references: [id])
+  internalNotes       String?           @db.Text
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([caseReferenceNumber])
+  @@index([status])
+}
+
+model AssistanceRequest {
+  id                  String            @id @default(cuid())
+  trackingCode        String            @unique // e.g. ZCF-REQ-2026-9812
+  userId              String?
+  user                User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  applicantName       String
+  applicantPhone      String
+  applicantCity       String
+  applicantCnic       String?
+
+  type                AssistanceType
+  priority            AssistancePriority@default(ROUTINE)
+  description         String            @db.Text
+  proofDocumentUrls   String[]
+
+  status              ApplicationStatus @default(PENDING)
+  assignedOfficerId   String?
+  resolutionNotes     String?           @db.Text
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([trackingCode])
+  @@index([status])
+}
+
+// ---------------------------------------------------------
+// 8. LAHORE HOSPITAL CONSTRUCTION & CLINICAL BLUEPRINT
+// ---------------------------------------------------------
+
+model HospitalUpdate {
+  id                  String            @id @default(cuid())
+  phaseNumber         Int               // Phase 1, Phase 2, etc.
+  phaseTitleEn        String
+  phaseTitleUr        String
+  statusPercentage    Int               // 0 to 100%
+  headlineEn          String
+  headlineUr          String
+  bodyEn              String            @db.Text
+  bodyUr              String            @db.Text
+  imageUrls           String[]
+  architecturalPdfUrl String?
+  isVerifiedMilestone Boolean           @default(true)
+  publishedDate       DateTime          @default(now())
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([publishedDate])
+}
+
+model HospitalDepartment {
+  id                  String            @id @default(cuid())
+  code                String            @unique // e.g. "CARDIO", "PEDIATRIC", "SURGERY"
+  nameEn              String
+  nameUr              String
+  descriptionEn       String            @db.Text
+  descriptionUr       String            @db.Text
+  floorLevel          String?           // e.g. "Ground Floor", "Level 2"
+  bedCapacity         Int               @default(0)
+  targetEquipmentCost Decimal?          @db.Decimal(12, 2)
+  isOperational       Boolean           @default(false)
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+}
+
+// ---------------------------------------------------------
+// 9. CONTENT MANAGEMENT: ARTICLES, STORIES & MEDIA
+// ---------------------------------------------------------
+
+model Article {
+  id                  String            @id @default(cuid())
+  slug                String            @unique
+  titleEn             String
+  titleUr             String
+  summaryEn           String            @db.Text
+  summaryUr           String            @db.Text
+  contentEn           String            @db.Text // Sanitized Rich Text / HTML
+  contentUr           String            @db.Text
+  coverImageUrl       String?
+  status              ArticleStatus     @default(DRAFT)
+  publishedAt         DateTime?
+  scheduledFor        DateTime?
+
+  categoryId          String
+  category            ArticleCategory   @relation(fields: [categoryId], references: [id])
+  tags                ArticleTag[]      @relation("ArticleToTag")
+
+  authorId            String
+  author              User              @relation("ArticleAuthor", fields: [authorId], references: [id])
+
+  viewCount           Int               @default(0)
+  seoTitle            String?
+  seoDescription      String?
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([slug])
+  @@index([status])
+  @@index([categoryId])
+}
+
+model ArticleCategory {
+  id                  String            @id @default(cuid())
+  slug                String            @unique
+  nameEn              String
+  nameUr              String
+  descriptionEn       String?
+  descriptionUr       String?
+
+  articles            Article[]
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([slug])
+}
+
+model ArticleTag {
+  id                  String            @id @default(cuid())
+  slug                String            @unique
+  nameEn              String
+  nameUr              String
+
+  articles            Article[]         @relation("ArticleToTag")
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([slug])
+}
+
+model Story {
+  id                  String            @id @default(cuid())
+  slug                String            @unique
+  titleEn             String
+  titleUr             String
+  narrativeEn         String            @db.Text
+  narrativeUr         String            @db.Text
+  anonymizedName      String            // e.g. "Patient A." or pseudonym
+  location            String            // e.g. "Lahore District"
+  imageUrl            String?
+  videoUrl            String?
+
+  projectId           String?
+  project             Project?          @relation(fields: [projectId], references: [id], onDelete: SetNull)
+
+  // Non-negotiable consent record
+  consentFormRef      String            // Must link to verified signed consent vault ID
+  isConsentVerified   Boolean           @default(false)
+  isPublished         Boolean           @default(false)
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([slug])
+  @@index([isConsentVerified, isPublished])
+}
+
+model MediaAsset {
+  id                  String            @id @default(cuid())
+  fileName            String
+  fileSize            Int
+  mimeType            String
+  storageKey          String            @unique
+  cdnUrl              String
+  altTextEn           String?
+  altTextUr           String?
+  folder              String            @default("general")
+  uploadedByUserId    String?
+
+  createdAt           DateTime          @default(now())
+
+  @@index([storageKey])
+  @@index([folder])
+}
+
+// ---------------------------------------------------------
+// 10. GOVERNANCE, TEAM & PARTNERS
+// ---------------------------------------------------------
+
+model TeamMember {
+  id                  String            @id @default(cuid())
+  fullNameEn          String
+  fullNameUr          String
+  titleEn             String
+  titleUr             String
+  bioEn               String?           @db.Text
+  bioUr               String?           @db.Text
+  photoUrl            String?
+  department          String?           // Medical Board, Advisory, Executive, Engineering
+  displayOrder        Int               @default(0)
+
+  // Ethics Rule: Display only after confirmed flag is set
+  isConfirmed         Boolean           @default(false)
+  isBoardMember       Boolean           @default(false)
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([isConfirmed])
+}
+
+model PartnerInquiry {
+  id                  String            @id @default(cuid())
+  organizationName    String
+  contactPerson       String
+  contactEmail        String
+  contactPhone        String?
+  country             String
+  partnerType         String            // Medical Institute, University, Corporate CSR, Foundation
+  proposalSummary     String            @db.Text
+  status              ApplicationStatus @default(PENDING)
+  notes               String?           @db.Text
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([status])
+}
+
+// ---------------------------------------------------------
+// 11. COMPLAINTS & GRIEVANCE REDRESSAL (CONFIDENTIAL)
+// ---------------------------------------------------------
+
+model Complaint {
+  id                  String            @id @default(cuid())
+  trackingReference   String            @unique // e.g. ZCF-CMP-2026-7890
+  category            ComplaintCategory
+  subject             String
+  description         String            @db.Text
+  complainantName     String?           // Optional (can be anonymous)
+  complainantEmail    String?           // Optional
+  complainantPhone    String?
+  isConfidential      Boolean           @default(true)
+  evidenceDocumentUrls String[]
+
+  status              ComplaintStatus   @default(SUBMITTED)
+  assignedInvestigator String?
+  findingsNotes       String?           @db.Text
+  actionTakenNotes    String?           @db.Text
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([trackingReference])
+  @@index([status])
+}
+
+// ---------------------------------------------------------
+// 12. IMPACT METRICS (VERIFIED SYSTEM ONLY)
+// ---------------------------------------------------------
+
+model ImpactMetric {
+  id                  String            @id @default(cuid())
+  key                 String            @unique // e.g. "PATIENTS_TREATED_FREE", "HOSPITAL_PHASE"
+  labelEn             String
+  labelUr             String
+  metricValue         String            // e.g. "25-30", "Phase 1"
+  numericValue        Int?              // Optional numeric for animated counter
+  sourceDocumentation String?           // Audit reference or clinical case registry ID
+
+  // Ethics Rule: Must be verified by admin
+  isVerified          Boolean           @default(false)
+  verifiedByUserId    String?
+  verifiedBy          User?             @relation("MetricVerifier", fields: [verifiedByUserId], references: [id])
+  verifiedAt          DateTime?
+
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  @@index([key])
+  @@index([isVerified])
+}
+
+// ---------------------------------------------------------
+// 13. AUDIT LOGS, SUBSCRIBERS & SYSTEM SETTINGS
+// ---------------------------------------------------------
+
+model AuditLog {
+  id                  String            @id @default(cuid())
+  userId              String?
+  user                User?             @relation("UserAuditLogs", fields: [userId], references: [id], onDelete: SetNull)
+  action              AuditAction
+  entity              String            // e.g. "MedicalCase", "Donation", "VolunteerApplication"
+  entityId            String
+  oldData             String?           @db.Text // JSON string of previous state
+  newData             String?           @db.Text // JSON string of updated state
+  ipAddress           String?
+  userAgent           String?
+
+  timestamp           DateTime          @default(now())
+
+  @@index([entity, entityId])
+  @@index([timestamp])
+  @@index([userId])
+}
+
+model NewsletterSubscriber {
+  id                  String            @id @default(cuid())
+  email               String            @unique
+  locale              String            @default("en")
+  isActive            Boolean           @default(true)
+  unsubscribeToken    String            @unique @default(cuid())
+
+  subscribedAt        DateTime          @default(now())
+  unsubscribedAt      DateTime?
+
+  @@index([email])
+  @@index([isActive])
+}
+
+model Notification {
+  id                  String            @id @default(cuid())
+  userId              String
+  user                User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title               String
+  message             String            @db.Text
+  linkUrl             String?
+  isRead              Boolean           @default(false)
+
+  createdAt           DateTime          @default(now())
+
+  @@index([userId, isRead])
+}
+
+model SystemSetting {
+  id                  String            @id @default(cuid())
+  key                 String            @unique // e.g. "LEGAL_STATUS", "PAYMENTS_ENABLED", "EMERGENCY_HELPLINE"
+  value               String            @db.Text // Stored as string or JSON
+  description         String?
+  isPublic            Boolean           @default(false)
+
+  updatedAt           DateTime          @updatedAt
+
+  @@index([key])
+}

@@ -106,7 +106,7 @@ export function Header() {
       </div>
 
       {/* 2. Main Sticky Navigation Header */}
-      <nav className="bg-white/98 backdrop-blur-md border-b border-zinc-200 text-charcoal py-3 px-4 shadow-sm">
+      <nav className="bg-white/98 backdrop-blur-md border-b border-zinc-200 text-charcoal py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8 shadow-sm">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 lg:gap-6">
           
           {/* Logo & Brand Wordmark */}
@@ -114,22 +114,17 @@ export function Header() {
             <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-accent-gold flex items-center justify-center font-serif font-bold text-lg sm:text-xl shadow-md group-hover:scale-105 transition-transform shrink-0 border border-primary-700">
               ZCF
             </div>
-            <div className="flex flex-col">
-              <span className="font-serif font-bold text-sm sm:text-base xl:text-lg text-primary-900 leading-tight whitespace-nowrap">
-                {t("siteName")}
-              </span>
-              <span className="hidden 2xl:inline-block text-[10px] text-charcoal-muted tracking-wide font-sans line-clamp-1 max-w-[280px]">
-                {t("tagline")}
-              </span>
-            </div>
+            <span className="font-serif font-bold text-base sm:text-lg xl:text-xl text-primary-900 leading-tight whitespace-nowrap">
+              {t("siteName")}
+            </span>
           </Link>
 
-          {/* Desktop Navigation Links (Switches at xl breakpoint so buttons never get squished) */}
-          <div className="hidden xl:flex items-center gap-3 2xl:gap-5 text-xs 2xl:text-sm font-semibold text-zinc-700 whitespace-nowrap">
+          {/* Desktop Navigation Links (Visible on desktop lg: 1024px+, beautifully aligned & compact) */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2.5 2xl:gap-3.5 text-xs xl:text-[13px] 2xl:text-sm font-semibold text-zinc-700 whitespace-nowrap">
             <Link
               href="/"
-              className={`hover:text-[#1A56DB] transition-colors py-1 ${
-                pathname === "/" ? "text-[#1A56DB] border-b-2 border-[#1A56DB]" : ""
+              className={`px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors ${
+                pathname === "/" ? "text-[#1A56DB] font-bold bg-blue-50/60" : ""
               }`}
             >
               {t("nav.home")}
@@ -137,11 +132,14 @@ export function Header() {
 
             {/* About Dropdown */}
             <div className="relative group">
-              <Link href="/about" className="hover:text-[#1A56DB] transition-colors inline-flex items-center gap-1 py-1">
+              <Link
+                href="/about"
+                className="px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors inline-flex items-center gap-1"
+              >
                 <span>{t("nav.about")}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#1A56DB] transition-transform group-hover:rotate-180" />
               </Link>
-              <div className="absolute top-full start-0 hidden group-hover:block pt-2 z-50">
+              <div className="absolute top-full start-0 hidden group-hover:block pt-1.5 z-50 animate-in fade-in slide-in-from-top-1">
                 <div className="bg-white border border-zinc-200 shadow-2xl rounded-2xl py-2 min-w-[220px] flex flex-col">
                   <Link href="/about" className="px-4 py-2 hover:bg-blue-50 hover:text-[#1A56DB] text-xs font-semibold">
                     {t("nav.about")}
@@ -158,11 +156,14 @@ export function Header() {
 
             {/* Programs / Our Work Dropdown */}
             <div className="relative group">
-              <Link href="/our-work" className="hover:text-[#1A56DB] transition-colors inline-flex items-center gap-1 py-1">
+              <Link
+                href="/our-work"
+                className="px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors inline-flex items-center gap-1"
+              >
                 <span>Our Programs</span>
                 <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#1A56DB] transition-transform group-hover:rotate-180" />
               </Link>
-              <div className="absolute top-full start-0 hidden group-hover:block pt-2 z-50">
+              <div className="absolute top-full start-0 hidden group-hover:block pt-1.5 z-50 animate-in fade-in slide-in-from-top-1">
                 <div className="bg-white border border-zinc-200 shadow-2xl rounded-2xl py-2 min-w-[260px] flex flex-col divide-y divide-zinc-100">
                   {workItems.map((item) => (
                     <Link
@@ -178,26 +179,38 @@ export function Header() {
               </div>
             </div>
 
-            <Link href="/projects" className="hover:text-[#1A56DB] transition-colors py-1">
+            <Link
+              href="/projects"
+              className="px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors"
+            >
               {t("nav.projects")}
             </Link>
 
-            <Link href="/articles" className="hover:text-[#1A56DB] transition-colors py-1">
+            <Link
+              href="/articles"
+              className="px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors"
+            >
               {t("nav.articles")}
             </Link>
 
-            <Link href="/transparency" className="hover:text-[#1A56DB] transition-colors py-1">
+            <Link
+              href="/transparency"
+              className="px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors"
+            >
               {t("nav.transparency")}
             </Link>
 
-            <Link href="/contact" className="hover:text-[#1A56DB] transition-colors py-1">
-              {t("nav.contact")}
+            <Link
+              href="/contact"
+              className="px-2.5 py-1.5 rounded-lg hover:text-[#1A56DB] hover:bg-blue-50/80 transition-colors"
+            >
+              Contact
             </Link>
           </div>
 
-          {/* MTJ-Inspired Dual Action Buttons (Right) */}
+          {/* Action Button & Mobile Toggle (Right) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* 1. "Join Our Community" / Volunteer Pill (Visible on ultra-wide screens 1536px+) */}
+            {/* "Join Community" Pill (Visible on extra large screens 1440px+) */}
             <Link
               href="/get-involved"
               className="hidden 2xl:inline-flex items-center gap-1.5 bg-[#0F766E] hover:bg-[#0D625C] text-white font-semibold px-3.5 py-2 rounded-full text-xs shadow-sm transition-all hover:scale-[1.02] whitespace-nowrap"
@@ -206,19 +219,19 @@ export function Header() {
               <span>Join Community</span>
             </Link>
 
-            {/* 2. "Donate Now" MTJ Crimson Red Pill Button (Guaranteed visible with solid padding) */}
+            {/* "Donate Now" Crimson Red Pill Button (Prominent, always visible, beautifully padded) */}
             <Link
               href="/donate"
-              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center gap-1.5 whitespace-nowrap shrink-0"
+              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
               <Heart className="w-3.5 sm:w-4 h-3.5 sm:h-4 fill-white shrink-0" />
               <span>Donate Now</span>
             </Link>
 
-            {/* Mobile Menu Toggle (Visible below xl) */}
+            {/* Mobile Hamburger Toggle (ONLY on mobile & tablet < 1024px, hidden on desktop) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-primary-900 hover:bg-zinc-100 rounded-lg transition-colors shrink-0"
+              className="lg:hidden p-2 text-primary-900 hover:bg-zinc-100 rounded-lg transition-colors shrink-0"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -226,9 +239,9 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu (xl:hidden) */}
+        {/* Mobile Dropdown Menu (lg:hidden) */}
         {mobileMenuOpen && (
-          <div className="xl:hidden mt-3 pt-3 border-t border-zinc-200 flex flex-col gap-2 pb-4 text-sm font-medium">
+          <div className="lg:hidden mt-3 pt-3 border-t border-zinc-200 flex flex-col gap-2 pb-4 text-sm font-medium">
             <Link
               href="/donate"
               onClick={() => setMobileMenuOpen(false)}

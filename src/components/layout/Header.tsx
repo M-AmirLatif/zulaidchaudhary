@@ -41,25 +41,24 @@ export function Header() {
   return (
     <header className="w-full sticky top-0 z-50 shadow-sm">
       {/* 1. MTJ-Inspired Vibrant Top Utility Bar */}
-      <div className="bg-[#1A56DB] text-white text-xs py-2 px-4 border-b border-blue-600/30">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <div className="bg-[#1A56DB] text-white text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-blue-600/30">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           
           {/* Left: Contact Credentials & Trust Status */}
-          <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-3 sm:gap-5 min-w-0">
             <a
               href="mailto:info@zulaidchaudharyfoundation.com"
-              className="inline-flex items-center gap-1.5 hover:text-blue-100 transition-colors"
+              className="hidden lg:inline-flex items-center gap-1.5 hover:text-blue-100 transition-colors truncate"
             >
-              <Mail className="w-3.5 h-3.5 text-blue-200" />
-              <span className="hidden sm:inline">info@zulaidchaudharyfoundation.com</span>
-              <span className="sm:hidden">Email Us</span>
+              <Mail className="w-3.5 h-3.5 text-blue-200 shrink-0" />
+              <span className="truncate">info@zulaidchaudharyfoundation.com</span>
             </a>
 
-            <span className="text-blue-300">|</span>
+            <span className="hidden lg:inline text-blue-300">|</span>
 
             <a
               href="tel:+924230000000"
-              className="inline-flex items-center gap-1.5 hover:text-blue-100 transition-colors font-medium"
+              className="inline-flex items-center gap-1.5 hover:text-blue-100 transition-colors font-medium shrink-0"
             >
               <Phone className="w-3.5 h-3.5 text-blue-200" />
               <span>+92 42 30000000</span>
@@ -67,17 +66,17 @@ export function Header() {
 
             <span className="hidden md:inline text-blue-300">|</span>
 
-            <span className="hidden md:inline-flex items-center gap-1.5 bg-blue-700/60 text-blue-100 px-2.5 py-0.5 rounded-full text-[11px] font-medium border border-blue-500/40">
+            <span className="hidden md:inline-flex items-center gap-1.5 bg-blue-700/60 text-blue-100 px-2.5 py-0.5 rounded-full text-[11px] font-medium border border-blue-500/40 shrink-0">
               <ShieldCheck className="w-3 h-3 text-accent-gold" />
               <span>{t("legalStatus")}</span>
             </span>
           </div>
 
           {/* Right: Emergency, Socials, Language & Global Giving Pill */}
-          <div className="flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3.5 shrink-0">
             <Link
               href="/emergency-help"
-              className="text-red-200 hover:text-white transition-colors font-semibold flex items-center gap-1 text-[11px]"
+              className="text-red-200 hover:text-white transition-colors font-semibold flex items-center gap-1 text-[11px] shrink-0"
             >
               <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse inline-block" />
               <span>{t("nav.emergency")}</span>
@@ -87,7 +86,7 @@ export function Header() {
             <Link
               href={pathname}
               locale={otherLocale}
-              className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white px-2 py-0.5 rounded text-[11px] font-medium transition-colors"
+              className="inline-flex items-center gap-1 bg-white/10 hover:bg-white/20 text-white px-2 py-0.5 rounded text-[11px] font-medium transition-colors shrink-0"
             >
               <Globe className="w-3 h-3" />
               <span>{otherLocaleLabel}</span>
@@ -96,10 +95,11 @@ export function Header() {
             {/* MTJ Iconic "Donate Globally" White Pill Button */}
             <Link
               href="/donate"
-              className="inline-flex items-center gap-1.5 bg-white hover:bg-blue-50 text-primary-900 font-bold px-3 py-1 rounded-full text-[11px] shadow-sm transition-all hover:scale-105"
+              className="inline-flex items-center gap-1.5 bg-white hover:bg-blue-50 text-primary-900 font-bold px-3 py-1 rounded-full text-[11px] shadow-sm transition-all hover:scale-105 shrink-0"
             >
               <span className="text-xs">🌍</span>
-              <span>Donate Globally</span>
+              <span className="hidden xs:inline">Donate Globally</span>
+              <span className="xs:hidden">Donate</span>
             </Link>
           </div>
         </div>
@@ -107,25 +107,25 @@ export function Header() {
 
       {/* 2. Main Sticky Navigation Header */}
       <nav className="bg-white/98 backdrop-blur-md border-b border-zinc-200 text-charcoal py-3 px-4 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 sm:gap-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4 lg:gap-6">
           
           {/* Logo & Brand Wordmark */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-accent-gold flex items-center justify-center font-serif font-bold text-xl shadow-md group-hover:scale-105 transition-transform shrink-0 border border-primary-700">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-primary-900 via-primary-800 to-blue-900 text-accent-gold flex items-center justify-center font-serif font-bold text-lg sm:text-xl shadow-md group-hover:scale-105 transition-transform shrink-0 border border-primary-700">
               ZCF
             </div>
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-base sm:text-lg xl:text-xl text-primary-900 leading-tight whitespace-nowrap">
+              <span className="font-serif font-bold text-sm sm:text-base xl:text-lg text-primary-900 leading-tight whitespace-nowrap">
                 {t("siteName")}
               </span>
-              <span className="hidden sm:inline-block text-[10px] xl:text-[11px] text-charcoal-muted tracking-wide font-sans line-clamp-1 max-w-[210px] xl:max-w-none">
+              <span className="hidden 2xl:inline-block text-[10px] text-charcoal-muted tracking-wide font-sans line-clamp-1 max-w-[280px]">
                 {t("tagline")}
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-sm font-semibold text-zinc-700 whitespace-nowrap">
+          {/* Desktop Navigation Links (Switches at xl breakpoint so buttons never get squished) */}
+          <div className="hidden xl:flex items-center gap-3 2xl:gap-5 text-xs 2xl:text-sm font-semibold text-zinc-700 whitespace-nowrap">
             <Link
               href="/"
               className={`hover:text-[#1A56DB] transition-colors py-1 ${
@@ -197,28 +197,28 @@ export function Header() {
 
           {/* MTJ-Inspired Dual Action Buttons (Right) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* 1. "Join Our Community" / Volunteer Pill */}
+            {/* 1. "Join Our Community" / Volunteer Pill (Visible on ultra-wide screens 1536px+) */}
             <Link
               href="/get-involved"
-              className="hidden md:inline-flex items-center gap-1.5 bg-[#0F766E] hover:bg-[#0D625C] text-white font-semibold px-3.5 py-2 rounded-full text-xs shadow-sm transition-all hover:scale-[1.02] whitespace-nowrap"
+              className="hidden 2xl:inline-flex items-center gap-1.5 bg-[#0F766E] hover:bg-[#0D625C] text-white font-semibold px-3.5 py-2 rounded-full text-xs shadow-sm transition-all hover:scale-[1.02] whitespace-nowrap"
             >
               <Users className="w-3.5 h-3.5" />
               <span>Join Community</span>
             </Link>
 
-            {/* 2. "Donate Now" MTJ Crimson Red Pill Button */}
+            {/* 2. "Donate Now" MTJ Crimson Red Pill Button (Guaranteed visible with solid padding) */}
             <Link
               href="/donate"
-              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center gap-1.5 whitespace-nowrap shrink-0"
+              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
-              <Heart className="w-4 h-4 fill-white shrink-0" />
+              <Heart className="w-3.5 sm:w-4 h-3.5 sm:h-4 fill-white shrink-0" />
               <span>Donate Now</span>
             </Link>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Menu Toggle (Visible below xl) */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-primary-900 hover:bg-zinc-100 rounded-lg transition-colors"
+              className="xl:hidden p-2 text-primary-900 hover:bg-zinc-100 rounded-lg transition-colors shrink-0"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -226,9 +226,9 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu (xl:hidden) */}
         {mobileMenuOpen && (
-          <div className="lg:hidden mt-3 pt-3 border-t border-zinc-200 flex flex-col gap-2 pb-4 text-sm font-medium">
+          <div className="xl:hidden mt-3 pt-3 border-t border-zinc-200 flex flex-col gap-2 pb-4 text-sm font-medium">
             <Link
               href="/donate"
               onClick={() => setMobileMenuOpen(false)}

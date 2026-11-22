@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ShieldCheck, Heart, Eye, Target, ArrowRight } from "lucide-react";
@@ -21,6 +22,26 @@ export default function AboutPage() {
           <p className="text-base sm:text-lg text-charcoal-muted max-w-2xl leading-relaxed">
             {t("subtitle")}
           </p>
+        </div>
+
+        {/* Official Foundation Vision Banner (5th.jpg) */}
+        <div className="relative w-full rounded-3xl overflow-hidden shadow-xl border-2 border-primary-900/10 aspect-[21/9] sm:aspect-[24/8] flex items-center">
+          <Image
+            src="/images/5th.jpg"
+            alt="Zulaid Chaudhary Foundation - Serving Humanity Banner"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-950/80 via-primary-950/40 to-transparent" />
+          <div className="relative z-10 p-6 sm:p-10 flex flex-col gap-2 max-w-md text-surface-cream">
+            <span className="text-xs uppercase tracking-widest text-accent-gold font-bold">
+              Founding Creed
+            </span>
+            <span className="font-serif font-bold text-xl sm:text-2xl text-surface-cream">
+              Serving Humanity With Dignity, Compassion & Justice
+            </span>
+          </div>
         </div>
 
         {/* Mission & Vision Cards */}

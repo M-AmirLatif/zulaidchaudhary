@@ -163,7 +163,7 @@ export function Header() {
           {/* Direct CTA */}
           <div className="flex items-center gap-3">
             <Link
-              href="/get-involved"
+              href="/donate"
               className="bg-accent-gold hover:bg-accent-gold-light text-primary-900 font-bold px-4 py-2 rounded-lg text-sm shadow transition-all hover:scale-[1.02] flex items-center gap-1.5"
             >
               <Heart className="w-4 h-4 fill-primary-900" />
@@ -184,6 +184,15 @@ export function Header() {
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden mt-3 pt-3 border-t border-zinc-200 flex flex-col gap-2 pb-4 text-sm font-medium">
+            <Link
+              href="/donate"
+              onClick={() => setMobileMenuOpen(false)}
+              className="bg-accent-gold text-primary-900 font-bold px-4 py-2.5 rounded-xl text-center shadow flex items-center justify-center gap-2 mb-2"
+            >
+              <Heart className="w-4 h-4 fill-primary-900" />
+              <span>{t("donateNow")}</span>
+            </Link>
+
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}

@@ -100,7 +100,7 @@ export function Hero() {
                 className="w-full text-xs p-2.5 rounded-lg border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
               />
               <Link
-                href="/get-involved"
+                href="/donate"
                 className="bg-accent-gold hover:bg-accent-gold-light text-primary-900 font-bold text-xs px-4 py-2.5 rounded-lg whitespace-nowrap transition-colors shadow-sm"
               >
                 {t("proceedBtn")}

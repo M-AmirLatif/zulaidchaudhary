@@ -12,7 +12,10 @@ import {
   LogOut, 
   ShieldCheck, 
   ArrowLeft,
-  ChevronRight
+  ChevronRight,
+  Heart,
+  PawPrint,
+  PenTool
 } from "lucide-react";
 
 export default async function AdminLayout({
@@ -64,6 +67,30 @@ export default async function AdminLayout({
             >
               <LayoutDashboard className="w-4 h-4 text-accent-gold" />
               <span>Executive Dashboard</span>
+            </Link>
+
+            <Link
+              href="/admin/donations"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary-800 text-zinc-300 hover:text-accent-gold transition-colors"
+            >
+              <Heart className="w-4 h-4 text-accent-gold" />
+              <span>Donations & Receipts</span>
+            </Link>
+
+            <Link
+              href="/admin/animal-rescues"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary-800 text-zinc-300 hover:text-accent-gold transition-colors"
+            >
+              <PawPrint className="w-4 h-4 text-accent-gold" />
+              <span>Animal Rescue Dispatch</span>
+            </Link>
+
+            <Link
+              href="/admin/articles"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-primary-800 text-zinc-300 hover:text-accent-gold transition-colors"
+            >
+              <PenTool className="w-4 h-4 text-accent-gold" />
+              <span>Founder Columns & CMS</span>
             </Link>
 
             <Link

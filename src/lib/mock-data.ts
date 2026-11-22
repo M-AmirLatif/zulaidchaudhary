@@ -117,6 +117,56 @@ export interface ComplaintRecord {
   submittedAt: string;
 }
 
+export interface DonationRecord {
+  id: string;
+  receiptNumber: string;
+  donorName: string;
+  donorEmail: string;
+  donorPhone?: string;
+  isAnonymous: boolean;
+  amount: number;
+  currency: "PKR" | "USD" | "GBP" | "EUR";
+  frequency: "ONE_TIME" | "MONTHLY";
+  cause: string;
+  paymentMethod: "STRIPE_CARD" | "BANK_TRANSFER" | "JAZZCASH" | "EASYPAISA";
+  status: "COMPLETED" | "PENDING_VERIFICATION" | "REFUNDED";
+  transactionReference: string;
+  notes?: string;
+  createdAt: string;
+}
+
+export interface AnimalRescueRecord {
+  id: string;
+  trackingNumber: string;
+  animalType: "DOG" | "CAT" | "DONKEY_HORSE" | "BIRD" | "WILDLIFE" | "OTHER";
+  condition: "FRACTURE_TRAUMA" | "HIT_AND_RUN" | "POISONING_ILLNESS" | "CRUELTY_ABUSE" | "TRAPPED";
+  urgency: "EMERGENCY_CRITICAL" | "HIGH" | "MEDIUM";
+  locationCity: string;
+  locationAddress: string;
+  reporterName: string;
+  reporterPhone: string;
+  status: "REPORTED" | "DISPATCHED" | "IN_TREATMENT" | "REHABILITATED" | "SHELTERED" | "CLOSED";
+  assignedVet?: string;
+  treatmentNotes?: string;
+  submittedAt: string;
+}
+
+export interface ArticleRecord {
+  id: string;
+  slug: string;
+  title: string;
+  titleUr?: string;
+  category: string;
+  author: string;
+  excerpt: string;
+  content: string;
+  readTime: string;
+  featuredImage?: string;
+  tags: string[];
+  status: "PUBLISHED" | "DRAFT" | "SCHEDULED";
+  publishedAt: string;
+}
+
 // BCRYPT HASH FOR "Password123!":
 // $2a$10$w8.2Zf5G62zB9zU8P.wQJepj4w0t.6mJ1Kx3V8k4Y8U2mI4F1QY5m
 const DEFAULT_PASSWORD_HASH = "$2a$10$0z8q5j1sI3gYj8t2u1m7aeLw3nZ5p7v9x2b4c6d8f0h2j4k6l8m0.";
@@ -385,6 +435,170 @@ export const mockComplaints: ComplaintRecord[] = [
   },
 ];
 
+// Seeded Donations (Compliant Test Mode)
+export const mockDonations: DonationRecord[] = [
+  {
+    id: "don-001",
+    receiptNumber: "ZCF-REC-2026-0001",
+    donorName: "Ahmad Raza",
+    donorEmail: "supporter@gmail.com",
+    donorPhone: "+92 300 9876543",
+    isAnonymous: false,
+    amount: 15000,
+    currency: "PKR",
+    frequency: "ONE_TIME",
+    cause: "Free Medical Treatment & Deserving Patients",
+    paymentMethod: "BANK_TRANSFER",
+    status: "COMPLETED",
+    transactionReference: "MEEZAN-FT-98432104",
+    notes: "Direct bank transfer for cardiac surgery support pool.",
+    createdAt: "2026-11-18T14:20:00Z",
+  },
+  {
+    id: "don-002",
+    receiptNumber: "ZCF-REC-2026-0002",
+    donorName: "Anonymous Donor",
+    donorEmail: "donor.usa@example.com",
+    isAnonymous: true,
+    amount: 250,
+    currency: "USD",
+    frequency: "MONTHLY",
+    cause: "Hospital Construction Fund",
+    paymentMethod: "STRIPE_CARD",
+    status: "COMPLETED",
+    transactionReference: "ch_test_3NwK82910Fjs82",
+    notes: "International monthly pledge for hospital development.",
+    createdAt: "2026-11-20T10:15:00Z",
+  },
+  {
+    id: "don-003",
+    receiptNumber: "ZCF-REC-2026-0003",
+    donorName: "Dr. Medical Ally",
+    donorEmail: "partner_doc@example.com",
+    isAnonymous: false,
+    amount: 50000,
+    currency: "PKR",
+    frequency: "ONE_TIME",
+    cause: "Animal Welfare & Emergency Rescue",
+    paymentMethod: "JAZZCASH",
+    status: "COMPLETED",
+    transactionReference: "JC-TXN-88392019",
+    notes: "Urgent veterinary relief medicines sponsorship.",
+    createdAt: "2026-11-21T16:45:00Z",
+  },
+];
+
+// Seeded Animal Rescue Requests
+export const mockAnimalRescues: AnimalRescueRecord[] = [
+  {
+    id: "ar-001",
+    trackingNumber: "ZCF-AR-2026-0042",
+    animalType: "DONKEY_HORSE",
+    condition: "HIT_AND_RUN",
+    urgency: "EMERGENCY_CRITICAL",
+    locationCity: "Lahore",
+    locationAddress: "Near Multan Road Bypass, opposite fruit market",
+    reporterName: "Hamza Malik",
+    reporterPhone: "+92 333 4455667",
+    status: "IN_TREATMENT",
+    assignedVet: "Dr. Rashid (Equine Vet)",
+    treatmentNotes: "Severe hind leg fracture. Splint applied, wound cleaned and anti-inflammatory administered.",
+    submittedAt: "2026-11-20T08:30:00Z",
+  },
+  {
+    id: "ar-002",
+    trackingNumber: "ZCF-AR-2026-0043",
+    animalType: "DOG",
+    condition: "POISONING_ILLNESS",
+    urgency: "HIGH",
+    locationCity: "Lahore",
+    locationAddress: "Gulberg III, near mini market green belt",
+    reporterName: "Ayesha Khan",
+    reporterPhone: "+92 301 2233445",
+    status: "REHABILITATED",
+    assignedVet: "Dr. Maria (Companion Animal Vet)",
+    treatmentNotes: "Ingestion of toxic contaminant. Stomach pumped, IV fluids administered. Now active and eating well.",
+    submittedAt: "2026-11-19T14:10:00Z",
+  },
+  {
+    id: "ar-003",
+    trackingNumber: "ZCF-AR-2026-0044",
+    animalType: "BIRD",
+    condition: "TRAPPED",
+    urgency: "MEDIUM",
+    locationCity: "Lahore",
+    locationAddress: "Canal Bank Road, overhead powerline entanglement",
+    reporterName: "Usman Tariq",
+    reporterPhone: "+92 345 9988776",
+    status: "SHELTERED",
+    assignedVet: "Wildlife Volunteer Group",
+    treatmentNotes: "Black kite freed from metallic kite string. Wing laceration treated. Under observation before release.",
+    submittedAt: "2026-11-21T11:00:00Z",
+  },
+];
+
+// Seeded Articles and Founder Columns
+export const mockArticles: ArticleRecord[] = [
+  {
+    id: "art-001",
+    slug: "serving-humanity-without-borders",
+    title: "Serving Humanity Without Borders: The Philosophical Foundation of Our Mission",
+    titleUr: "انسانیت کی بے لوث خدمت: ہماری بنیاد اور فلسفہ",
+    category: "Column by Founder",
+    author: "Zulaid Chaudhary (Founder)",
+    excerpt: "True humanitarian work begins where personal convenience ends. A reflection on clinical compassion, dignity, and why healthcare must never be a privilege.",
+    content: `When a vulnerable father or desperate mother arrives seeking treatment for a sick child, poverty must never become a barrier between them and healing. Over the past months, as we arranged free healthcare and critical surgeries for approximately 25 to 30 deserving patients, one inescapable reality became evident: medical crisis is the single quickest path into generational poverty in developing nations.\n\nOur family includes medical practitioners who dedicate their expertise in Pakistan and abroad. However, lasting impact requires systematic infrastructure. That is why our hospital is under construction—designed as a sanctuary of dignity where no one is turned away for lack of financial means.\n\nSimultaneously, compassion cannot be selective. A truly humane society cares equally for the disenfranchised, the environment we borrow from future generations, and the voiceless creatures that share our cities and fields.\n\nZulaid Chaudhary Foundation was founded on these unyielding principles: verified ground impact, complete ethical transparency, and quiet, practical service.`,
+    readTime: "5 min read",
+    featuredImage: "/images/5th.jpg",
+    tags: ["Philosophy", "Humanity", "Founder Column", "Healthcare"],
+    status: "PUBLISHED",
+    publishedAt: "2026-11-21T10:00:00Z",
+  },
+  {
+    id: "art-002",
+    slug: "catastrophic-health-expenditures",
+    title: "Catastrophic Health Expenditures: The Reality of Surgical Access in Pakistan",
+    titleUr: "طبی اخراجات اور سرجیکل ایمرجنسیز: زمینی حقائق",
+    category: "Healthcare & Medical Awareness",
+    author: "Medical Advisory Board",
+    excerpt: "An empirical overview of out-of-pocket medical costs in Pakistan, examining how surgical emergencies precipitate generational poverty and the role of charity hospitals.",
+    content: `Out-of-pocket healthcare expenditures account for over 50% of total health spending in Pakistan. When a wage-earner requires unexpected cardiac intervention or orthopedic trauma surgery, families are forced into debt or distress asset sales.\n\nCommunity medical funds bridge this vital chasm. By coordinating directly with treating surgeons and partner hospitals, verified assistance ensures 100% of dedicated funds directly subsidize pharmacy and operating theatre costs.`,
+    readTime: "6 min read",
+    tags: ["Healthcare", "Surgery", "Poverty Alleviation"],
+    status: "PUBLISHED",
+    publishedAt: "2026-11-10T12:00:00Z",
+  },
+  {
+    id: "art-003",
+    slug: "working-animals-welfare-pakistan",
+    title: "The Silent Backbone: Working Animals & Ethical Welfare in Urban Centers",
+    titleUr: "محنت کش بے زبان جانور: شہری مراکز میں اخلاقی تحفظ",
+    category: "Animal Rights & Wildlife",
+    author: "Zulaid Chaudhary (Founder)",
+    excerpt: "Cart donkeys and draught horses endure immense physical strain on urban roads. Why animal welfare is an integral component of civil compassion.",
+    content: `In bustling fruit markets and industrial fringes, thousands of draught equines carry excessive loads under grueling weather conditions. Most receive minimal veterinary inspection and suffer untreated harness wounds.\n\nOur animal rescue and mobile veterinary initiatives target preventative care: free wound dressing, harness education, hydration troughs, and emergency rescue for hit-and-run victims. Compassion for voiceless animals reflects the moral temperature of any society.`,
+    readTime: "4 min read",
+    featuredImage: "/images/3rdimg.jpg",
+    tags: ["Animal Welfare", "Equine Care", "Founder Column"],
+    status: "PUBLISHED",
+    publishedAt: "2026-11-16T15:30:00Z",
+  },
+  {
+    id: "art-004",
+    slug: "international-humanitarian-law-health",
+    title: "International Humanitarian Law & the Right to Health in Conflict Zones",
+    titleUr: "بین الاقوامی انسانی قوانین اور جنگی علاقوں میں حقِ صحت",
+    category: "Human Rights & Justice",
+    author: "Human Rights Research Desk",
+    excerpt: "A legal examination of Geneva Convention protections afforded to civilian healthcare infrastructure, with specific reference to Palestine and global humanitarian crises.",
+    content: `Under the Geneva Conventions, hospitals, clinics, and medical relief personnel are granted absolute protected status during armed conflicts. The systematic dismantling of healthcare infrastructure in Palestine represents one of the gravest humanitarian catastrophes of our century.\n\nZulaid Chaudhary Foundation stands firmly on the bedrock of international human rights law: immediate unhindered humanitarian corridors, protection for doctors and first responders, and unfettered delivery of life-saving medical supplies.`,
+    readTime: "8 min read",
+    tags: ["Human Rights", "Palestine", "International Law"],
+    status: "PUBLISHED",
+    publishedAt: "2026-10-28T09:00:00Z",
+  },
+];
+
 // Helper Mutation Functions for In-Memory State
 export function getVolunteers() {
   return [...mockVolunteers];
@@ -494,4 +708,103 @@ export function updateComplaintStatus(
     if (investigator) cmp.assignedInvestigator = investigator;
   }
   return cmp;
+}
+
+// Donations API Helpers
+export function getDonations() {
+  return [...mockDonations];
+}
+
+export function addDonation(
+  data: Omit<DonationRecord, "id" | "receiptNumber" | "createdAt">
+) {
+  const newReceiptNum = `ZCF-REC-2026-${String(mockDonations.length + 1).padStart(4, "0")}`;
+  const newDonation: DonationRecord = {
+    ...data,
+    id: `don-${Date.now().toString(36)}`,
+    receiptNumber: newReceiptNum,
+    createdAt: new Date().toISOString(),
+  };
+  mockDonations.unshift(newDonation);
+  return newDonation;
+}
+
+export function updateDonationStatus(
+  id: string,
+  status: DonationRecord["status"],
+  notes?: string
+) {
+  const don = mockDonations.find((d) => d.id === id);
+  if (don) {
+    don.status = status;
+    if (notes) don.notes = notes;
+  }
+  return don;
+}
+
+// Animal Rescues API Helpers
+export function getAnimalRescues() {
+  return [...mockAnimalRescues];
+}
+
+export function addAnimalRescue(
+  data: Omit<AnimalRescueRecord, "id" | "trackingNumber" | "submittedAt" | "status">
+) {
+  const newTrackingNum = `ZCF-AR-2026-${String(mockAnimalRescues.length + 1).padStart(4, "0")}`;
+  const newRescue: AnimalRescueRecord = {
+    ...data,
+    id: `ar-${Date.now().toString(36)}`,
+    trackingNumber: newTrackingNum,
+    status: "REPORTED",
+    submittedAt: new Date().toISOString(),
+  };
+  mockAnimalRescues.unshift(newRescue);
+  return newRescue;
+}
+
+export function updateAnimalRescueStatus(
+  id: string,
+  status: AnimalRescueRecord["status"],
+  assignedVet?: string,
+  treatmentNotes?: string
+) {
+  const r = mockAnimalRescues.find((item) => item.id === id);
+  if (r) {
+    r.status = status;
+    if (assignedVet) r.assignedVet = assignedVet;
+    if (treatmentNotes) r.treatmentNotes = treatmentNotes;
+  }
+  return r;
+}
+
+// Articles & Founder Column API Helpers
+export function getArticles() {
+  return [...mockArticles];
+}
+
+export function getArticleBySlug(slug: string) {
+  return mockArticles.find((a) => a.slug === slug);
+}
+
+export function addArticle(
+  data: Omit<ArticleRecord, "id" | "publishedAt">
+) {
+  const newArticle: ArticleRecord = {
+    ...data,
+    id: `art-${Date.now().toString(36)}`,
+    publishedAt: new Date().toISOString(),
+  };
+  mockArticles.unshift(newArticle);
+  return newArticle;
+}
+
+export function updateArticle(
+  id: string,
+  data: Partial<ArticleRecord>
+) {
+  const art = mockArticles.find((a) => a.id === id);
+  if (art) {
+    Object.assign(art, data);
+  }
+  return art;
 }

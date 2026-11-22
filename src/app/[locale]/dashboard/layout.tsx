@@ -9,7 +9,8 @@ import {
   LogOut, 
   User, 
   ChevronRight,
-  ShieldAlert
+  ShieldAlert,
+  Heart
 } from "lucide-react";
 
 export default async function DashboardLayout({
@@ -74,6 +75,14 @@ export default async function DashboardLayout({
             >
               <Award className="w-4 h-4 text-accent-gold-dark" />
               <span>Membership Card</span>
+            </Link>
+
+            <Link
+              href="/dashboard/donations"
+              className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl hover:bg-surface-muted text-charcoal hover:text-primary-900 transition-colors"
+            >
+              <Heart className="w-4 h-4 text-accent-gold-dark" />
+              <span>Donations & Receipts</span>
             </Link>
 
             <Link

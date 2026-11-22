@@ -75,24 +75,24 @@ export function Header() {
 
       {/* Main Navbar */}
       <nav className="bg-surface-cream/95 backdrop-blur-md border-b border-zinc-200 text-charcoal py-3 px-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
           {/* Logo & Brand Wordmark */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg bg-primary-900 text-accent-gold flex items-center justify-center font-serif font-bold text-xl shadow group-hover:scale-105 transition-transform">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-primary-900 text-accent-gold flex items-center justify-center font-serif font-bold text-xl shadow group-hover:scale-105 transition-transform shrink-0">
               ZCF
             </div>
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-lg md:text-xl text-primary-900 leading-tight">
+              <span className="font-serif font-bold text-base sm:text-lg xl:text-xl text-primary-900 leading-tight whitespace-nowrap">
                 {t("siteName")}
               </span>
-              <span className="text-[11px] text-charcoal-muted tracking-wide font-sans">
+              <span className="hidden sm:inline-block text-[10px] xl:text-[11px] text-charcoal-muted tracking-wide font-sans line-clamp-1 max-w-[210px] xl:max-w-none">
                 {t("tagline")}
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-6 text-sm font-medium">
+          <div className="hidden lg:flex items-center gap-2.5 xl:gap-5 text-xs xl:text-sm font-medium whitespace-nowrap">
             <Link href="/" className="hover:text-accent-gold-dark transition-colors">
               {t("nav.home")}
             </Link>
@@ -103,7 +103,7 @@ export function Header() {
                 <span>{t("nav.about")}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover:text-accent-gold-dark transition-transform group-hover:rotate-180" />
               </Link>
-              <div className="absolute top-full start-0 hidden group-hover:block pt-2">
+              <div className="absolute top-full start-0 hidden group-hover:block pt-2 z-50">
                 <div className="bg-surface-card border border-zinc-200 shadow-xl rounded-xl py-2 min-w-[200px] flex flex-col">
                   <Link href="/about" className="px-4 py-2 hover:bg-surface-muted hover:text-accent-gold-dark text-xs font-semibold">
                     {t("nav.about")}
@@ -124,7 +124,7 @@ export function Header() {
                 <span>{t("nav.ourWork")}</span>
                 <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover:text-accent-gold-dark transition-transform group-hover:rotate-180" />
               </Link>
-              <div className="absolute top-full start-0 hidden group-hover:block pt-2">
+              <div className="absolute top-full start-0 hidden group-hover:block pt-2 z-50">
                 <div className="bg-surface-card border border-zinc-200 shadow-xl rounded-xl py-2 min-w-[240px] flex flex-col">
                   {workItems.map((item) => (
                     <Link
@@ -161,13 +161,13 @@ export function Header() {
           </div>
 
           {/* Direct CTA */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <Link
               href="/donate"
-              className="bg-accent-gold hover:bg-accent-gold-light text-primary-900 font-bold px-4 py-2 rounded-lg text-sm shadow transition-all hover:scale-[1.02] flex items-center gap-1.5"
+              className="bg-accent-gold hover:bg-accent-gold-light text-primary-900 font-bold px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm shadow transition-all hover:scale-[1.02] flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
-              <Heart className="w-4 h-4 fill-primary-900" />
-              <span>{t("donateNow")}</span>
+              <Heart className="w-4 h-4 fill-primary-900 shrink-0" />
+              <span className="whitespace-nowrap">{t("donateNow")}</span>
             </Link>
 
             {/* Mobile Menu Toggle */}

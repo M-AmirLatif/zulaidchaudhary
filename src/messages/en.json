@@ -298,5 +298,50 @@
     "partnershipTitle": "Institutional & Hospital Partnerships",
     "partnershipDesc": "Partner with us as a healthcare institution, clinic, or corporate partner to expand free patient treatment.",
     "partnershipBtn": "Propose Partnership"
+  },
+  "auth": {
+    "signInTitle": "Sign In to Foundation Portal",
+    "signInSubtitle": "Access your supporter dashboard, volunteer records, or administrative tools.",
+    "registerTitle": "Create Supporter Account",
+    "registerSubtitle": "Join our global community of advocates, volunteers, and members.",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "nameLabel": "Full Name",
+    "signInBtn": "Sign In",
+    "registerBtn": "Create Account",
+    "twoFactorTitle": "Two-Factor Verification",
+    "twoFactorDesc": "Enter the 6-digit verification code from your authenticator application.",
+    "verifyBtn": "Verify & Continue",
+    "demoHint": "Demo Administrative Credentials: admin@zulaidchaudharyfoundation.com | Password123! | 2FA: 123456",
+    "noAccount": "Don't have an account yet?",
+    "haveAccount": "Already have an account?"
+  },
+  "dashboard": {
+    "title": "Supporter & Volunteer Portal",
+    "welcome": "Welcome back",
+    "overview": "Overview",
+    "volunteerStatus": "Volunteer Application",
+    "membership": "Membership Card",
+    "medicalRequests": "Healthcare Tracking",
+    "profile": "Security & Profile",
+    "signOut": "Sign Out"
+  },
+  "admin": {
+    "title": "Administrative Back-Office",
+    "role": "Active Role",
+    "overview": "Executive Dashboard",
+    "volunteers": "Volunteer Approvals",
+    "memberships": "Membership Queue",
+    "projects": "Project Management",
+    "hospital": "Hospital Updates",
+    "medicalCases": "Medical Cases Vault",
+    "complaints": "Grievance Redressal",
+    "auditLogs": "Immutable Audit Log",
+    "quickStats": "Quick Status",
+    "pendingActions": "Pending Actions",
+    "approve": "Approve",
+    "reject": "Decline",
+    "review": "Review",
+    "save": "Save Changes"
   }
 }

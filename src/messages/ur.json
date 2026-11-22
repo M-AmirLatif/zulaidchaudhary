@@ -298,5 +298,50 @@
     "partnershipTitle": "ہسپتالوں اور اداروں کے ساتھ شراکت",
     "partnershipDesc": "اگر آپ ڈاکٹر، ہسپتال کے منتظم یا ادارے کے سربراہ ہیں تو مستحق مریضوں کے علاج میں ہمارے پارٹنر بنیں۔",
     "partnershipBtn": "شراکت داری کی پیشکش"
+  },
+  "auth": {
+    "signInTitle": "فاؤنڈیشن پورٹل میں لاگ ان",
+    "signInSubtitle": "اپنے ڈیش بورڈ، رضاکارانہ ریکارڈ یا انتظامی ٹولز تک رسائی حاصل کریں۔",
+    "registerTitle": "نیا اکاؤنٹ بنائیں",
+    "registerSubtitle": "ہمدردوں، رضاکاروں اور ارکان کی بین الاقوامی کمیونٹی میں شامل ہوں۔",
+    "emailLabel": "ای میل ایڈریس",
+    "passwordLabel": "پاس ورڈ",
+    "nameLabel": "مکمل نام",
+    "signInBtn": "لاگ ان کریں",
+    "registerBtn": "اکاؤنٹ بنائیں",
+    "twoFactorTitle": "ٹو فیکٹر توثیق (2FA)",
+    "twoFactorDesc": "اپنی مستند ایپ سے 6 ہندسوں کا کوڈ درج کریں۔",
+    "verifyBtn": "تصدیق کر کے آگے بڑھیں",
+    "demoHint": "انتظامی ڈیمو اکاؤنٹ: admin@zulaidchaudharyfoundation.com | پاس ورڈ: Password123! | کوڈ: 123456",
+    "noAccount": "ابھی تک اکاؤنٹ نہیں ہے؟",
+    "haveAccount": "پہلے سے اکاؤنٹ موجود ہے؟"
+  },
+  "dashboard": {
+    "title": "رضاکار اور سپورٹر پورٹل",
+    "welcome": "خوش آمدید",
+    "overview": "مجموعی جائزہ",
+    "volunteerStatus": "رضاکارانہ درخواست",
+    "membership": "رکنیت کارڈ",
+    "medicalRequests": "طبی امداد کی ٹریکنگ",
+    "profile": "سیکیورٹی اور پروفائل",
+    "signOut": "لاگ آؤٹ"
+  },
+  "admin": {
+    "title": "انتظامی پورٹل",
+    "role": "فعال عہدہ",
+    "overview": "ایگزیکٹو ڈیش بورڈ",
+    "volunteers": "رضاکارانہ منظوری",
+    "memberships": "رکنیت کی فہرست",
+    "projects": "منصوبہ بندی",
+    "hospital": "ہسپتال کی پیش رفت",
+    "medicalCases": "طبی کیسز کا والٹ",
+    "complaints": "شکایات کا ازالہ",
+    "auditLogs": "آڈٹ لاگ ریکارڈ",
+    "quickStats": "فوری صورتحال",
+    "pendingActions": "زیرِ التواء کارروائیاں",
+    "approve": "منظور کریں",
+    "reject": "مسترد کریں",
+    "review": "جائزہ لیں",
+    "save": "تبدیلیاں محفوظ کریں"
   }
 }

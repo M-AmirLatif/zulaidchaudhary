@@ -3,6 +3,7 @@ import { mockUsers, UserRecord } from "@/lib/mock-data";
 import { hashPassword } from "@/lib/password";
 import { setSessionCookie } from "@/lib/auth";
 import { logAuditAction } from "@/lib/audit";
+import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,21 +24,48 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const passwordHash = await hashPassword(password);
+
+    // 1. Persist to live PostgreSQL database if available
+    let createdUser = null;
+    try {
+      const existing = await prisma.user.findUnique({
+        where: { email: email.toLowerCase() },
+      });
+      if (existing) {
+        return NextResponse.json(
+          { error: "An account with this email already exists" },
+          { status: 409 }
+        );
+      }
+      createdUser = await prisma.user.create({
+        data: {
+          name,
+          email: email.toLowerCase(),
+          passwordHash,
+          role: "DONOR_USER",
+          isActive: true,
+        },
+      });
+    } catch {
+      // Fallback to in-memory store
+    }
+
     const existingUser = mockUsers.find(
       (u) => u.email.toLowerCase() === email.toLowerCase()
     );
 
-    if (existingUser) {
+    if (!createdUser && existingUser) {
       return NextResponse.json(
         { error: "An account with this email already exists" },
         { status: 409 }
       );
     }
 
-    const passwordHash = await hashPassword(password);
+    const userId = createdUser?.id || `usr-${Date.now().toString(36)}`;
 
     const newUser: UserRecord = {
-      id: `usr-${Date.now().toString(36)}`,
+      id: userId,
       name,
       email,
       passwordHash,
@@ -64,8 +92,7 @@ export async function POST(req: NextRequest) {
       action: "CREATE",
       entity: "User",
       entityId: newUser.id,
-      details: "New supporter account registered",
-      newData: { name: newUser.name, email: newUser.email },
+      details: `User account registered: ${newUser.email}`,
       ipAddress: req.headers.get("x-forwarded-for") || "127.0.0.1",
     });
 
@@ -77,12 +104,11 @@ export async function POST(req: NextRequest) {
         email: newUser.email,
         role: newUser.role,
       },
-      redirectTo: "/dashboard",
     });
   } catch (error) {
-    console.error("Register error:", error);
+    console.error("Registration error:", error);
     return NextResponse.json(
-      { error: "Failed to create account" },
+      { error: "Internal server error" },
       { status: 500 }
     );
   }

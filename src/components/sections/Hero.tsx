@@ -201,11 +201,17 @@ export function Hero() {
             <div className="lg:col-span-7 flex flex-col justify-center text-start">
               
               {/* Nastaliq Urdu Calligraphy Block */}
-              <div className="mb-6 p-4 rounded-2xl bg-[#f0f8fd] border border-[#d6ecfa]">
-                <div className="font-urdu text-2xl sm:text-4xl lg:text-5xl font-bold text-[#005972] leading-relaxed tracking-normal" dir="rtl">
+              <div className="mb-6 p-5 sm:p-7 rounded-2xl bg-[#f0f8fd] border border-[#d6ecfa] flex flex-col gap-4 sm:gap-6">
+                <div
+                  className="font-urdu text-2xl sm:text-4xl lg:text-[44px] font-bold text-[#005972] leading-[2.2] sm:leading-[2.4] tracking-normal pb-1"
+                  dir="rtl"
+                >
                   {current.taglineUrdu}
                 </div>
-                <div className="font-urdu text-xl sm:text-3xl lg:text-4xl font-semibold text-[#16a34a] mt-1" dir="rtl">
+                <div
+                  className="font-urdu text-xl sm:text-3xl lg:text-[34px] font-semibold text-[#16a34a] leading-[2.2] sm:leading-[2.4] tracking-normal pt-1"
+                  dir="rtl"
+                >
                   {current.subtitleUrdu}
                 </div>
               </div>

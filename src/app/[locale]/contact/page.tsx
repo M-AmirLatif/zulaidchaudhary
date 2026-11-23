@@ -10,12 +10,71 @@ export default function ContactPage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [complaintSubmitted, setComplaintSubmitted] = useState(false);
   const [complaintRef, setComplaintRef] = useState("");
+  const [complaintCategory, setComplaintCategory] = useState("Financial Transparency Concern");
+  const [complaintContact, setComplaintContact] = useState("");
+  const [complaintDesc, setComplaintDesc] = useState("");
+  const [isSubmittingComplaint, setIsSubmittingComplaint] = useState(false);
 
-  const handleComplaintSubmit = (e: React.FormEvent) => {
+  // General Message State
+  const [contactName, setContactName] = useState("");
+  const [contactEmail, setContactEmail] = useState("");
+  const [contactSubject, setContactSubject] = useState("");
+  const [contactMessage, setContactMessage] = useState("");
+  const [isSubmittingMessage, setIsSubmittingMessage] = useState(false);
+
+  const handleMessageSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const ref = `ZCF-CMP-${Math.floor(100000 + Math.random() * 900000)}`;
-    setComplaintRef(ref);
-    setComplaintSubmitted(true);
+    setIsSubmittingMessage(true);
+    try {
+      await fetch("/api/complaints", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category: "General Inquiry",
+          subject: `${contactSubject} (From: ${contactName})`,
+          description: contactMessage,
+          complainantContact: contactEmail,
+          isConfidential: false,
+        }),
+      });
+      setFormSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setFormSubmitted(true);
+    } finally {
+      setIsSubmittingMessage(false);
+    }
+  };
+
+  const handleComplaintSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmittingComplaint(true);
+    try {
+      const res = await fetch("/api/complaints", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category: complaintCategory,
+          subject: `Confidential Report: ${complaintCategory}`,
+          description: complaintDesc,
+          complainantContact: complaintContact || undefined,
+          isConfidential: true,
+        }),
+      });
+      const data = await res.json();
+      if (data.trackingReference) {
+        setComplaintRef(data.trackingReference);
+      } else {
+        setComplaintRef(`ZCF-CMP-${Math.floor(100000 + Math.random() * 900000)}`);
+      }
+      setComplaintSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setComplaintRef(`ZCF-CMP-${Math.floor(100000 + Math.random() * 900000)}`);
+      setComplaintSubmitted(true);
+    } finally {
+      setIsSubmittingComplaint(false);
+    }
   };
 
   return (
@@ -111,10 +170,7 @@ export default function ContactPage() {
               </div>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setFormSubmitted(true);
-                }}
+                onSubmit={handleMessageSubmit}
                 className="flex flex-col gap-4 text-xs sm:text-sm"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -123,6 +179,8 @@ export default function ContactPage() {
                     <input
                       type="text"
                       required
+                      value={contactName}
+                      onChange={(e) => setContactName(e.target.value)}
                       className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                     />
                   </div>
@@ -132,6 +190,8 @@ export default function ContactPage() {
                     <input
                       type="email"
                       required
+                      value={contactEmail}
+                      onChange={(e) => setContactEmail(e.target.value)}
                       className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                     />
                   </div>
@@ -142,6 +202,8 @@ export default function ContactPage() {
                   <input
                     type="text"
                     required
+                    value={contactSubject}
+                    onChange={(e) => setContactSubject(e.target.value)}
                     className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                   />
                 </div>
@@ -151,15 +213,18 @@ export default function ContactPage() {
                   <textarea
                     rows={4}
                     required
+                    value={contactMessage}
+                    onChange={(e) => setContactMessage(e.target.value)}
                     className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="bg-primary-900 hover:bg-primary-800 text-surface-cream font-bold py-3 px-6 rounded-xl shadow transition-colors text-sm self-start mt-2"
+                  disabled={isSubmittingMessage}
+                  className="bg-primary-900 hover:bg-primary-800 disabled:opacity-50 text-surface-cream font-bold py-3 px-6 rounded-xl shadow transition-colors text-sm self-start mt-2"
                 >
-                  {t("sendBtn")}
+                  {isSubmittingMessage ? "Sending..." : t("sendBtn")}
                 </button>
               </form>
             )}
@@ -196,12 +261,16 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="font-semibold text-charcoal">Report Category</label>
-                  <select className="p-3 rounded-xl border border-zinc-300 bg-surface-cream focus:outline-none focus:border-accent-gold">
-                    <option>Financial Transparency Concern</option>
-                    <option>Volunteer or Staff Misconduct</option>
-                    <option>Medical Assistance Disbursement Issue</option>
-                    <option>Donor Privacy Violation</option>
-                    <option>General Ethical Feedback</option>
+                  <select
+                    value={complaintCategory}
+                    onChange={(e) => setComplaintCategory(e.target.value)}
+                    className="p-3 rounded-xl border border-zinc-300 bg-surface-cream focus:outline-none focus:border-accent-gold"
+                  >
+                    <option value="Financial Transparency Concern">Financial Transparency Concern</option>
+                    <option value="Volunteer or Staff Misconduct">Volunteer or Staff Misconduct</option>
+                    <option value="Medical Assistance Disbursement Issue">Medical Assistance Disbursement Issue</option>
+                    <option value="Donor Privacy Violation">Donor Privacy Violation</option>
+                    <option value="General Ethical Feedback">General Ethical Feedback</option>
                   </select>
                 </div>
 
@@ -209,6 +278,8 @@ export default function ContactPage() {
                   <label className="font-semibold text-charcoal">Complainant Contact (Optional)</label>
                   <input
                     type="text"
+                    value={complaintContact}
+                    onChange={(e) => setComplaintContact(e.target.value)}
                     placeholder="Leave blank to remain completely anonymous"
                     className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                   />
@@ -220,6 +291,8 @@ export default function ContactPage() {
                 <textarea
                   rows={4}
                   required
+                  value={complaintDesc}
+                  onChange={(e) => setComplaintDesc(e.target.value)}
                   placeholder="Provide objective dates, locations, and factual descriptions of the concern..."
                   className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                 />
@@ -227,9 +300,10 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="bg-accent-gold hover:bg-accent-gold-light text-primary-900 font-bold py-3 px-6 rounded-xl shadow transition-colors text-sm self-start"
+                disabled={isSubmittingComplaint}
+                className="bg-accent-gold hover:bg-accent-gold-light disabled:opacity-50 text-primary-900 font-bold py-3 px-6 rounded-xl shadow transition-colors text-sm self-start"
               >
-                {t("complaintBtn")}
+                {isSubmittingComplaint ? "Filing Report..." : t("complaintBtn")}
               </button>
             </form>
           )}

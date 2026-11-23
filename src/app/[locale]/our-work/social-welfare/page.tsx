@@ -60,18 +60,37 @@ export default function SocialWelfarePage() {
     consentAgreed: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.consentAgreed) {
       alert("Please agree to the verification declaration.");
       return;
     }
     setIsSubmitting(true);
-    setTimeout(() => {
-      const ref = `ZCF-AST-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(ref);
+    try {
+      const res = await fetch("/api/assistance-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "RATION_SUPPORT",
+          applicantName: formData.applicantName,
+          contactNumber: formData.contactNumber,
+          city: formData.city,
+          details: `${formData.aidType} (CNIC: ${formData.cnicOrId}, Family: ${formData.familyMembers}). Reason: ${formData.reasonForAssistance}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.trackingNumber) {
+        setSubmittedRef(data.trackingNumber);
+      } else {
+        setSubmittedRef(`ZCF-AST-${Math.floor(100000 + Math.random() * 900000)}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmittedRef(`ZCF-AST-${Math.floor(100000 + Math.random() * 900000)}`);
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
   return (

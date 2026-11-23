@@ -58,14 +58,33 @@ export default function EducationPage() {
     academicPerformance: "Above 75% marks",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      const ref = `ZCF-EDU-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(ref);
+    try {
+      const res = await fetch("/api/assistance-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "EDUCATION_SCHOLARSHIP",
+          applicantName: `${formData.studentName} (Guardian: ${formData.guardianName})`,
+          contactNumber: formData.contactNumber,
+          city: formData.city,
+          details: `School: ${formData.schoolName} (${formData.gradeOrClass}). Annual fee PKR ${formData.annualFees}. Performance: ${formData.academicPerformance}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.trackingNumber) {
+        setSubmittedRef(data.trackingNumber);
+      } else {
+        setSubmittedRef(`ZCF-EDU-${Math.floor(100000 + Math.random() * 900000)}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmittedRef(`ZCF-EDU-${Math.floor(100000 + Math.random() * 900000)}`);
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
   return (

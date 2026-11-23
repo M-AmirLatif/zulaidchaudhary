@@ -620,8 +620,38 @@ export function updateVolunteerStatus(
   return vol;
 }
 
+export function addVolunteer(
+  data: Omit<VolunteerAppRecord, "id" | "applicationNumber" | "submittedAt" | "status">
+) {
+  const newAppNum = `ZCF-VOL-${String(mockVolunteers.length + 1).padStart(4, "0")}`;
+  const newVol: VolunteerAppRecord = {
+    ...data,
+    id: `vol-${Date.now().toString(36)}`,
+    applicationNumber: newAppNum,
+    status: "PENDING",
+    submittedAt: new Date().toISOString(),
+  };
+  mockVolunteers.unshift(newVol);
+  return newVol;
+}
+
 export function getMemberships() {
   return [...mockMemberships];
+}
+
+export function addMembership(
+  data: Omit<MembershipRecord, "id" | "membershipNumber" | "submittedAt" | "status">
+) {
+  const newMemNum = `ZCF-MEM-${String(mockMemberships.length + 1).padStart(4, "0")}`;
+  const newMem: MembershipRecord = {
+    ...data,
+    id: `mem-${Date.now().toString(36)}`,
+    membershipNumber: newMemNum,
+    status: "PENDING",
+    submittedAt: new Date().toISOString(),
+  };
+  mockMemberships.unshift(newMem);
+  return newMem;
 }
 
 export function updateMembershipStatus(
@@ -691,8 +721,38 @@ export function updateMedicalCaseStatus(
   return c;
 }
 
+export function addMedicalCase(
+  data: Omit<MedicalCaseRecord, "id" | "caseReferenceNumber" | "submittedAt" | "status">
+) {
+  const newRef = `ZCF-MED-${String(mockMedicalCases.length + 1).padStart(4, "0")}`;
+  const newCase: MedicalCaseRecord = {
+    ...data,
+    id: `med-${Date.now().toString(36)}`,
+    caseReferenceNumber: newRef,
+    status: "PENDING_VETTING",
+    submittedAt: new Date().toISOString(),
+  };
+  mockMedicalCases.unshift(newCase);
+  return newCase;
+}
+
 export function getComplaints() {
   return [...mockComplaints];
+}
+
+export function addComplaint(
+  data: Omit<ComplaintRecord, "id" | "trackingReference" | "submittedAt" | "status">
+) {
+  const newRef = `ZCF-CMP-${String(mockComplaints.length + 1).padStart(4, "0")}`;
+  const newCmp: ComplaintRecord = {
+    ...data,
+    id: `cmp-${Date.now().toString(36)}`,
+    trackingReference: newRef,
+    status: "SUBMITTED",
+    submittedAt: new Date().toISOString(),
+  };
+  mockComplaints.unshift(newCmp);
+  return newCmp;
 }
 
 export function updateComplaintStatus(

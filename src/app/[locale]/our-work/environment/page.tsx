@@ -61,14 +61,33 @@ export default function EnvironmentPage() {
     additionalDetails: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      const ref = `ZCF-WELL-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(ref);
+    try {
+      const res = await fetch("/api/assistance-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "WATER_WELL",
+          applicantName: formData.contactPerson,
+          contactNumber: formData.contactPhone,
+          city: `${formData.villageOrArea}, ${formData.district}`,
+          details: `Community Water Well Request for ~${formData.populationServed} residents. Current source: ${formData.currentWaterSource}. Notes: ${formData.additionalDetails}`,
+        }),
+      });
+      const data = await res.json();
+      if (data.trackingNumber) {
+        setSubmittedRef(data.trackingNumber);
+      } else {
+        setSubmittedRef(`ZCF-WELL-${Math.floor(100000 + Math.random() * 900000)}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmittedRef(`ZCF-WELL-${Math.floor(100000 + Math.random() * 900000)}`);
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
   return (

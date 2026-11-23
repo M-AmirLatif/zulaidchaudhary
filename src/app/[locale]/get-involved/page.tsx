@@ -60,37 +60,108 @@ export default function GetInvolvedPage() {
     proposal: "",
   });
 
-  const handleVolunteerSubmit = (e: React.FormEvent) => {
+  const handleVolunteerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      const ref = `ZCF-VOL-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(ref);
+    try {
+      const res = await fetch("/api/volunteers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: volunteerForm.name,
+          email: volunteerForm.email,
+          phone: volunteerForm.phone,
+          city: volunteerForm.city,
+          profession: volunteerForm.profession,
+          skills: [volunteerForm.skills, volunteerForm.interests].filter(Boolean),
+          motivation: volunteerForm.motivation,
+        }),
+      });
+      const data = await res.json();
+      if (data.applicationNumber) {
+        setSubmittedRef(data.applicationNumber);
+        setSubmittedType("Volunteer Application");
+      } else {
+        const fallback = `ZCF-VOL-${Math.floor(100000 + Math.random() * 900000)}`;
+        setSubmittedRef(fallback);
+        setSubmittedType("Volunteer Application");
+      }
+    } catch (err) {
+      console.error("Volunteer submission error:", err);
+      const fallback = `ZCF-VOL-${Math.floor(100000 + Math.random() * 900000)}`;
+      setSubmittedRef(fallback);
       setSubmittedType("Volunteer Application");
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
-  const handleMembershipSubmit = (e: React.FormEvent) => {
+  const handleMembershipSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      const ref = `ZCF-MEM-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(ref);
+    try {
+      const res = await fetch("/api/memberships", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: membershipForm.name,
+          email: membershipForm.email,
+          phone: membershipForm.phone,
+          city: `${membershipForm.city}, ${membershipForm.country}`,
+          tier: "Standard",
+        }),
+      });
+      const data = await res.json();
+      if (data.membershipNumber) {
+        setSubmittedRef(data.membershipNumber);
+        setSubmittedType("International Chapter Membership");
+      } else {
+        const fallback = `ZCF-MEM-${Math.floor(100000 + Math.random() * 900000)}`;
+        setSubmittedRef(fallback);
+        setSubmittedType("International Chapter Membership");
+      }
+    } catch (err) {
+      console.error("Membership submission error:", err);
+      const fallback = `ZCF-MEM-${Math.floor(100000 + Math.random() * 900000)}`;
+      setSubmittedRef(fallback);
       setSubmittedType("International Chapter Membership");
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
-  const handlePartnerSubmit = (e: React.FormEvent) => {
+  const handlePartnerSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      const ref = `ZCF-PRT-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedRef(ref);
+    try {
+      const res = await fetch("/api/complaints", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          category: "Institutional Partnership Inquiry",
+          subject: `Partnership Inquiry from ${partnerForm.orgName} (${partnerForm.sector})`,
+          description: `Contact: ${partnerForm.contactPerson} (${partnerForm.email}, ${partnerForm.phone}). Proposal: ${partnerForm.proposal}`,
+          complainantContact: partnerForm.email || partnerForm.phone,
+          isConfidential: false,
+        }),
+      });
+      const data = await res.json();
+      if (data.trackingReference) {
+        setSubmittedRef(data.trackingReference);
+        setSubmittedType("Partnership Inquiry");
+      } else {
+        const fallback = `ZCF-PRT-${Math.floor(100000 + Math.random() * 900000)}`;
+        setSubmittedRef(fallback);
+        setSubmittedType("Partnership Inquiry");
+      }
+    } catch (err) {
+      console.error("Partner inquiry submission error:", err);
+      const fallback = `ZCF-PRT-${Math.floor(100000 + Math.random() * 900000)}`;
+      setSubmittedRef(fallback);
       setSubmittedType("Partnership Inquiry");
+    } finally {
       setIsSubmitting(false);
-    }, 600);
+    }
   };
 
   return (

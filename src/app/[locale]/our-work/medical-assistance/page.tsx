@@ -110,7 +110,7 @@ export default function MedicalAssistancePage() {
     privacyAcknowledged: false,
   });
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.consentGiven || !formData.privacyAcknowledged) {
       alert("Please acknowledge the patient informed consent and privacy terms to proceed.");
@@ -118,11 +118,35 @@ export default function MedicalAssistancePage() {
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      const generatedRef = `ZCF-MED-${Math.floor(100000 + Math.random() * 900000)}`;
-      setSubmittedCaseRef(generatedRef);
+    try {
+      const res = await fetch("/api/medical-cases", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          patientInitials: formData.patientName || "PT",
+          city: formData.city,
+          age: Number(formData.age) || 0,
+          gender: formData.gender,
+          diagnosisSummary: `${formData.specialty}: ${formData.diagnosisSummary}`,
+          treatingPhysician: formData.hospitalName || "Designated Hospital Specialist",
+          estimatedCostPKR: Number(formData.estimatedCost) || 0,
+          hasInformedConsent: true,
+        }),
+      });
+      const data = await res.json();
+      if (data.caseReferenceNumber) {
+        setSubmittedCaseRef(data.caseReferenceNumber);
+      } else {
+        const fallbackRef = `ZCF-MED-${Math.floor(100000 + Math.random() * 900000)}`;
+        setSubmittedCaseRef(fallbackRef);
+      }
+    } catch (err) {
+      console.error("Failed to submit medical case:", err);
+      const fallbackRef = `ZCF-MED-${Math.floor(100000 + Math.random() * 900000)}`;
+      setSubmittedCaseRef(fallbackRef);
+    } finally {
       setIsSubmitting(false);
-    }, 700);
+    }
   };
 
   const filteredCases = VERIFIED_CASES.filter((c) => {

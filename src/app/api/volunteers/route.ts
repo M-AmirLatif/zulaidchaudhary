@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { addVolunteer, getVolunteers } from "@/lib/mock-data";
 import { logAuditAction } from "@/lib/audit";
 import { prisma } from "@/lib/prisma";
+import { sendVolunteerConfirmationEmail } from "@/lib/email";
 
 export async function GET() {
   try {
@@ -87,6 +88,16 @@ export async function POST(req: NextRequest) {
       newData: { applicationNumber: newVolunteer.applicationNumber, city: newVolunteer.city },
       ipAddress: req.headers.get("x-forwarded-for") || "127.0.0.1",
     });
+
+    // Dispatch confirmation email
+    if (newVolunteer.email) {
+      sendVolunteerConfirmationEmail({
+        fullName: newVolunteer.fullName,
+        email: newVolunteer.email,
+        applicationNumber: newVolunteer.applicationNumber,
+        city: newVolunteer.city,
+      }).catch((e) => console.warn("Volunteer email trigger error:", e));
+    }
 
     return NextResponse.json({
       success: true,

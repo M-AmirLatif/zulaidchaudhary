@@ -4,6 +4,7 @@ import { logAuditAction } from "@/lib/audit";
 import { getSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { Currency, PaymentMethod, PaymentStatus } from "@prisma/client";
+import { sendDonationReceiptEmail } from "@/lib/email";
 
 function mapPaymentMethod(method: string): PaymentMethod {
   const m = String(method).toUpperCase();
@@ -135,6 +136,19 @@ export async function POST(req: NextRequest) {
         paymentMethod: newDonation.paymentMethod,
       },
     });
+
+    // Trigger automated email dispatch in background
+    if (newDonation.donorEmail) {
+      sendDonationReceiptEmail({
+        donorEmail: newDonation.donorEmail,
+        donorName: newDonation.donorName,
+        amount: newDonation.amount,
+        currency: newDonation.currency,
+        cause: newDonation.cause,
+        receiptNumber: newDonation.receiptNumber,
+        paymentMethod: newDonation.paymentMethod,
+      }).catch((e) => console.warn("Receipt email trigger error:", e));
+    }
 
     return NextResponse.json({
       success: true,

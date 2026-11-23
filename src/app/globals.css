@@ -23,9 +23,10 @@
   }
 
   /* RTL typography line height adjustment for Nastaliq calligraphy */
-  [dir="rtl"] {
+  [dir="rtl"],
+  .font-urdu {
     font-family: var(--font-urdu), system-ui, sans-serif;
-    line-height: 1.85;
+    line-height: 2.1;
   }
 
   [dir="rtl"] h1,
@@ -33,13 +34,40 @@
   [dir="rtl"] h3,
   [dir="rtl"] h4,
   [dir="rtl"] h5,
-  [dir="rtl"] h6 {
-    line-height: 1.6;
+  [dir="rtl"] h6,
+  .font-urdu h1,
+  .font-urdu h2,
+  .font-urdu h3,
+  .font-urdu h4,
+  .font-urdu h5,
+  .font-urdu h6 {
+    line-height: 1.85 !important;
   }
 
   [dir="rtl"] p,
-  .font-urdu p {
-    line-height: 1.85;
+  .font-urdu p,
+  [dir="rtl"] li,
+  .font-urdu li {
+    line-height: 2.1 !important;
+  }
+
+  /* Prevent Latin-centric utility classes from crushing Urdu Nastaliq lines */
+  [dir="rtl"] .leading-snug,
+  [dir="rtl"] .leading-tight,
+  [dir="rtl"] .leading-normal,
+  [dir="rtl"] .leading-relaxed {
+    line-height: 2.1 !important;
+  }
+
+  [dir="rtl"] h1.leading-snug,
+  [dir="rtl"] h2.leading-snug,
+  [dir="rtl"] h3.leading-snug,
+  [dir="rtl"] h4.leading-snug,
+  [dir="rtl"] h1.leading-tight,
+  [dir="rtl"] h2.leading-tight,
+  [dir="rtl"] h3.leading-tight,
+  [dir="rtl"] h4.leading-tight {
+    line-height: 1.85 !important;
   }
 
   textarea {

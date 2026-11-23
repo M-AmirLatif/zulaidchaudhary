@@ -37,6 +37,10 @@
     line-height: 1.8;
   }
 
+  textarea {
+    resize: none;
+  }
+
   /* Accessibility visible focus states */
   a:focus-visible,
   button:focus-visible,

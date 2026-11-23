@@ -428,22 +428,25 @@ export default function AnimalWelfarePage() {
             </div>
 
             {/* Helpline Box */}
-            <div className="bg-gradient-to-br from-primary-900 to-primary-950 text-surface-cream rounded-3xl p-6 sm:p-8 flex flex-col gap-4 shadow-md">
+            <div className="bg-[#0A2318] text-white border border-[#143D2B] rounded-3xl p-6 sm:p-8 flex flex-col gap-4 shadow-xl">
               <div className="flex items-center gap-2 text-accent-gold">
-                <PhoneCall className="w-4 h-4" />
+                <PhoneCall className="w-4 h-4 text-accent-gold" />
                 <span className="text-xs font-bold uppercase tracking-wider">
                   Emergency Animal Hotline
                 </span>
               </div>
-              <h4 className="font-serif font-bold text-xl">
+              <h4 className="font-serif font-bold text-xl text-white">
                 Immediate Urgent Assistance
               </h4>
               <p className="text-xs text-zinc-300 leading-relaxed font-sans">
                 For critically bleeding horses or active hit-and-run emergencies, call our animal emergency line directly.
               </p>
-              <div className="font-mono font-bold text-accent-gold text-lg">
+              <a
+                href="tel:+923000000000"
+                className="font-mono font-bold text-accent-gold hover:text-accent-gold-light text-xl transition-colors inline-block"
+              >
                 +92 300 000 0000
-              </div>
+              </a>
             </div>
           </div>
         </div>

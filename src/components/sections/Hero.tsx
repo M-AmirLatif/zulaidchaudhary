@@ -263,17 +263,14 @@ export function Hero() {
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-[#c2e4cc]">
             
             {/* Title */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center shrink-0">
               <span className="font-serif font-extrabold text-2xl sm:text-3xl text-[#16a34a] tracking-tight">
                 Donate
-              </span>
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-[#15803d]">
-                Instant Relief Matrix
               </span>
             </div>
 
             {/* 4 Form Selectors */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full lg:w-auto">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 w-full lg:w-auto lg:flex-1 lg:justify-end">
               
               {/* Frequency */}
               <div>

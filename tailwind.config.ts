@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
+          950: "#061A12",
           900: "#0C2B1E",
           800: "#143D2B",
           700: "#1C523B",

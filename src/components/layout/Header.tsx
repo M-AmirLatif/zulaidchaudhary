@@ -119,10 +119,10 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] xl:text-sm font-semibold text-slate-700">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-6 text-xs xl:text-[13px] font-semibold text-slate-700 shrink min-w-0">
             <Link
               href="/"
-              className={`hover:text-[#009ee2] transition-colors ${
+              className={`hover:text-[#009ee2] transition-colors whitespace-nowrap ${
                 pathname === "/" ? "text-[#009ee2]" : ""
               }`}
             >
@@ -131,7 +131,7 @@ export function Header() {
 
             <Link
               href="/about"
-              className={`hover:text-[#009ee2] transition-colors ${
+              className={`hover:text-[#009ee2] transition-colors whitespace-nowrap ${
                 pathname.includes("/about") ? "text-[#009ee2]" : ""
               }`}
             >
@@ -139,10 +139,10 @@ export function Header() {
             </Link>
 
             {/* Programs Dropdown */}
-            <div className="relative group">
+            <div className="relative group shrink-0">
               <Link
                 href="/our-work"
-                className="hover:text-[#009ee2] transition-colors inline-flex items-center gap-1 py-1"
+                className="hover:text-[#009ee2] transition-colors inline-flex items-center gap-1 py-1 whitespace-nowrap"
               >
                 <span>Programs</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#009ee2] transition-transform group-hover:rotate-180" />
@@ -165,48 +165,49 @@ export function Header() {
 
             <Link
               href="/projects"
-              className="hover:text-[#009ee2] transition-colors"
+              className="hover:text-[#009ee2] transition-colors whitespace-nowrap"
             >
               Projects
             </Link>
 
             <Link
               href="/get-involved"
-              className="hover:text-[#009ee2] transition-colors"
+              className="hover:text-[#009ee2] transition-colors whitespace-nowrap"
             >
               Volunteer
             </Link>
 
             <Link
               href="/transparency"
-              className="hover:text-[#009ee2] transition-colors"
+              className="hover:text-[#009ee2] transition-colors whitespace-nowrap hidden 2xl:inline-block"
             >
               Transparency
             </Link>
 
             <Link
               href="/contact"
-              className="hover:text-[#009ee2] transition-colors"
+              className="hover:text-[#009ee2] transition-colors whitespace-nowrap"
             >
               Contact
             </Link>
           </div>
 
           {/* Right Action CTAs: Join Our Support Community + Donate Now */}
-          <div className="hidden sm:flex items-center gap-2.5 shrink-0">
+          <div className="hidden sm:flex items-center gap-2 shrink-0 ms-2">
             <Link
               href="/get-involved"
-              className="bg-[#005972] hover:bg-[#00475b] text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-[13px] font-semibold flex items-center gap-1.5 transition-all shadow-sm"
+              className="bg-[#005972] hover:bg-[#00475b] text-white px-3 xl:px-4 py-2 sm:py-2.5 rounded-lg text-xs xl:text-[13px] font-semibold flex items-center gap-1.5 transition-all shadow-sm whitespace-nowrap shrink-0"
             >
-              <Users className="w-4 h-4" />
-              <span>Join Our Support Community</span>
+              <Users className="w-3.5 h-3.5 xl:w-4 xl:h-4 shrink-0" />
+              <span className="hidden xl:inline">Join Our Support Community</span>
+              <span className="xl:hidden">Join Community</span>
             </Link>
 
             <Link
               href="/donate"
-              className="bg-[#d92525] hover:bg-[#c81e1e] text-white px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-lg text-xs sm:text-[13px] font-semibold flex items-center gap-1.5 transition-all shadow-sm"
+              className="bg-[#d92525] hover:bg-[#c81e1e] text-white px-3.5 xl:px-4 py-2 sm:py-2.5 rounded-lg text-xs xl:text-[13px] font-bold flex items-center gap-1.5 transition-all shadow-sm whitespace-nowrap shrink-0"
             >
-              <Heart className="w-4 h-4 fill-white" />
+              <Heart className="w-3.5 h-3.5 xl:w-4 xl:h-4 fill-white shrink-0" />
               <span>Donate Now</span>
             </Link>
           </div>

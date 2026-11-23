@@ -16,7 +16,8 @@ export function DualActionTriptych() {
               src="/images/2ndimg.jpg"
               alt="Healthcare & Free Treatment"
               fill
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-80"
+              className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+              style={{ objectPosition: "28% 20%" }}
             />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -55,7 +56,8 @@ export function DualActionTriptych() {
               src="/images/3rdimg.jpg"
               alt="Hospital Construction Lahore"
               fill
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-85"
+              className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-85"
+              style={{ objectPosition: "center 20%" }}
             />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
@@ -91,10 +93,11 @@ export function DualActionTriptych() {
           {/* Card 3: Volunteer & Ground Engagement (BECOME VOLUNTEER) */}
           <div className="relative rounded-t-[140px] sm:rounded-t-[170px] rounded-b-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900 group min-h-[460px] flex flex-col justify-end">
             <Image
-              src="/images/5th.jpg"
+              src="/images/5th_portrait.jpg"
               alt="Become a Foundation Volunteer"
               fill
-              className="object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-80"
+              className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80"
+              style={{ objectPosition: "center 25%" }}
             />
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />

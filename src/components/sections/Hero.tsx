@@ -17,6 +17,7 @@ import {
 const HERO_SLIDES = [
   {
     image: "/images/2ndimg.jpg",
+    objectPosition: "28% 20%",
     badge: "HUMANITY • HOPE • JUSTICE",
     taglineUrdu: "تشخیص سے علاج تک",
     subtitleUrdu: "ہر مستحق کے ساتھ",
@@ -28,6 +29,7 @@ const HERO_SLIDES = [
   },
   {
     image: "/images/firstimg.jpg",
+    objectPosition: "center 20%",
     badge: "SERVING HUMANITY",
     taglineUrdu: "امید اور خدمت خلق",
     subtitleUrdu: "بلا تفریق انسانیت کی خدمت",
@@ -38,7 +40,8 @@ const HERO_SLIDES = [
     primaryCtaLink: "/get-involved",
   },
   {
-    image: "/images/5th.jpg",
+    image: "/images/5th_portrait.jpg",
+    objectPosition: "center 25%",
     badge: "GRASSROOTS INTERVENTION",
     taglineUrdu: "شفافیت اور دیانت داری",
     subtitleUrdu: "ہر پائی کا مکمل حساب",
@@ -137,7 +140,8 @@ export function Hero() {
                   alt={current.titleEn}
                   fill
                   priority
-                  className="object-cover object-top transition-transform duration-1000 ease-out hover:scale-105"
+                  className="object-cover transition-transform duration-1000 ease-out hover:scale-105"
+                  style={{ objectPosition: (current as any).objectPosition || "center 20%" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
                 

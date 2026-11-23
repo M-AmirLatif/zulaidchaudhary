@@ -34,7 +34,7 @@ const PROJECTS = [
     title: "Animal Welfare & Trauma Rescue",
     subtitle: "Mobile Clinics for Cart Donkeys & Strays",
     category: "Animal Welfare",
-    image: "/images/5th.jpg",
+    image: "/images/4th.jpg",
     desc: "Providing veterinary wounds treatment for working equines, shelter for street animals, and injured bird care.",
     raised: "PKR 9,20,000",
     goal: "PKR 15,00,000",

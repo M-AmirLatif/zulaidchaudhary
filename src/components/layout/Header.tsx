@@ -34,13 +34,13 @@ export function Header() {
   ];
 
   return (
-    <header className="w-full sticky top-0 z-50 shadow-sm">
+    <header className="w-full sticky top-0 z-50 shadow-sm overflow-x-clip">
       {/* 1. Official Top Utility Bar - Deep Emerald Brand Palette */}
-      <div className="bg-primary-950 text-surface-cream text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-primary-900/60">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
+      <div className="bg-primary-950 text-surface-cream text-xs py-2 px-3 sm:px-6 lg:px-8 border-b border-primary-900/60">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 sm:gap-4">
           
           {/* Left: Registration Status & Helpline */}
-          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-4 min-w-0">
             <span className="inline-flex items-center gap-1.5 font-medium shrink-0">
               <ShieldCheck className="w-3.5 h-3.5 text-accent-gold shrink-0" />
               <span className="truncate">{t("legalStatus")}</span>
@@ -58,7 +58,7 @@ export function Header() {
           </div>
 
           {/* Right: Emergency Help & Language Switcher */}
-          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-4 shrink-0">
             <Link
               href="/emergency-help"
               className="text-red-300 hover:text-red-200 transition-colors font-semibold flex items-center gap-1 text-[11px] sm:text-xs shrink-0"
@@ -73,7 +73,7 @@ export function Header() {
             <Link
               href={pathname}
               locale={otherLocale}
-              className="inline-flex items-center gap-1.5 bg-primary-900 hover:bg-primary-800 text-accent-gold px-2.5 py-0.5 rounded text-[11px] font-medium border border-primary-800/80 transition-colors shrink-0"
+              className="inline-flex items-center gap-1.5 bg-primary-900 hover:bg-primary-800 text-accent-gold px-2 py-0.5 rounded text-[11px] font-medium border border-primary-800/80 transition-colors shrink-0"
             >
               <Globe className="w-3 h-3 text-accent-gold" />
               <span>{otherLocaleLabel}</span>
@@ -83,29 +83,29 @@ export function Header() {
       </div>
 
       {/* 2. Main Sticky Navigation Header - Pure Clean Design */}
-      <nav className="bg-white/98 backdrop-blur-md border-b border-zinc-200 text-charcoal py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 lg:gap-4">
+      <nav className="bg-white/98 backdrop-blur-md border-b border-zinc-200 text-charcoal py-2 sm:py-2.5 lg:py-3 px-3 sm:px-6 lg:px-8 shadow-sm">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 lg:gap-3 xl:gap-4">
           
           {/* Logo & Brand Wordmark */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-950 text-accent-gold flex items-center justify-center font-serif font-bold text-lg sm:text-xl shadow group-hover:scale-105 transition-transform shrink-0 border border-primary-900">
+          <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary-950 text-accent-gold flex items-center justify-center font-serif font-bold text-base sm:text-lg shadow group-hover:scale-105 transition-transform shrink-0 border border-primary-900">
               ZCF
             </div>
             <div className="flex flex-col">
-              <span className="font-serif font-bold text-base lg:text-[17px] xl:text-xl text-primary-950 leading-tight whitespace-nowrap">
+              <span className="font-serif font-bold text-sm sm:text-base lg:text-[15px] xl:text-lg 2xl:text-xl text-primary-950 leading-tight whitespace-nowrap">
                 {t("siteName")}
               </span>
-              <span className="hidden xl:inline-block text-[10px] 2xl:text-[11px] text-zinc-500 tracking-wide font-sans line-clamp-1">
+              <span className="hidden xl:inline-block text-[10px] 2xl:text-[11px] text-zinc-500 tracking-wide font-sans line-clamp-1 max-w-[280px]">
                 {t("tagline")}
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (Visible on desktop lg: 1024px+, perfectly spaced and aligned) */}
-          <div className="hidden lg:flex items-center gap-1 lg:gap-1.5 xl:gap-2.5 2xl:gap-3.5 text-xs xl:text-[13px] 2xl:text-sm font-semibold text-zinc-700 whitespace-nowrap">
+          {/* Desktop Navigation Links (Visible on desktop lg: 1024px+, perfectly spaced and fitted) */}
+          <div className="hidden lg:flex items-center gap-0.5 lg:gap-1 xl:gap-2 2xl:gap-3 text-xs xl:text-[13px] 2xl:text-sm font-semibold text-zinc-700 whitespace-nowrap">
             <Link
               href="/"
-              className={`px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors ${
+              className={`px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors ${
                 pathname === "/" ? "text-primary-950 font-bold bg-zinc-100/80" : ""
               }`}
             >
@@ -116,10 +116,10 @@ export function Header() {
             <div className="relative group">
               <Link
                 href="/about"
-                className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors inline-flex items-center gap-1"
+                className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors inline-flex items-center gap-1"
               >
                 <span>{t("nav.about")}</span>
-                <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover:text-accent-gold-dark transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-3 h-3 text-zinc-400 group-hover:text-accent-gold-dark transition-transform group-hover:rotate-180" />
               </Link>
               <div className="absolute top-full start-0 hidden group-hover:block pt-1.5 z-50 animate-in fade-in slide-in-from-top-1">
                 <div className="bg-white border border-zinc-200 shadow-xl rounded-xl py-2 min-w-[210px] flex flex-col">
@@ -140,10 +140,10 @@ export function Header() {
             <div className="relative group">
               <Link
                 href="/our-work"
-                className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors inline-flex items-center gap-1"
+                className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors inline-flex items-center gap-1"
               >
                 <span>{t("nav.ourWork")}</span>
-                <ChevronDown className="w-3.5 h-3.5 text-zinc-400 group-hover:text-accent-gold-dark transition-transform group-hover:rotate-180" />
+                <ChevronDown className="w-3 h-3 text-zinc-400 group-hover:text-accent-gold-dark transition-transform group-hover:rotate-180" />
               </Link>
               <div className="absolute top-full start-0 hidden group-hover:block pt-1.5 z-50 animate-in fade-in slide-in-from-top-1">
                 <div className="bg-white border border-zinc-200 shadow-xl rounded-xl py-2 min-w-[240px] flex flex-col divide-y divide-zinc-100">
@@ -163,46 +163,48 @@ export function Header() {
 
             <Link
               href="/projects"
-              className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
+              className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
             >
               {t("nav.projects")}
             </Link>
 
             <Link
               href="/articles"
-              className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
+              className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
             >
-              {t("nav.articles")}
+              <span className="hidden xl:inline">{t("nav.articles")}</span>
+              <span className="xl:hidden">{isRtl ? "مضامین" : "Articles"}</span>
             </Link>
 
             <Link
               href="/transparency"
-              className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
+              className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
             >
               {t("nav.transparency")}
             </Link>
 
             <Link
               href="/get-involved"
-              className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
+              className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
             >
               {t("nav.getInvolved")}
             </Link>
 
             <Link
               href="/contact"
-              className="px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
+              className="px-1.5 lg:px-2 py-1.5 rounded-lg hover:text-accent-gold-dark hover:bg-zinc-100 transition-colors"
             >
-              {t("nav.contact")}
+              <span className="hidden xl:inline">{t("nav.contact")}</span>
+              <span className="xl:hidden">{isRtl ? "رابطہ" : "Contact"}</span>
             </Link>
           </div>
 
           {/* Right Action: Donate Now Button & Mobile Hamburger Toggle */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
             {/* Warm Gold "Donate Now" Button - Always visible, never cut off */}
             <Link
               href="/donate"
-              className="bg-accent-gold hover:bg-accent-gold-light text-primary-950 font-bold px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm shadow-sm transition-all hover:scale-[1.02] flex items-center gap-1.5 whitespace-nowrap shrink-0"
+              className="bg-accent-gold hover:bg-accent-gold-light text-primary-950 font-bold px-3 lg:px-3.5 xl:px-4 py-1.5 lg:py-2 rounded-xl text-xs xl:text-sm shadow-sm transition-all hover:scale-[1.02] flex items-center gap-1.5 whitespace-nowrap shrink-0"
             >
               <Heart className="w-3.5 sm:w-4 h-3.5 sm:h-4 fill-primary-950 shrink-0" />
               <span className="whitespace-nowrap">{t("donateNow")}</span>
@@ -214,7 +216,7 @@ export function Header() {
               className="lg:hidden p-2 text-primary-950 hover:bg-zinc-100 rounded-lg transition-colors shrink-0"
               aria-label="Toggle navigation menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>

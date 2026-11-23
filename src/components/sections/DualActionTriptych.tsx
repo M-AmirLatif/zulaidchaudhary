@@ -1,96 +1,134 @@
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { Heart, Users, ArrowRight, Sparkles, Coins } from "lucide-react";
+import { Heart, Users, ArrowRight } from "lucide-react";
 
 export function DualActionTriptych() {
   return (
-    <section className="py-16 px-4 bg-white border-b border-zinc-100">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-surface-cream overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        
+        {/* 3 Arch-Topped Cards (Exact MTJ Design) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
           
-          {/* 1. Left Capsule: Make Donation */}
-          <div className="bg-gradient-to-br from-amber-500/10 via-amber-50/50 to-white rounded-3xl border-2 border-amber-200/80 p-8 flex flex-col justify-between gap-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
-            <div className="flex flex-col gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                🪙
-              </div>
-
-              <div>
-                <span className="text-xs font-bold text-accent-gold-dark uppercase tracking-wider block mb-1">
-                  Direct Financial Support
-                </span>
-                <h3 className="font-serif font-bold text-2xl text-primary-900 leading-tight">
-                  Make a Meaningful Contribution
-                </h3>
-              </div>
-
-              <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
-                Your Sadqa, Zakat, and humanitarian donations directly subsidize surgical operating theatre fees, pharmacy bills, and emergency animal trauma relief.
-              </p>
-            </div>
-
-            <Link
-              href="/donate"
-              className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold py-3 px-6 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center justify-center gap-2"
-            >
-              <Heart className="w-4 h-4 fill-white" />
-              <span>Donate Now</span>
-            </Link>
-          </div>
-
-          {/* 2. Center Capsule: Real Human Connection */}
-          <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white min-h-[320px] md:min-h-full group">
+          {/* Card 1: Healthcare & Free Patient Relief (MAKE DONATION) */}
+          <div className="relative rounded-t-[140px] sm:rounded-t-[170px] rounded-b-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900 group min-h-[460px] flex flex-col justify-end">
             <Image
-              src="/images/firstimg.jpg"
-              alt="Humanitarian care and dignity"
+              src="/images/2ndimg.jpg"
+              alt="Healthcare & Free Treatment"
               fill
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-80"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-primary-950/85 via-primary-950/30 to-transparent" />
-            <div className="absolute bottom-6 inset-x-6 text-white text-center flex flex-col items-center gap-1.5">
-              <span className="text-xs uppercase font-bold tracking-widest text-accent-gold">
-                Grassroots Sanctuary
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+            
+            {/* Rotated Vertical Badge */}
+            <div className="absolute top-16 -start-8 rotate-90 origin-top-left z-20">
+              <span className="bg-[#16a34a] text-white text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-b-md shadow-md">
+                MAKE DONATION
               </span>
-              <h4 className="font-serif font-bold text-xl sm:text-2xl text-white">
-                &quot;Where Pain Finds Relief&quot;
-              </h4>
-              <p className="text-xs text-zinc-300 max-w-xs font-sans">
-                Real patient care verified directly on the ground.
+            </div>
+
+            {/* Content at Bottom */}
+            <div className="relative z-20 p-6 sm:p-8 flex flex-col items-center text-center">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-1">
+                Medical Relief
+              </span>
+              <h3 className="font-serif font-bold text-xl sm:text-2xl text-white mb-2">
+                Free Patient Surgeries
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+                Directly sponsor critical medical surgeries, diagnostic labs, and prescription medicines for destitute families.
               </p>
+              <Link
+                href="/donate?project=Health%20%26%20Free%20Surgeries"
+                className="bg-[#16a34a] hover:bg-[#15803d] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg transition-all hover:scale-105 flex items-center gap-2"
+              >
+                <Heart className="w-4 h-4 fill-white" />
+                <span>Donate for Healthcare</span>
+              </Link>
             </div>
           </div>
 
-          {/* 3. Right Capsule: Become a Volunteer */}
-          <div className="bg-gradient-to-br from-blue-500/10 via-blue-50/50 to-white rounded-3xl border-2 border-blue-200/80 p-8 flex flex-col justify-between gap-6 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
-            <div className="flex flex-col gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-blue-100 text-[#1A56DB] flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
-                🤝
-              </div>
+          {/* Card 2: Center Arch: Hospital Under Construction (DONATE NOW) */}
+          <div className="relative rounded-t-[140px] sm:rounded-t-[170px] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-amber-300/60 bg-slate-900 group min-h-[490px] flex flex-col justify-end -mt-0 md:-mt-4">
+            <Image
+              src="/images/3rdimg.jpg"
+              alt="Hospital Construction Lahore"
+              fill
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-700 opacity-85"
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
 
-              <div>
-                <span className="text-xs font-bold text-[#1A56DB] uppercase tracking-wider block mb-1">
-                  Active Ground Engagement
-                </span>
-                <h3 className="font-serif font-bold text-2xl text-primary-900 leading-tight">
-                  Become a Foundation Volunteer
-                </h3>
-              </div>
-
-              <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
-                Join our medical advisory pool, logistics team, translation desk, or emergency animal rescue units across Pakistan and international chapters.
-              </p>
+            {/* Rotated Vertical Badge */}
+            <div className="absolute top-16 -start-8 rotate-90 origin-top-left z-20">
+              <span className="bg-[#d92525] text-white text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-b-md shadow-md">
+                DONATE NOW
+              </span>
             </div>
 
-            <Link
-              href="/get-involved"
-              className="bg-[#0F766E] hover:bg-[#0D625C] text-white font-bold py-3 px-6 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center justify-center gap-2"
-            >
-              <Users className="w-4 h-4" />
-              <span>Join as Volunteer</span>
-            </Link>
+            {/* Content at Bottom */}
+            <div className="relative z-20 p-6 sm:p-8 flex flex-col items-center text-center">
+              <span className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">
+                Institutional Sanctuary
+              </span>
+              <h3 className="font-serif font-extrabold text-2xl sm:text-3xl text-white mb-2">
+                Charity Hospital Construction
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-200 mb-6 leading-relaxed">
+                Help build our state-of-the-art charitable hospital in Lahore, creating an enduring legacy of zero-fee medical treatment.
+              </p>
+              <Link
+                href="/donate?project=Hospital%20Construction%20Fund"
+                className="bg-[#d92525] hover:bg-[#b91c1c] text-white font-bold text-xs sm:text-sm px-8 py-3.5 rounded-full shadow-xl transition-all hover:scale-105 flex items-center gap-2"
+              >
+                <Heart className="w-4 h-4 fill-white" />
+                <span>Support Hospital Brick by Brick</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Card 3: Volunteer & Ground Engagement (BECOME VOLUNTEER) */}
+          <div className="relative rounded-t-[140px] sm:rounded-t-[170px] rounded-b-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-900 group min-h-[460px] flex flex-col justify-end">
+            <Image
+              src="/images/5th.jpg"
+              alt="Become a Foundation Volunteer"
+              fill
+              className="object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-80"
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+
+            {/* Rotated Vertical Badge */}
+            <div className="absolute top-16 -start-8 rotate-90 origin-top-left z-20">
+              <span className="bg-[#005972] text-white text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-b-md shadow-md">
+                BECOME VOLUNTEER
+              </span>
+            </div>
+
+            {/* Content at Bottom */}
+            <div className="relative z-20 p-6 sm:p-8 flex flex-col items-center text-center">
+              <span className="text-xs font-bold uppercase tracking-wider text-sky-400 mb-1">
+                Join Movement
+              </span>
+              <h3 className="font-serif font-bold text-xl sm:text-2xl text-white mb-2">
+                Humanitarian Community
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
+                Lend your medical expertise, logistics skills, or community time to serve vulnerable patients and animals on the ground.
+              </p>
+              <Link
+                href="/get-involved"
+                className="bg-[#005972] hover:bg-[#004356] text-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full shadow-lg transition-all hover:scale-105 flex items-center gap-2"
+              >
+                <Users className="w-4 h-4" />
+                <span>Join Support Community</span>
+              </Link>
+            </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

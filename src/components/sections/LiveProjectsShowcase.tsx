@@ -1,159 +1,148 @@
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { Heart, ArrowRight, Sparkles } from "lucide-react";
+import { Heart, ArrowRight } from "lucide-react";
 
 const PROJECTS = [
   {
     id: "proj-1",
-    title: "Free Surgical Care & Cardiac Assistance",
-    category: "Healthcare",
-    categoryClass: "bg-purple-100 text-purple-800",
-    barColor: "bg-purple-600",
+    title: "Support Healthcare Services",
+    subtitle: "Free Surgical & Clinical Patient Care",
+    category: "Medical Assistance",
     image: "/images/2ndimg.jpg",
-    desc: "Subsidizing surgical costs, implants, and pharmacy expenditures for destitute families facing medical insolvency.",
+    desc: "Facilitating surgeries, hospital OPD, and pharmacy prescriptions for approximately 25–30 destitute patients to date.",
+    raised: "PKR 14,80,000",
     goal: "PKR 25,00,000",
-    achieved: "PKR 14,80,000",
     percentage: 59,
     ctaText: "Support Healthcare Services",
     href: "/our-work/medical-assistance",
   },
   {
     id: "proj-2",
-    title: "Charity Hospital Structural Construction",
-    category: "Hospital Project",
-    categoryClass: "bg-blue-100 text-blue-800",
-    barColor: "bg-[#1A56DB]",
-    image: "/images/5th.jpg",
-    desc: "Funding the foundational concrete work, zoning layout, and civil architecture for our future non-profit hospital.",
+    title: "Hospital Construction Fund",
+    subtitle: "Building Zero-Fee Hospital in Lahore",
+    category: "Infrastructure",
+    image: "/images/3rdimg.jpg",
+    desc: "Civil groundwork, emergency trauma units, and future charitable diagnostic wings for underserved families.",
+    raised: "PKR 42,50,000",
     goal: "PKR 1,00,00,000",
-    achieved: "PKR 42,50,000",
     percentage: 42,
-    ctaText: "Support Hospital Fund",
+    ctaText: "Help in Hospital Construction",
     href: "/our-work/hospital",
   },
   {
     id: "proj-3",
-    title: "Working Donkey & Cart Equine Emergency Care",
+    title: "Animal Welfare & Trauma Rescue",
+    subtitle: "Mobile Clinics for Cart Donkeys & Strays",
     category: "Animal Welfare",
-    categoryClass: "bg-emerald-100 text-status-green",
-    barColor: "bg-[#16A34A]",
-    image: "/images/3rdimg.jpg",
-    desc: "Free mobile veterinary clinic for working cart donkeys in markets, hoof dressing, and hit-and-run animal rescue.",
+    image: "/images/5th.jpg",
+    desc: "Providing veterinary wounds treatment for working equines, shelter for street animals, and injured bird care.",
+    raised: "PKR 9,20,000",
     goal: "PKR 15,00,000",
-    achieved: "PKR 9,20,000",
     percentage: 61,
     ctaText: "Sponsor Animal Rescue",
     href: "/our-work/animal-welfare",
-  },
-  {
-    id: "proj-4",
-    title: "Monthly Family Ration Bags & Widows Aid",
-    category: "Social Relief",
-    categoryClass: "bg-amber-100 text-amber-800",
-    barColor: "bg-amber-600",
-    image: "/images/firstimg.jpg",
-    desc: "Supplying dignified staple food packs (flour, oil, lentils, tea) to verified impoverished single-parent households.",
-    goal: "PKR 20,00,000",
-    achieved: "PKR 16,30,000",
-    percentage: 81,
-    ctaText: "Donate a Ration Bag",
-    href: "/our-work/social-welfare",
   },
 ];
 
 export function LiveProjectsShowcase() {
   return (
-    <section className="py-20 px-4 bg-white border-b border-zinc-100">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+    <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-100">
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div className="flex flex-col gap-2 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1A56DB] uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Targeted Impact Campaigns</span>
-            </div>
-            <h2 className="font-serif font-bold text-3xl sm:text-4xl text-primary-900 tracking-tight">
-              Our Projects: Where Your Support Meets Real Impact
-            </h2>
-            <p className="text-sm text-charcoal-muted leading-relaxed">
-              Every project is managed with 100% verified allocation. Select a campaign below to sponsor direct patient treatments or infrastructure.
-            </p>
-          </div>
-
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#1A56DB] hover:text-blue-800 transition-colors shrink-0 group"
-          >
-            <span>View All Foundation Projects</span>
-            <ArrowRight className="w-4 h-4 rtl:rotate-180 group-hover:translate-x-1 transition-transform" />
-          </Link>
+        {/* MTJ Exact Subtitle Pill */}
+        <div className="flex items-center gap-2 text-amber-600 font-bold text-xs uppercase tracking-widest mb-2">
+          <span className="w-8 h-[2px] bg-amber-500 inline-block" />
+          <span>Our Projects</span>
+          <span className="w-8 h-[2px] bg-amber-500 inline-block" />
         </div>
 
-        {/* 4 Projects Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <h2 className="font-serif font-extrabold text-2xl sm:text-4xl lg:text-[38px] text-slate-900 tracking-tight leading-tight text-center">
+          Support Our Humanitarian Projects
+        </h2>
+
+        <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-xl text-center">
+          Every project is managed with 100% verified allocation and direct ground tracking.
+        </p>
+
+        {/* 3 Projects Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mt-12">
           {PROJECTS.map((p) => (
             <div
               key={p.id}
-              className="bg-white rounded-3xl border border-zinc-200 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group"
             >
-              {/* Image & Category */}
-              <div>
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={p.image}
-                    alt={p.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 start-3">
-                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm ${p.categoryClass}`}>
-                      {p.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-5 flex flex-col gap-3">
-                  <h3 className="font-serif font-bold text-base text-primary-900 leading-snug group-hover:text-[#1A56DB] transition-colors line-clamp-2">
-                    {p.title}
-                  </h3>
-
-                  <p className="text-xs text-charcoal-muted leading-relaxed line-clamp-2">
-                    {p.desc}
-                  </p>
-
-                  {/* Progress Bar (Exact MTJ Thematic Color) */}
-                  <div className="pt-2">
-                    <div className="w-full h-2 rounded-full bg-zinc-100 overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${p.barColor}`}
-                        style={{ width: `${p.percentage}%` }}
-                      />
-                    </div>
-
-                    {/* Goal & Achieved in MTJ Notation */}
-                    <div className="flex items-center justify-between text-[11px] font-medium text-zinc-500 pt-1.5 font-mono">
-                      <span>Goal: {p.goal}</span>
-                      <span className="font-bold text-primary-900">{p.percentage}%</span>
-                    </div>
-                  </div>
+              {/* Image & Category Pill */}
+              <div className="relative w-full h-56 overflow-hidden">
+                <Image
+                  src={p.image}
+                  alt={p.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute top-4 start-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#005972] shadow-sm">
+                  {p.category}
                 </div>
               </div>
 
-              {/* Action Button */}
-              <div className="p-5 pt-0">
-                <Link
-                  href="/donate"
-                  className="w-full bg-[#16A34A] hover:bg-[#15803D] text-white font-bold py-2.5 px-4 rounded-full text-xs shadow-sm transition-all hover:scale-[1.02] flex items-center justify-center gap-1.5 text-center"
-                >
-                  <Heart className="w-3.5 h-3.5 fill-white" />
-                  <span>{p.ctaText}</span>
-                </Link>
+              {/* Card Body */}
+              <div className="p-6 sm:p-7 flex flex-col flex-1 justify-between">
+                <div>
+                  <h3 className="font-serif font-bold text-xl text-slate-900 mb-1 group-hover:text-[#009ee2] transition-colors">
+                    {p.title}
+                  </h3>
+                  <p className="text-xs font-semibold text-[#16a34a] mb-3">
+                    {p.subtitle}
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                    {p.desc}
+                  </p>
+                </div>
+
+                {/* Progress Bar & Financials */}
+                <div className="pt-4 border-t border-slate-100 flex flex-col gap-4">
+                  <div>
+                    <div className="flex items-center justify-between text-xs font-bold mb-1.5">
+                      <span className="text-slate-500">Raised: <strong className="text-slate-900">{p.raised}</strong></span>
+                      <span className="text-[#16a34a]">{p.percentage}%</span>
+                    </div>
+                    {/* Progress Track */}
+                    <div className="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
+                      <div
+                        className="h-full rounded-full bg-[#16a34a] transition-all duration-1000"
+                        style={{ width: `${p.percentage}%` }}
+                      />
+                    </div>
+                    <div className="text-[11px] text-slate-400 mt-1">
+                      Goal: {p.goal}
+                    </div>
+                  </div>
+
+                  {/* MTJ Exact Emerald Green Action Button */}
+                  <Link
+                    href={`/donate?project=${encodeURIComponent(p.title)}`}
+                    className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white font-bold text-xs sm:text-sm py-3 rounded-full shadow transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
+                  >
+                    <Heart className="w-4 h-4 fill-white" />
+                    <span>{p.ctaText}</span>
+                  </Link>
+                </div>
+
               </div>
             </div>
           ))}
         </div>
+
+        {/* View All Projects Button */}
+        <div className="mt-10">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#009ee2] hover:text-[#007cb0] transition-colors"
+          >
+            <span>View All Active Foundation Projects</span>
+            <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+          </Link>
+        </div>
+
       </div>
     </section>
   );

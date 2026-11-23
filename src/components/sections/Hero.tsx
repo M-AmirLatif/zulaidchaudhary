@@ -8,39 +8,43 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
-  CheckCircle2,
   Sparkles,
-  ArrowRight,
   Plus,
   Minus,
-  HelpCircle,
+  CheckCircle2,
 } from "lucide-react";
 
 const HERO_SLIDES = [
   {
     image: "/images/2ndimg.jpg",
     badge: "HUMANITY • HOPE • JUSTICE",
-    title: "A Little From You, A LOT FOR SOMEONE",
-    subtitle:
-      "Facilitating free clinical surgeries and medicines for approximately 25–30 destitute patients to date, with our charity hospital actively under construction.",
+    taglineUrdu: "تشخیص سے علاج تک",
+    subtitleUrdu: "ہر مستحق کے ساتھ",
+    titleEn: "A Little From You, A LOT FOR SOMEONE",
+    subtitleEn:
+      "Facilitating free clinical surgeries and medicines for approximately 25–30 destitute patients to date, with our charity hospital actively under construction in Lahore.",
     primaryCtaText: "Support Healthcare Now",
     primaryCtaLink: "/donate",
   },
   {
-    image: "/images/5th.jpg",
+    image: "/images/firstimg.jpg",
     badge: "SERVING HUMANITY",
-    title: "Restoring Dignity Through Compassion & Healthcare",
-    subtitle:
-      "Founded by Zulaid Chaudhary with an international vision: bridging medical hardship through ethical direct relief, animal rescue, and environmental care.",
+    taglineUrdu: "امید اور خدمت خلق",
+    subtitleUrdu: "بلا تفریق انسانیت کی خدمت",
+    titleEn: "Restoring Dignity Through Compassion & Healthcare",
+    subtitleEn:
+      "Founded by Zulaid Chaudhary with an international humanitarian vision: free medical treatment, animal welfare, and clean water for underserved communities.",
     primaryCtaText: "Join Support Community",
     primaryCtaLink: "/get-involved",
   },
   {
-    image: "/images/3rdimg.jpg",
+    image: "/images/5th.jpg",
     badge: "GRASSROOTS INTERVENTION",
-    title: "Real Ground Impact, 100% Verified Records",
-    subtitle:
-      "Zero administrative inflation. Every rupee and dollar accounted for with digital audit tracking and direct patient pharmacy subsidies.",
+    taglineUrdu: "شفافیت اور دیانت داری",
+    subtitleUrdu: "ہر پائی کا مکمل حساب",
+    titleEn: "Real Ground Impact, 100% Verified Records",
+    subtitleEn:
+      "Zero administrative inflation. Direct pharmacy subsidies, ethical healthcare, and community empowerment with complete digital transparency.",
     primaryCtaText: "Explore Projects",
     primaryCtaLink: "/projects",
   },
@@ -53,7 +57,7 @@ const PROJECT_OPTIONS: Record<string, string[]> = {
     "Prescription Medicine & Pharmacy Pool",
   ],
   "Hospital Construction Fund": [
-    "Hospital Structural Groundwork",
+    "Hospital Structural Groundwork (Lahore)",
     "Future Emergency & Clinical Zones",
     "Charity Dialysis & Diagnostic Ward",
   ],
@@ -64,7 +68,7 @@ const PROJECT_OPTIONS: Record<string, string[]> = {
   ],
   "Food & Monthly Ration Relief": [
     "Monthly Family Ration Bag (Deserving Widows)",
-    "Emergency Food & Ramadan Relief Packs",
+    "Emergency Food & Ration Relief Packs",
   ],
   "Clean Water & Environment": [
     "Deep Bore Community Water Well",
@@ -77,7 +81,7 @@ const PROJECT_OPTIONS: Record<string, string[]> = {
 };
 
 const PRESET_AMOUNTS: Record<string, number[]> = {
-  PKR: [1000, 2500, 5000, 10000, 25000, 50000],
+  PKR: [2500, 5000, 10000, 25000, 50000, 100000],
   USD: [25, 50, 100, 250, 500, 1000],
   GBP: [20, 40, 80, 200, 400, 800],
   EUR: [25, 50, 100, 250, 500, 1000],
@@ -96,19 +100,17 @@ export function Hero() {
     PROJECT_OPTIONS["Health & Free Surgeries"][0]
   );
   const [currency, setCurrency] = useState<"PKR" | "USD" | "GBP" | "EUR" | "AED" | "CAD">("PKR");
-  const [quantity, setQuantity] = useState(1);
-  const [amount, setAmount] = useState<number>(5000);
+  const [amount, setAmount] = useState<number>(10000);
   const [customAmount, setCustomAmount] = useState<string>("");
 
   // Slide autoplay
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 6000);
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
-  // Update sub-project when project changes
   const handleProjectChange = (proj: string) => {
     setSelectedProject(proj);
     if (PROJECT_OPTIONS[proj]) {
@@ -116,309 +118,354 @@ export function Hero() {
     }
   };
 
-  const effectiveAmount = (customAmount ? parseFloat(customAmount) || 0 : amount) * quantity;
+  const effectiveAmount = customAmount ? parseFloat(customAmount) || 0 : amount;
+
+  const current = HERO_SLIDES[currentSlide];
 
   return (
-    <section className="relative w-full bg-surface-cream pb-16 lg:pb-24">
-      {/* 1. MTJ High-Definition Full-Width Hero Carousel */}
-      <div className="relative w-full h-[520px] sm:h-[580px] lg:h-[640px] overflow-hidden bg-primary-950">
-        {HERO_SLIDES.map((slide, index) => {
-          const isActive = index === currentSlide;
-          return (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
-              }`}
-            >
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                priority={index === 0}
-                className="object-cover object-[center_30%] scale-105 transition-transform duration-[8000ms] ease-out"
-              />
-              {/* Cinematic Vignette Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-950/90 via-primary-950/60 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-950/80 via-transparent to-transparent" />
-
-              {/* Slide Content */}
-              <div className="relative z-20 max-w-7xl mx-auto h-full flex flex-col justify-center px-4 sm:px-8 pb-20 max-w-2xl text-white">
-                <div className="inline-flex items-center gap-2 bg-[#1A56DB]/80 text-white border border-blue-400/40 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-4 w-fit shadow">
-                  <Sparkles className="w-3.5 h-3.5 text-accent-gold" />
-                  <span>{slide.badge}</span>
+    <section className="relative w-full bg-gradient-to-b from-[#d9f1fc] via-[#edf7fd] to-[#f8fbfd] pt-6 pb-16 lg:pb-24 overflow-hidden">
+      {/* 1. MTJ Signature Hero Banner Composition */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative rounded-3xl bg-white/70 backdrop-blur-md border border-[#cbe7f7] p-6 sm:p-10 lg:p-12 shadow-xl shadow-sky-900/5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Left Column: Founder Photo & Visual Collage with Circular Arrows */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative w-full h-[320px] sm:h-[400px] lg:h-[450px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                <Image
+                  src={current.image}
+                  alt={current.titleEn}
+                  fill
+                  priority
+                  className="object-cover object-top transition-transform duration-1000 ease-out hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+                
+                {/* Floating Badge */}
+                <div className="absolute top-4 start-4 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-[#005972] shadow flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                  <span>{current.badge}</span>
                 </div>
 
-                <h1 className="font-serif font-bold text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.15] drop-shadow-md">
-                  {slide.title}
-                </h1>
+                {/* Bottom Photo Caption */}
+                <div className="absolute bottom-4 start-4 end-4 text-white">
+                  <p className="text-xs uppercase tracking-wider text-sky-200 font-semibold">Founder & Patron</p>
+                  <p className="text-base sm:text-lg font-bold font-serif">Zulaid Chaudhary</p>
+                  <p className="text-[11px] text-zinc-300">~25-30 Free Patient Surgeries • Lahore Hospital Under Construction</p>
+                </div>
+              </div>
 
-                <p className="mt-4 text-sm sm:text-base lg:text-lg text-zinc-200 leading-relaxed font-sans max-w-xl drop-shadow">
-                  {slide.subtitle}
-                </p>
+              {/* Slider Controls */}
+              <div className="flex items-center justify-between mt-4 px-2">
+                <div className="flex items-center gap-2">
+                  {HERO_SLIDES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      aria-label={`Slide ${idx + 1}`}
+                      className={`h-2.5 rounded-full transition-all ${
+                        idx === currentSlide ? "w-8 bg-[#009ee2]" : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                      }`}
+                    />
+                  ))}
+                </div>
 
-                <div className="flex flex-wrap items-center gap-4 mt-8">
-                  <Link
-                    href={slide.primaryCtaLink}
-                    className="bg-[#DC2626] hover:bg-[#B91C1C] text-white font-bold px-6 sm:px-8 py-3.5 rounded-full text-sm sm:text-base shadow-xl transition-all hover:scale-105 flex items-center gap-2"
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() =>
+                      setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)
+                    }
+                    className="w-9 h-9 rounded-full bg-white shadow-md border border-slate-200 text-slate-700 hover:bg-[#009ee2] hover:text-white flex items-center justify-center transition-all"
+                    aria-label="Previous slide"
                   >
-                    <Heart className="w-4 h-4 fill-white" />
-                    <span>{slide.primaryCtaText}</span>
-                  </Link>
-
-                  <Link
-                    href="/about"
-                    className="bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md font-semibold px-6 py-3.5 rounded-full text-sm transition-all"
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={() =>
+                      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
+                    }
+                    className="w-9 h-9 rounded-full bg-white shadow-md border border-slate-200 text-slate-700 hover:bg-[#009ee2] hover:text-white flex items-center justify-center transition-all"
+                    aria-label="Next slide"
                   >
-                    Our Mission & Vision
-                  </Link>
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
             </div>
-          );
-        })}
 
-        {/* Carousel Arrow Controls */}
-        <button
-          onClick={() =>
-            setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)
-          }
-          className="absolute start-4 sm:start-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all"
-          aria-label="Previous Slide"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
+            {/* Right Column: Nastaliq Urdu Calligraphy + Emotional English Copy */}
+            <div className="lg:col-span-7 flex flex-col justify-center text-start">
+              
+              {/* Nastaliq Urdu Calligraphy Block */}
+              <div className="mb-6 p-4 rounded-2xl bg-[#f0f8fd] border border-[#d6ecfa]">
+                <div className="font-urdu text-2xl sm:text-4xl lg:text-5xl font-bold text-[#005972] leading-relaxed tracking-normal" dir="rtl">
+                  {current.taglineUrdu}
+                </div>
+                <div className="font-urdu text-xl sm:text-3xl lg:text-4xl font-semibold text-[#16a34a] mt-1" dir="rtl">
+                  {current.subtitleUrdu}
+                </div>
+              </div>
 
-        <button
-          onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
-          className="absolute end-4 sm:end-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all"
-          aria-label="Next Slide"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
+              {/* Bold English Headline */}
+              <h1 className="font-serif font-extrabold text-2xl sm:text-4xl lg:text-[42px] text-slate-900 leading-[1.2] tracking-tight">
+                {current.titleEn}
+              </h1>
 
-        {/* Slide Indicators */}
-        <div className="absolute bottom-28 sm:bottom-24 inset-x-0 z-20 flex justify-center gap-2">
-          {HERO_SLIDES.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-2 rounded-full transition-all ${
-                idx === currentSlide ? "w-8 bg-[#1A56DB]" : "w-2 bg-white/50"
-              }`}
-              aria-label={`Go to slide ${idx + 1}`}
-            />
-          ))}
+              {/* Dignified Subtitle */}
+              <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-sans max-w-2xl">
+                {current.subtitleEn}
+              </p>
+
+              {/* Verified Trust Badges */}
+              <div className="flex flex-wrap items-center gap-4 mt-6 pt-6 border-t border-slate-200/80">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#005972]">
+                  <CheckCircle2 className="w-4 h-4 text-[#16a34a]" />
+                  <span>100% Direct Medical Care</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#005972]">
+                  <CheckCircle2 className="w-4 h-4 text-[#16a34a]" />
+                  <span>Audit-Tracked Subsidies</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#005972]">
+                  <CheckCircle2 className="w-4 h-4 text-[#16a34a]" />
+                  <span>Animal Trauma Rescue</span>
+                </div>
+              </div>
+
+              {/* Quick Action CTA Buttons */}
+              <div className="flex flex-wrap items-center gap-3.5 mt-6">
+                <Link
+                  href={current.primaryCtaLink}
+                  className="bg-[#d92525] hover:bg-[#b91c1c] text-white font-bold px-6 sm:px-8 py-3.5 rounded-xl shadow-lg transition-all hover:scale-105 flex items-center gap-2 text-sm"
+                >
+                  <Heart className="w-4 h-4 fill-white" />
+                  <span>{current.primaryCtaText}</span>
+                </Link>
+                <Link
+                  href="/projects"
+                  className="bg-[#005972] hover:bg-[#004356] text-white font-semibold px-6 py-3.5 rounded-xl shadow transition-all text-sm"
+                >
+                  View Live Projects
+                </Link>
+              </div>
+
+            </div>
+
+          </div>
         </div>
       </div>
 
-      {/* 2. Flagship Overlaid Quick Donation Box (Exact MTJ 8-Parameter Matrix) */}
-      <div className="max-w-7xl mx-auto px-4 -mt-20 sm:-mt-24 relative z-30">
-        <div className="bg-white rounded-3xl border border-zinc-200/80 p-6 sm:p-8 shadow-2xl">
+      {/* 2. MTJ Iconic Mint-Green Quick Donation Matrix (bg-[#eaf5ed]) */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 relative z-30">
+        <div className="bg-[#eaf5ed] rounded-3xl border border-[#cbe7d3] p-6 sm:p-8 shadow-xl">
           
-          {/* Top Row: Frequency Toggles & Islamic Giving Toggles */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-zinc-100">
-            {/* Frequency Toggle (Give Once vs Give Monthly) */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider hidden sm:inline">
-                Frequency:
+          {/* Top Row: Heading + 4 Dropdowns */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-4 border-b border-[#c2e4cc]">
+            
+            {/* Title */}
+            <div className="flex items-center gap-3">
+              <span className="font-serif font-extrabold text-2xl sm:text-3xl text-[#16a34a] tracking-tight">
+                Donate
               </span>
-              <div className="bg-zinc-100 p-1 rounded-full flex text-xs font-bold text-charcoal">
-                <button
-                  type="button"
-                  onClick={() => setFrequency("ONCE")}
-                  className={`px-4 py-1.5 rounded-full transition-all ${
-                    frequency === "ONCE"
-                      ? "bg-[#1A56DB] text-white shadow-sm"
-                      : "text-zinc-600 hover:text-zinc-900"
-                  }`}
-                >
-                  Give Once
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setFrequency("MONTHLY")}
-                  className={`px-4 py-1.5 rounded-full transition-all ${
-                    frequency === "MONTHLY"
-                      ? "bg-[#1A56DB] text-white shadow-sm"
-                      : "text-zinc-600 hover:text-zinc-900"
-                  }`}
-                >
-                  Give Monthly
-                </button>
-              </div>
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-100 text-[#15803d]">
+                Instant Relief Matrix
+              </span>
             </div>
 
-            {/* Giving Category (General, Sadqa, Zakat) */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider hidden sm:inline">
-                Donation Type:
-              </span>
-              <div className="bg-zinc-100 p-1 rounded-full flex text-xs font-bold text-charcoal">
-                {(["General", "Sadqa", "Zakat"] as const).map((cat) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => setGivingType(cat)}
-                    className={`px-3 sm:px-4 py-1.5 rounded-full transition-all ${
-                      givingType === cat
-                        ? "bg-[#0F766E] text-white shadow-sm"
-                        : "text-zinc-600 hover:text-zinc-900"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
+            {/* 4 Form Selectors */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full lg:w-auto">
+              
+              {/* Frequency */}
+              <div>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                  Frequency
+                </label>
+                <select
+                  value={frequency}
+                  onChange={(e: any) => setFrequency(e.target.value)}
+                  className="w-full bg-white text-slate-800 text-xs font-bold py-2 px-3 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a]"
+                >
+                  <option value="ONCE">Give Once</option>
+                  <option value="MONTHLY">Give Monthly</option>
+                </select>
               </div>
+
+              {/* Category */}
+              <div>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                  Category
+                </label>
+                <select
+                  value={givingType}
+                  onChange={(e: any) => setGivingType(e.target.value)}
+                  className="w-full bg-white text-slate-800 text-xs font-bold py-2 px-3 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a]"
+                >
+                  <option value="General">General</option>
+                  <option value="Sadqa">Sadqa</option>
+                  <option value="Zakat">Zakat</option>
+                </select>
+              </div>
+
+              {/* Projects */}
+              <div>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                  Projects
+                </label>
+                <select
+                  value={selectedProject}
+                  onChange={(e) => handleProjectChange(e.target.value)}
+                  className="w-full bg-white text-slate-800 text-xs font-bold py-2 px-3 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a]"
+                >
+                  {Object.keys(PROJECT_OPTIONS).map((p) => (
+                    <option key={p} value={p}>
+                      {p}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Sub Project */}
+              <div>
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                  Sub Project
+                </label>
+                <select
+                  value={selectedSubProject}
+                  onChange={(e) => setSelectedSubProject(e.target.value)}
+                  className="w-full bg-white text-slate-800 text-xs font-bold py-2 px-3 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a]"
+                >
+                  {PROJECT_OPTIONS[selectedProject]?.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
             </div>
 
-            {/* Regulatory Badge */}
-            <div className="hidden lg:flex items-center gap-1.5 text-xs text-status-green font-semibold">
-              <ShieldCheck className="w-4 h-4" />
-              <span>100% Verified Allocation</span>
-            </div>
           </div>
 
-          {/* Form Matrix: 6 Grid Fields */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3.5 pt-5 items-end">
+          {/* Bottom Row: Currency, Stepper, Custom Input, and RED Donate Button */}
+          <div className="pt-4 flex flex-col md:flex-row items-center justify-between gap-4">
             
-            {/* Field 1: Projects */}
-            <div className="lg:col-span-2">
-              <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">
-                Project Initiative
-              </label>
-              <select
-                value={selectedProject}
-                onChange={(e) => handleProjectChange(e.target.value)}
-                className="w-full p-2.5 rounded-xl border border-zinc-300 text-xs font-bold text-primary-900 bg-zinc-50/50 focus:outline-none focus:border-[#1A56DB]"
-              >
-                {Object.keys(PROJECT_OPTIONS).map((proj) => (
-                  <option key={proj} value={proj}>
-                    {proj}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {/* Currency selector & Presets */}
+            <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto">
+              
+              {/* Currency Selector */}
+              <div className="flex items-center gap-1.5 bg-white border border-[#badfc4] rounded-lg px-2.5 py-1.5">
+                <span className="text-[11px] font-bold text-slate-500 uppercase">Currency:</span>
+                <select
+                  value={currency}
+                  onChange={(e: any) => {
+                    const c = e.target.value;
+                    setCurrency(c);
+                    setAmount(PRESET_AMOUNTS[c][2]);
+                    setCustomAmount("");
+                  }}
+                  className="bg-transparent text-xs font-bold text-slate-800 focus:outline-none cursor-pointer"
+                >
+                  {(["PKR", "USD", "GBP", "EUR", "AED", "CAD"] as const).map((curr) => (
+                    <option key={curr} value={curr}>
+                      {curr}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            {/* Field 2: Contextual Sub-Project */}
-            <div className="lg:col-span-2">
-              <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">
-                Designated Sub-Cause
-              </label>
-              <select
-                value={selectedSubProject}
-                onChange={(e) => setSelectedSubProject(e.target.value)}
-                className="w-full p-2.5 rounded-xl border border-zinc-300 text-xs font-medium text-charcoal bg-zinc-50/50 focus:outline-none focus:border-[#1A56DB]"
-              >
-                {PROJECT_OPTIONS[selectedProject]?.map((sub) => (
-                  <option key={sub} value={sub}>
-                    {sub}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Field 3: Currency */}
-            <div>
-              <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">
-                Currency
-              </label>
-              <select
-                value={currency}
-                onChange={(e: any) => {
-                  setCurrency(e.target.value);
-                  setAmount(PRESET_AMOUNTS[e.target.value][2]);
-                  setCustomAmount("");
-                }}
-                className="w-full p-2.5 rounded-xl border border-zinc-300 text-xs font-bold text-charcoal bg-zinc-50/50 focus:outline-none"
-              >
-                {(["PKR", "USD", "GBP", "EUR", "AED", "CAD"] as const).map((curr) => (
-                  <option key={curr} value={curr}>
-                    {curr}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/* Field 4: Quantity Stepper */}
-            <div>
-              <label className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider block mb-1">
-                Shares / Quantity
-              </label>
-              <div className="flex items-center border border-zinc-300 rounded-xl bg-zinc-50/50 p-1">
+              {/* Stepper Amount [-] PKR 10,000 [+] */}
+              <div className="flex items-center bg-white border border-[#badfc4] rounded-lg p-1">
                 <button
                   type="button"
-                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                  className="w-7 h-7 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-charcoal hover:bg-zinc-100 text-xs"
+                  onClick={() => {
+                    const presets = PRESET_AMOUNTS[currency];
+                    const currentIndex = presets.indexOf(amount);
+                    if (currentIndex > 0) {
+                      setAmount(presets[currentIndex - 1]);
+                      setCustomAmount("");
+                    } else if (amount > 500) {
+                      setAmount(Math.max(500, amount - 1000));
+                      setCustomAmount("");
+                    }
+                  }}
+                  className="w-7 h-7 rounded bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 font-bold transition-all"
+                  aria-label="Decrease amount"
                 >
                   <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="flex-1 text-center font-bold text-xs text-primary-900">
-                  {quantity}
+                <span className="px-4 font-bold text-sm text-[#005972]">
+                  {currency} {effectiveAmount.toLocaleString()}
                 </span>
                 <button
                   type="button"
-                  onClick={() => setQuantity((q) => q + 1)}
-                  className="w-7 h-7 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-charcoal hover:bg-zinc-100 text-xs"
+                  onClick={() => {
+                    const presets = PRESET_AMOUNTS[currency];
+                    const currentIndex = presets.indexOf(amount);
+                    if (currentIndex >= 0 && currentIndex < presets.length - 1) {
+                      setAmount(presets[currentIndex + 1]);
+                      setCustomAmount("");
+                    } else {
+                      setAmount(amount + 5000);
+                      setCustomAmount("");
+                    }
+                  }}
+                  className="w-7 h-7 rounded bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-700 font-bold transition-all"
+                  aria-label="Increase amount"
                 >
                   <Plus className="w-3.5 h-3.5" />
                 </button>
               </div>
-            </div>
-          </div>
 
-          {/* Preset Amount Chips & Custom Input + CTA */}
-          <div className="mt-4 pt-4 border-t border-zinc-100 flex flex-col lg:flex-row items-center justify-between gap-4">
-            
-            {/* Presets Chips */}
-            <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
-              <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-wider hidden sm:inline me-1">
-                Quick Amount:
-              </span>
-              {PRESET_AMOUNTS[currency].map((val) => {
-                const isSelected = !customAmount && amount === val;
-                return (
-                  <button
-                    key={val}
-                    type="button"
-                    onClick={() => {
-                      setAmount(val);
-                      setCustomAmount("");
-                    }}
-                    className={`py-1.5 px-3 rounded-full text-xs font-bold border transition-all ${
-                      isSelected
-                        ? "border-[#1A56DB] bg-[#1A56DB] text-white shadow-sm"
-                        : "border-zinc-200 text-charcoal hover:bg-zinc-100"
-                    }`}
-                  >
-                    {val.toLocaleString()}
-                  </button>
-                );
-              })}
+              {/* Quick Presets */}
+              <div className="hidden xl:flex items-center gap-1.5">
+                {PRESET_AMOUNTS[currency].slice(0, 4).map((val) => {
+                  const active = !customAmount && amount === val;
+                  return (
+                    <button
+                      key={val}
+                      type="button"
+                      onClick={() => {
+                        setAmount(val);
+                        setCustomAmount("");
+                      }}
+                      className={`px-2.5 py-1 rounded-md text-xs font-bold transition-all ${
+                        active
+                          ? "bg-[#16a34a] text-white shadow"
+                          : "bg-white text-slate-700 border border-[#badfc4] hover:bg-emerald-50"
+                      }`}
+                    >
+                      {val.toLocaleString()}
+                    </button>
+                  );
+                })}
+              </div>
+
             </div>
 
-            {/* Custom Amount Field + Emerald Donate CTA */}
-            <div className="flex items-center gap-2 w-full lg:w-auto">
+            {/* Custom Amount + Red Donate Button */}
+            <div className="flex items-center gap-3 w-full md:w-auto justify-end">
               <input
                 type="number"
-                placeholder={`Custom (${currency})`}
+                placeholder={`Other Amount (${currency})`}
                 value={customAmount}
                 onChange={(e) => setCustomAmount(e.target.value)}
-                className="w-full lg:w-40 p-2.5 rounded-xl border border-zinc-300 text-xs font-semibold bg-zinc-50/50 focus:outline-none focus:border-[#1A56DB]"
+                className="w-36 sm:w-44 bg-white text-xs font-bold text-slate-800 p-2.5 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a]"
               />
 
-              {/* MTJ Iconic Emerald Green Pill Button */}
+              {/* MTJ Exact Solid Red Donate Button */}
               <Link
-                href="/donate"
-                className="bg-[#16A34A] hover:bg-[#15803D] text-white font-bold px-6 py-2.5 rounded-full text-xs sm:text-sm shadow-md transition-all hover:scale-105 flex items-center gap-2 whitespace-nowrap shrink-0"
+                href={`/donate?amount=${effectiveAmount}&currency=${currency}&project=${encodeURIComponent(
+                  selectedProject
+                )}&type=${givingType}&freq=${frequency}`}
+                className="bg-[#d92525] hover:bg-[#b91c1c] text-white font-extrabold px-8 py-3 rounded-xl text-sm sm:text-base shadow-lg transition-all hover:scale-105 flex items-center gap-2 whitespace-nowrap shrink-0"
               >
-                <Heart className="w-4 h-4 fill-white shrink-0" />
-                <span>
-                  DONATE {currency} {effectiveAmount.toLocaleString()}
-                </span>
+                <Heart className="w-4 h-4 fill-white" />
+                <span>Donate</span>
               </Link>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>

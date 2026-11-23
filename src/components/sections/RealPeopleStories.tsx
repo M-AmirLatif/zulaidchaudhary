@@ -38,29 +38,30 @@ export function RealPeopleStories() {
   const [activeStory, setActiveStory] = useState<any | null>(null);
 
   return (
-    <section className="py-20 px-4 bg-white border-b border-zinc-100">
-      <div className="max-w-7xl mx-auto flex flex-col gap-12">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-100">
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
         
-        {/* Header */}
-        <div className="flex flex-col gap-2 text-center items-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1A56DB] uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Verified Testimonials of Hope</span>
-          </div>
-          <h2 className="font-serif font-bold text-3xl sm:text-4xl text-primary-900 tracking-tight">
-            Real People: Real Impact
-          </h2>
-          <p className="text-sm text-charcoal-muted leading-relaxed">
-            Lives transformed through your generosity, recorded strictly under recorded informed consent (Rule 4).
-          </p>
+        {/* MTJ Exact Subtitle Pill */}
+        <div className="flex items-center gap-2 text-amber-600 font-bold text-xs uppercase tracking-widest mb-2">
+          <span className="w-8 h-[2px] bg-amber-500 inline-block" />
+          <span>Stories of Hope</span>
+          <span className="w-8 h-[2px] bg-amber-500 inline-block" />
         </div>
 
+        <h2 className="font-serif font-extrabold text-2xl sm:text-4xl lg:text-[40px] text-slate-900 tracking-tight leading-tight text-center">
+          Real People: Real Impact
+        </h2>
+
+        <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-xl text-center">
+          Lives transformed through your generosity, recorded strictly under recorded informed consent.
+        </p>
+
         {/* Stories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full mt-12">
           {STORIES.map((s) => (
             <div
               key={s.id}
-              className="bg-zinc-50/60 rounded-3xl border border-zinc-200 overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 {/* Thumbnail with Play Icon */}
@@ -71,19 +72,19 @@ export function RealPeopleStories() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-primary-950/30 group-hover:bg-primary-950/40 transition-colors" />
+                  <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/40 transition-colors" />
 
                   {/* Play Button Overlay */}
                   <button
                     onClick={() => setActiveStory(s)}
-                    className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-white/90 hover:bg-white text-[#1A56DB] shadow-lg flex items-center justify-center transition-transform hover:scale-110"
+                    className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-white/95 hover:bg-white text-[#009ee2] shadow-xl flex items-center justify-center transition-transform hover:scale-110"
                     aria-label={`View story ${s.title}`}
                   >
-                    <Play className="w-5 h-5 fill-[#1A56DB] ms-0.5" />
+                    <Play className="w-6 h-6 fill-[#009ee2] ms-1 text-[#009ee2]" />
                   </button>
 
                   <div className="absolute bottom-3 start-3">
-                    <span className="text-[10px] font-bold bg-[#1A56DB] text-white px-2.5 py-1 rounded-full uppercase tracking-wider">
+                    <span className="text-[10px] font-bold bg-[#009ee2] text-white px-3 py-1 rounded-full uppercase tracking-wider shadow">
                       {s.category}
                     </span>
                   </div>
@@ -91,64 +92,50 @@ export function RealPeopleStories() {
 
                 {/* Details */}
                 <div className="p-6 flex flex-col gap-3">
-                  <h3 className="font-serif font-bold text-lg text-primary-900 group-hover:text-[#1A56DB] transition-colors leading-snug">
+                  <h3 className="font-serif font-bold text-lg text-slate-900 group-hover:text-[#009ee2] transition-colors leading-snug">
                     {s.title}
                   </h3>
 
-                  <p className="text-xs text-charcoal-muted leading-relaxed">
+                  <p className="text-xs text-slate-600 leading-relaxed">
                     {s.desc}
                   </p>
 
-                  <div className="bg-white p-3 rounded-2xl border border-zinc-200 text-xs italic text-charcoal font-serif">
-                    &quot;{s.quote}&quot;
-                  </div>
+                  <blockquote className="text-xs italic text-slate-700 bg-slate-50 border-s-2 border-[#16a34a] p-3 rounded-e-lg">
+                    &ldquo;{s.quote}&rdquo;
+                  </blockquote>
                 </div>
               </div>
 
-              {/* Consent Badge */}
-              <div className="p-6 pt-0">
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-status-green bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>{s.consent}</span>
-                </div>
+              {/* Consent Footer */}
+              <div className="px-6 py-3 bg-slate-50 border-t border-slate-100 flex items-center gap-1.5 text-[10px] font-semibold text-slate-500">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#16a34a]" />
+                <span>{s.consent}</span>
               </div>
             </div>
           ))}
         </div>
+
       </div>
 
-      {/* Video / Story Modal */}
+      {/* Modal Dialog for Story Video */}
       {activeStory && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl border-2 border-accent-gold p-6 sm:p-8 max-w-lg w-full shadow-2xl flex flex-col gap-4 animate-in fade-in zoom-in-95">
-            <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
-              <span className="font-serif font-bold text-lg text-primary-900">
-                {activeStory.title}
-              </span>
-              <button
-                onClick={() => setActiveStory(null)}
-                className="text-zinc-400 hover:text-zinc-700 text-sm font-bold p-1"
-              >
-                ✕
-              </button>
-            </div>
-
-            <p className="text-xs text-charcoal-muted leading-relaxed">
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 text-center flex flex-col gap-4 shadow-2xl">
+            <h3 className="font-serif font-bold text-xl text-slate-900">
+              {activeStory.title}
+            </h3>
+            <p className="text-sm text-slate-600">
               {activeStory.desc}
             </p>
-
-            <div className="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-xs text-primary-900 font-serif italic">
-              &quot;{activeStory.quote}&quot;
+            <div className="p-4 bg-emerald-50 text-[#15803d] rounded-2xl text-xs font-semibold">
+              {activeStory.quote}
             </div>
-
-            <div className="flex justify-end pt-2">
-              <button
-                onClick={() => setActiveStory(null)}
-                className="bg-primary-900 text-white font-semibold text-xs px-5 py-2 rounded-xl"
-              >
-                Close Story
-              </button>
-            </div>
+            <button
+              onClick={() => setActiveStory(null)}
+              className="mt-2 bg-[#009ee2] text-white font-bold py-2.5 px-6 rounded-full self-center hover:bg-[#0085be] transition-colors text-xs"
+            >
+              Close Story
+            </button>
           </div>
         </div>
       )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Send, ShieldCheck } from "lucide-react";
+import { CheckCircle2, ShieldCheck } from "lucide-react";
 
 export function SubscribeBanner() {
   const [firstName, setFirstName] = useState("");
@@ -19,24 +19,24 @@ export function SubscribeBanner() {
   };
 
   return (
-    <section className="py-16 px-4 bg-[#1A56DB] text-white">
+    <section className="py-16 sm:py-20 px-4 bg-[#009ee2] text-white">
       <div className="max-w-5xl mx-auto flex flex-col items-center text-center gap-6">
         
         <div className="flex flex-col gap-2">
-          <span className="text-xs uppercase tracking-widest text-blue-200 font-bold">
+          <span className="text-xs uppercase tracking-widest text-sky-100 font-bold">
             Stay Connected With Ground Realities
           </span>
-          <h2 className="font-serif font-bold text-3xl sm:text-5xl text-white tracking-tight">
+          <h2 className="font-serif font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
             SUBSCRIBE
           </h2>
-          <p className="text-sm sm:text-base text-blue-100 max-w-xl mx-auto leading-relaxed font-sans">
+          <p className="text-sm sm:text-base text-sky-100 max-w-xl mx-auto leading-relaxed font-sans">
             Sign up with your email address to receive verified clinical case updates, hospital construction milestones, and quarterly financial reports.
           </p>
         </div>
 
         {subscribed ? (
           <div className="bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl p-4 flex items-center gap-2 text-white text-xs font-semibold animate-in fade-in">
-            <CheckCircle2 className="w-5 h-5 text-accent-gold" />
+            <CheckCircle2 className="w-5 h-5 text-amber-300" />
             <span>Thank you for subscribing to Zulaid Chaudhary Foundation dispatches.</span>
           </div>
         ) : (
@@ -49,14 +49,14 @@ export function SubscribeBanner() {
               placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              className="w-full sm:w-1/3 py-3 px-4 rounded-full text-xs text-charcoal bg-white placeholder:text-zinc-400 focus:outline-none shadow-md font-medium"
+              className="w-full sm:w-1/3 py-3 px-4 rounded-xl text-xs text-slate-800 bg-white placeholder:text-slate-400 focus:outline-none shadow-md font-medium"
             />
             <input
               type="text"
               placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              className="w-full sm:w-1/3 py-3 px-4 rounded-full text-xs text-charcoal bg-white placeholder:text-zinc-400 focus:outline-none shadow-md font-medium"
+              className="w-full sm:w-1/3 py-3 px-4 rounded-xl text-xs text-slate-800 bg-white placeholder:text-slate-400 focus:outline-none shadow-md font-medium"
             />
             <input
               type="email"
@@ -64,19 +64,19 @@ export function SubscribeBanner() {
               placeholder="Email Address *"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full sm:w-1/3 py-3 px-4 rounded-full text-xs text-charcoal bg-white placeholder:text-zinc-400 focus:outline-none shadow-md font-medium"
+              className="w-full sm:w-1/3 py-3 px-4 rounded-xl text-xs text-slate-800 bg-white placeholder:text-slate-400 focus:outline-none shadow-md font-medium"
             />
             <button
               type="submit"
-              className="w-full sm:w-auto bg-[#16A34A] hover:bg-[#15803D] text-white font-bold py-3 px-8 rounded-full text-xs shadow-xl transition-all hover:scale-105 whitespace-nowrap"
+              className="w-full sm:w-auto bg-[#16a34a] hover:bg-[#15803d] text-white font-bold py-3 px-8 rounded-xl text-xs shadow-xl transition-all hover:scale-105 whitespace-nowrap"
             >
               SUBSCRIBE
             </button>
           </form>
         )}
 
-        <div className="flex items-center gap-2 text-[11px] text-blue-200">
-          <ShieldCheck className="w-3.5 h-3.5 text-accent-gold" />
+        <div className="flex items-center gap-2 text-[11px] text-sky-100">
+          <ShieldCheck className="w-3.5 h-3.5 text-amber-300" />
           <span>We respect your privacy. Data is strictly confidential under GDPR-aligned protocols.</span>
         </div>
       </div>

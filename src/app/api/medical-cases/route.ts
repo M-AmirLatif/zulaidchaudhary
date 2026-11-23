@@ -1,6 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addMedicalCase } from "@/lib/mock-data";
+import { addMedicalCase, getMedicalCases } from "@/lib/mock-data";
 import { logAuditAction } from "@/lib/audit";
+import { prisma } from "@/lib/prisma";
+
+export async function GET() {
+  try {
+    let dbCases = null;
+    try {
+      dbCases = await prisma.medicalCase.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    } catch {
+      // Prisma fallback
+    }
+
+    if (dbCases && dbCases.length > 0) {
+      return NextResponse.json({ success: true, cases: dbCases });
+    }
+
+    return NextResponse.json({ success: true, cases: getMedicalCases() });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch medical cases" }, { status: 500 });
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -45,6 +67,37 @@ export async function POST(req: NextRequest) {
       consentSignedDate: new Date().toISOString(),
       internalNotes: "Submitted via public medical assistance portal. Awaiting Clinical Vetting Committee review.",
     });
+
+    // Persist to Neon Postgres
+    try {
+      const adminUser = await prisma.user.findFirst({
+        where: { role: "SUPER_ADMIN" },
+      });
+
+      if (adminUser) {
+        await prisma.medicalCase.create({
+          data: {
+            caseReferenceNumber: newCase.caseReferenceNumber,
+            patientFullName: `Patient ${newCase.patientInitials}`,
+            contactPhone: "Protected Patient Record",
+            city: newCase.city,
+            age: newCase.age,
+            gender: newCase.gender,
+            diagnosisSummary: newCase.diagnosisSummary,
+            treatingPhysician: newCase.treatingPhysician,
+            estimatedCost: newCase.estimatedCostPKR,
+            priority: newCase.priority === "EMERGENCY_CRITICAL" ? "EMERGENCY_CRITICAL" : "URGENT",
+            status: "INQUIRY",
+            hasInformedConsent: true,
+            consentSignedDate: new Date(),
+            internalNotes: newCase.internalNotes,
+            createdById: adminUser.id,
+          },
+        });
+      }
+    } catch (dbErr) {
+      console.warn("Prisma medical case creation fallback:", dbErr);
+    }
 
     await logAuditAction({
       userId: "public-medical-applicant",

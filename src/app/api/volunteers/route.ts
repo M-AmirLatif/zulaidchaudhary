@@ -1,6 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addVolunteer } from "@/lib/mock-data";
+import { addVolunteer, getVolunteers } from "@/lib/mock-data";
 import { logAuditAction } from "@/lib/audit";
+import { prisma } from "@/lib/prisma";
+
+export async function GET() {
+  try {
+    let dbVolunteers = null;
+    try {
+      dbVolunteers = await prisma.volunteerApplication.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    } catch {
+      // Prisma fallback
+    }
+
+    if (dbVolunteers && dbVolunteers.length > 0) {
+      return NextResponse.json({ success: true, volunteers: dbVolunteers });
+    }
+
+    return NextResponse.json({ success: true, volunteers: getVolunteers() });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch volunteers" }, { status: 500 });
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -33,6 +55,26 @@ export async function POST(req: NextRequest) {
       availabilityHours: Number(availabilityHours) || 4,
       motivation: String(motivation || "Committed to humanitarian and healthcare service.").trim(),
     });
+
+    // Persist to Neon Postgres
+    try {
+      await prisma.volunteerApplication.create({
+        data: {
+          applicationNumber: newVolunteer.applicationNumber,
+          fullName: newVolunteer.fullName,
+          email: newVolunteer.email,
+          phone: newVolunteer.phone,
+          profession: newVolunteer.profession,
+          skills: newVolunteer.skills,
+          availabilityHours: newVolunteer.availabilityHours,
+          motivation: newVolunteer.motivation,
+          address: newVolunteer.city,
+          status: "PENDING",
+        },
+      });
+    } catch (dbErr) {
+      console.warn("Prisma volunteer application fallback:", dbErr);
+    }
 
     await logAuditAction({
       userId: "public-volunteer-applicant",

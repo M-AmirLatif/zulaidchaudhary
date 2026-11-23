@@ -1,6 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
-import { addMembership } from "@/lib/mock-data";
+import { addMembership, getMemberships } from "@/lib/mock-data";
 import { logAuditAction } from "@/lib/audit";
+import { prisma } from "@/lib/prisma";
+
+export async function GET() {
+  try {
+    let dbMemberships = null;
+    try {
+      dbMemberships = await prisma.membership.findMany({
+        orderBy: { createdAt: "desc" },
+      });
+    } catch {
+      // Prisma fallback
+    }
+
+    if (dbMemberships && dbMemberships.length > 0) {
+      return NextResponse.json({ success: true, memberships: dbMemberships });
+    }
+
+    return NextResponse.json({ success: true, memberships: getMemberships() });
+  } catch (error) {
+    return NextResponse.json({ error: "Failed to fetch memberships" }, { status: 500 });
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -30,6 +52,22 @@ export async function POST(req: NextRequest) {
       city: String(city).trim(),
       tier: selectedTier,
     });
+
+    // Persist to Neon Postgres
+    try {
+      await prisma.membership.create({
+        data: {
+          membershipNumber: newMembership.membershipNumber,
+          fullName: newMembership.fullName,
+          email: newMembership.email,
+          phone: newMembership.phone,
+          tier: newMembership.tier,
+          status: "PENDING",
+        },
+      });
+    } catch (dbErr) {
+      console.warn("Prisma membership creation fallback:", dbErr);
+    }
 
     await logAuditAction({
       userId: "public-membership-applicant",

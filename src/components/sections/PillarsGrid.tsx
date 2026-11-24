@@ -17,39 +17,11 @@ export function PillarsGrid() {
 
   const pillars = [
     {
-      title: t("medicalTitle"),
-      desc: t("medicalDesc"),
-      href: "/our-work/medical-assistance",
-      icon: Stethoscope,
-      badge: "Healthcare",
-    },
-    {
-      title: t("hospitalTitle"),
-      desc: t("hospitalDesc"),
-      href: "/our-work/hospital",
-      icon: Building2,
-      badge: "Infrastructure",
-    },
-    {
       title: t("humanRightsTitle"),
       desc: t("humanRightsDesc"),
       href: "/our-work/human-rights",
       icon: Scale,
       badge: "Advocacy",
-    },
-    {
-      title: t("socialWelfareTitle"),
-      desc: t("socialWelfareDesc"),
-      href: "/our-work/social-welfare",
-      icon: Utensils,
-      badge: "Relief",
-    },
-    {
-      title: t("educationTitle"),
-      desc: t("educationDesc"),
-      href: "/our-work/education",
-      icon: GraduationCap,
-      badge: "Empowerment",
     },
     {
       title: t("environmentTitle"),
@@ -64,6 +36,34 @@ export function PillarsGrid() {
       href: "/our-work/animal-welfare",
       icon: PawPrint,
       badge: "Compassion",
+    },
+    {
+      title: t("medicalTitle"),
+      desc: t("medicalDesc"),
+      href: "/our-work/medical-assistance",
+      icon: Stethoscope,
+      badge: "Healthcare",
+    },
+    {
+      title: t("hospitalTitle"),
+      desc: t("hospitalDesc"),
+      href: "/our-work/hospital",
+      icon: Building2,
+      badge: "Infrastructure",
+    },
+    {
+      title: t("socialWelfareTitle"),
+      desc: t("socialWelfareDesc"),
+      href: "/our-work/social-welfare",
+      icon: Utensils,
+      badge: "Relief",
+    },
+    {
+      title: t("educationTitle"),
+      desc: t("educationDesc"),
+      href: "/our-work/education",
+      icon: GraduationCap,
+      badge: "Empowerment",
     },
   ];
 

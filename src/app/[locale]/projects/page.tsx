@@ -12,30 +12,12 @@ export default function ProjectsPage() {
 
   const projects = [
     {
-      id: "hospital",
-      title: t("hospitalProjectTitle"),
-      desc: t("hospitalProjectDesc"),
-      status: "ONGOING",
-      statusLabel: t("statusOngoing"),
-      category: "Healthcare Infrastructure",
-      href: "/our-work/hospital",
-    },
-    {
-      id: "patient-aid",
-      title: t("patientAidProjectTitle"),
-      desc: t("patientAidProjectDesc"),
-      status: "ONGOING",
-      statusLabel: t("statusOngoing"),
-      category: "Medical Care",
-      href: "/our-work/medical-assistance",
-    },
-    {
       id: "clean-water",
       title: t("waterProjectTitle"),
       desc: t("waterProjectDesc"),
       status: "PLANNED",
       statusLabel: t("statusPlanned"),
-      category: "Environment",
+      category: "Clean Water & Environment",
       href: "/our-work/environment",
     },
     {
@@ -46,6 +28,24 @@ export default function ProjectsPage() {
       statusLabel: t("statusOngoing"),
       category: "Animal Welfare",
       href: "/our-work/animal-welfare",
+    },
+    {
+      id: "patient-aid",
+      title: t("patientAidProjectTitle"),
+      desc: t("patientAidProjectDesc"),
+      status: "ONGOING",
+      statusLabel: t("statusOngoing"),
+      category: "Medical Assistance",
+      href: "/our-work/medical-assistance",
+    },
+    {
+      id: "hospital",
+      title: t("hospitalProjectTitle"),
+      desc: t("hospitalProjectDesc"),
+      status: "ONGOING",
+      statusLabel: t("statusOngoing"),
+      category: "Charity Hospital",
+      href: "/our-work/hospital",
     },
   ];
 

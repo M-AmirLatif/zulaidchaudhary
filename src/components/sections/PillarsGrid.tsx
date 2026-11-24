@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { 
@@ -22,6 +23,7 @@ export function PillarsGrid() {
       href: "/our-work/human-rights",
       icon: Scale,
       badge: "Advocacy",
+      image: "/images/programs/human_rights.jpg",
     },
     {
       title: t("environmentTitle"),
@@ -29,6 +31,7 @@ export function PillarsGrid() {
       href: "/our-work/environment",
       icon: Droplet,
       badge: "Ecology",
+      image: "/images/programs/water_environment.jpg",
     },
     {
       title: t("animalWelfareTitle"),
@@ -36,6 +39,7 @@ export function PillarsGrid() {
       href: "/our-work/animal-welfare",
       icon: PawPrint,
       badge: "Compassion",
+      image: "/images/programs/animal_welfare.jpg",
     },
     {
       title: t("medicalTitle"),
@@ -43,6 +47,7 @@ export function PillarsGrid() {
       href: "/our-work/medical-assistance",
       icon: Stethoscope,
       badge: "Healthcare",
+      image: "/images/programs/healthcare.jpg",
     },
     {
       title: t("hospitalTitle"),
@@ -50,6 +55,7 @@ export function PillarsGrid() {
       href: "/our-work/hospital",
       icon: Building2,
       badge: "Infrastructure",
+      image: "/images/programs/hospital_construction.jpg",
     },
     {
       title: t("socialWelfareTitle"),
@@ -57,6 +63,7 @@ export function PillarsGrid() {
       href: "/our-work/social-welfare",
       icon: Utensils,
       badge: "Relief",
+      image: "/images/programs/food_relief.jpg",
     },
     {
       title: t("educationTitle"),
@@ -64,6 +71,7 @@ export function PillarsGrid() {
       href: "/our-work/education",
       icon: GraduationCap,
       badge: "Empowerment",
+      image: "/images/programs/education.jpg",
     },
   ];
 
@@ -84,35 +92,52 @@ export function PillarsGrid() {
           return (
             <div
               key={idx}
-              className="bg-surface-card rounded-2xl border border-zinc-200 p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group"
+              className="bg-surface-card rounded-2xl border border-zinc-200 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 group"
             >
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-primary-100 text-primary-900 flex items-center justify-center group-hover:bg-primary-900 group-hover:text-accent-gold transition-colors">
-                    <IconComponent className="w-6 h-6" />
-                  </div>
-                  <span className="text-[11px] font-semibold text-accent-gold-dark bg-amber-50 px-2.5 py-1 rounded-full uppercase tracking-wider">
+              {/* Card Photo */}
+              <div className="relative h-44 w-full overflow-hidden bg-slate-100">
+                <Image
+                  src={pillar.image}
+                  alt={pillar.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <div className="absolute top-3 right-3">
+                  <span className="text-[11px] font-bold text-slate-800 bg-white/95 backdrop-blur px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
                     {pillar.badge}
                   </span>
                 </div>
-
-                <h3 className="font-serif font-bold text-lg sm:text-xl text-primary-900">
-                  {pillar.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
-                  {pillar.desc}
-                </p>
+                <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-white/95 text-primary-900 flex items-center justify-center shadow">
+                    <IconComponent className="w-4 h-4 text-[#005972]" />
+                  </div>
+                  <span className="text-white text-xs font-bold drop-shadow">
+                    {pillar.badge}
+                  </span>
+                </div>
               </div>
 
-              <div className="pt-6 border-t border-zinc-100 mt-6">
-                <Link
-                  href={pillar.href}
-                  className="text-xs sm:text-sm font-semibold text-primary-900 hover:text-accent-gold-dark flex items-center justify-between transition-colors"
-                >
-                  <span>{tCommon("learnMore")}</span>
-                  <ArrowRight className="w-4 h-4 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
-                </Link>
+              <div className="p-6 flex flex-col flex-1 justify-between gap-4">
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-serif font-bold text-lg sm:text-xl text-primary-900 group-hover:text-[#005972] transition-colors">
+                    {pillar.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-charcoal-muted leading-relaxed">
+                    {pillar.desc}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-zinc-100">
+                  <Link
+                    href={pillar.href}
+                    className="text-xs sm:text-sm font-semibold text-[#005972] hover:text-accent-gold-dark flex items-center justify-between transition-colors"
+                  >
+                    <span>{tCommon("learnMore")}</span>
+                    <ArrowRight className="w-4 h-4 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
+                  </Link>
+                </div>
               </div>
             </div>
           );

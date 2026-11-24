@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import {
   Trees,
@@ -117,6 +118,45 @@ export default function EnvironmentPage() {
             <div className="bg-blue-50 border border-blue-200 px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-semibold text-[#1A56DB] shadow-sm">
               <ShieldCheck className="w-4 h-4 shrink-0" />
               <span>WHO Potable Water Safety Standards Tested</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Visual Dual Photo Showcase */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
+            <Image
+              src="/images/programs/water_environment.jpg"
+              alt="Clean Water Well & Solar Filtration Systems"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 text-white">
+              <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
+                Drinking Water Security
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
+                Solar-Powered Deep Water Wells
+              </h3>
+            </div>
+          </div>
+
+          <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
+            <Image
+              src="/images/programs/environment_tree.jpg"
+              alt="Urban Tree Plantation & Afforestation Drives"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 text-white">
+              <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
+                Climate Action
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
+                Afforestation & Native Tree Planting
+              </h3>
             </div>
           </div>
         </div>

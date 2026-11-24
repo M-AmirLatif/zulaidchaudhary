@@ -149,6 +149,45 @@ export default function AnimalWelfarePage() {
           </p>
         </div>
 
+        {/* Visual Dual Photo Showcase */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+          <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
+            <Image
+              src="/images/programs/animal_welfare.jpg"
+              alt="Veterinary Treatment & Emergency Animal Care"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 text-white">
+              <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
+                Compassionate Aid
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
+                Veterinary Treatment & Rehabilitation
+              </h3>
+            </div>
+          </div>
+
+          <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
+            <Image
+              src="/images/4th.jpg"
+              alt="Active Field Animal Rescue & Care"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            <div className="absolute bottom-5 left-5 right-5 text-white">
+              <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
+                Ground Care
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
+                Equine & Street Stray Rescue Services
+              </h3>
+            </div>
+          </div>
+        </div>
+
         {/* 4 Dedicated Rescue Types Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {RESCUE_TYPES.map((type) => (

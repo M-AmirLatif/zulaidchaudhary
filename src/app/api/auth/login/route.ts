@@ -28,6 +28,16 @@ export async function POST(req: NextRequest) {
       // Prisma offline or unconfigured, fallback to in-memory mock
     }
 
+    const STAFF_ROLES = [
+      "SUPER_ADMIN",
+      "ADMIN",
+      "CONTENT_EDITOR",
+      "MEDICAL_COORDINATOR",
+      "FINANCE_OFFICER",
+      "VOLUNTEER_COORDINATOR",
+      "COUNTRY_COORDINATOR",
+    ];
+
     if (dbUser && dbUser.passwordHash) {
       const isPasswordValid =
         password === "Password123!" ||
@@ -61,6 +71,8 @@ export async function POST(req: NextRequest) {
         ipAddress: req.headers.get("x-forwarded-for") || "127.0.0.1",
       });
 
+      const isStaffDb = STAFF_ROLES.includes(dbUser.role);
+
       return NextResponse.json({
         success: true,
         user: {
@@ -69,6 +81,7 @@ export async function POST(req: NextRequest) {
           email: dbUser.email,
           role: dbUser.role,
         },
+        redirectTo: isStaffDb ? "/admin" : "/dashboard",
       });
     }
 
@@ -141,13 +154,7 @@ export async function POST(req: NextRequest) {
       ipAddress: req.headers.get("x-forwarded-for") || "127.0.0.1",
     });
 
-    const isStaff = [
-      "SUPER_ADMIN",
-      "ADMIN",
-      "MEDICAL_COORDINATOR",
-      "FINANCE_OFFICER",
-      "VOLUNTEER_COORDINATOR",
-    ].includes(user.role);
+    const isStaff = STAFF_ROLES.includes(user.role);
 
     return NextResponse.json({
       success: true,

@@ -10,6 +10,7 @@ export interface UserRecord {
     | "MEDICAL_COORDINATOR"
     | "FINANCE_OFFICER"
     | "VOLUNTEER_COORDINATOR"
+    | "COUNTRY_COORDINATOR"
     | "DONOR_USER"
     | "VOLUNTEER_USER"
     | "MEMBER_USER";
@@ -174,6 +175,17 @@ const DEFAULT_PASSWORD_HASH = "$2a$10$0z8q5j1sI3gYj8t2u1m7aeLw3nZ5p7v9x2b4c6d8f0
 // Seeded Users
 export const mockUsers: UserRecord[] = [
   {
+    id: "usr-founder",
+    name: "Zulaid Chaudhary (Founder)",
+    email: "founder@zulaidchaudharyfoundation.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "SUPER_ADMIN",
+    isTwoFactorEnabled: true,
+    twoFactorSecret: "JBSWY3DPEHPK3PXP", // Base32 test secret
+    preferredLanguage: "en",
+    createdAt: "2026-11-01T00:00:00Z",
+  },
+  {
     id: "usr-super-admin",
     name: "Zulaid Chaudhary",
     email: "admin@zulaidchaudharyfoundation.com",
@@ -185,11 +197,43 @@ export const mockUsers: UserRecord[] = [
     createdAt: "2026-11-01T00:00:00Z",
   },
   {
+    id: "usr-admin-director",
+    name: "Kashif (Operations Director)",
+    email: "director@zulaidchaudharyfoundation.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "ADMIN",
+    isTwoFactorEnabled: true,
+    twoFactorSecret: "JBSWY3DPEHPK3PXP",
+    preferredLanguage: "en",
+    createdAt: "2026-11-02T00:00:00Z",
+  },
+  {
+    id: "usr-content-editor",
+    name: "Zainab (Content & CMS Editor)",
+    email: "editor@zulaidchaudharyfoundation.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "CONTENT_EDITOR",
+    isTwoFactorEnabled: false,
+    preferredLanguage: "en",
+    createdAt: "2026-11-03T00:00:00Z",
+  },
+  {
     id: "usr-medical-coord",
     name: "Dr. Tariq (Medical Coordinator)",
     email: "medical@zulaidchaudharyfoundation.com",
     passwordHash: DEFAULT_PASSWORD_HASH,
     role: "MEDICAL_COORDINATOR",
+    isTwoFactorEnabled: true,
+    twoFactorSecret: "JBSWY3DPEHPK3PXP",
+    preferredLanguage: "en",
+    createdAt: "2026-11-05T00:00:00Z",
+  },
+  {
+    id: "usr-finance-officer",
+    name: "Farhan (Finance & Compliance)",
+    email: "finance@zulaidchaudharyfoundation.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "FINANCE_OFFICER",
     isTwoFactorEnabled: true,
     twoFactorSecret: "JBSWY3DPEHPK3PXP",
     preferredLanguage: "en",
@@ -206,6 +250,16 @@ export const mockUsers: UserRecord[] = [
     createdAt: "2026-11-06T00:00:00Z",
   },
   {
+    id: "usr-country-coord",
+    name: "Hamza (UK Chapter Lead)",
+    email: "uk.coordinator@zulaidchaudharyfoundation.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "COUNTRY_COORDINATOR",
+    isTwoFactorEnabled: false,
+    preferredLanguage: "en",
+    createdAt: "2026-11-08T00:00:00Z",
+  },
+  {
     id: "usr-supporter",
     name: "Ahmad Raza (Supporter)",
     email: "supporter@gmail.com",
@@ -214,6 +268,26 @@ export const mockUsers: UserRecord[] = [
     isTwoFactorEnabled: false,
     preferredLanguage: "en",
     createdAt: "2026-11-10T00:00:00Z",
+  },
+  {
+    id: "usr-volunteer-applicant",
+    name: "Bilal Hassan (Volunteer Applicant)",
+    email: "volunteer.user@gmail.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "VOLUNTEER_USER",
+    isTwoFactorEnabled: false,
+    preferredLanguage: "en",
+    createdAt: "2026-11-12T00:00:00Z",
+  },
+  {
+    id: "usr-member-user",
+    name: "Khadija Noor (Founding Member)",
+    email: "member.user@gmail.com",
+    passwordHash: DEFAULT_PASSWORD_HASH,
+    role: "MEMBER_USER",
+    isTwoFactorEnabled: false,
+    preferredLanguage: "en",
+    createdAt: "2026-11-14T00:00:00Z",
   },
 ];
 

@@ -26,9 +26,11 @@ export default async function DashboardLayout({
   const isStaff = [
     "SUPER_ADMIN",
     "ADMIN",
+    "CONTENT_EDITOR",
     "MEDICAL_COORDINATOR",
     "FINANCE_OFFICER",
     "VOLUNTEER_COORDINATOR",
+    "COUNTRY_COORDINATOR",
   ].includes(session.role);
 
   return (

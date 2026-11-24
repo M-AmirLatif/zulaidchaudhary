@@ -4,19 +4,21 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Inter, Playfair_Display, Noto_Nastaliq_Urdu } from "next/font/google";
+import { Poppins, Montserrat, Noto_Nastaliq_Urdu } from "next/font/google";
 import "@/app/globals.css";
 import type { Metadata } from "next";
 
-const inter = Inter({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -53,7 +55,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={isRtl ? "rtl" : "ltr"}
-      className={`${inter.variable} ${playfair.variable} ${notoUrdu.variable}`}
+      className={`${poppins.variable} ${montserrat.variable} ${notoUrdu.variable}`}
     >
       <body
         className={`min-h-screen flex flex-col bg-surface-cream text-charcoal font-sans antialiased selection:bg-accent-gold selection:text-primary-900`}

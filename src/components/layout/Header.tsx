@@ -26,12 +26,12 @@ export function Header() {
   const otherLocaleLabel = locale === "en" ? "اردو" : "English";
 
   const workItems = [
+    { href: "/our-work/human-rights", label: "Human Rights Advocacy", icon: "⚖️" },
+    { href: "/our-work/environment", label: "Clean Water & Environment", icon: "🌱" },
+    { href: "/our-work/animal-welfare", label: "Animal Welfare", icon: "🐾" },
     { href: "/our-work/medical-assistance", label: "Medical Assistance", icon: "🏥" },
     { href: "/our-work/hospital", label: "Charity Hospital", icon: "🏗️" },
     { href: "/our-work/social-welfare", label: "Food & Rations", icon: "🌾" },
-    { href: "/our-work/animal-welfare", label: "Animal Welfare", icon: "🐾" },
-    { href: "/our-work/environment", label: "Clean Water & Environment", icon: "🌱" },
-    { href: "/our-work/human-rights", label: "Human Rights Advocacy", icon: "⚖️" },
   ];
 
   return (

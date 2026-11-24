@@ -3,22 +3,22 @@ import { ArrowRight, Sparkles, Heart } from "lucide-react";
 
 const INITIATIVES = [
   {
-    id: "health",
-    title: "Healthcare & Free Surgeries",
-    desc: "Direct subsidies for clinical consultations, corrective surgeries, and pharmacy pools for approximately 25–30 destitute patients.",
-    icon: "🏥",
-    href: "/our-work/medical-assistance",
-    accent: "bg-emerald-50 text-[#16a34a] border-emerald-200",
-    btnColor: "bg-[#16a34a] hover:bg-[#15803d]",
+    id: "human-rights",
+    title: "Human Rights Advocacy",
+    desc: "Defending fundamental rights, combating illegal bonded labor, and providing pro-bono legal protection to marginalized communities.",
+    icon: "⚖️",
+    href: "/our-work/human-rights",
+    accent: "bg-purple-50 text-purple-600 border-purple-200",
+    btnColor: "bg-purple-600 hover:bg-purple-700",
   },
   {
-    id: "hospital",
-    title: "Charity Hospital Network",
-    desc: "Actively constructing an institutional charity hospital in Lahore to provide round-the-clock emergency care and zero-fee healing.",
-    icon: "🏗️",
-    href: "/our-work/hospital",
-    accent: "bg-sky-50 text-[#009ee2] border-sky-200",
-    btnColor: "bg-[#009ee2] hover:bg-[#0085be]",
+    id: "environment",
+    title: "Clean Water & Environment",
+    desc: "Installing sustainable solar filtration water plants, clean well systems, and massive urban climate afforestation drives across Pakistan.",
+    icon: "🌱",
+    href: "/our-work/environment",
+    accent: "bg-emerald-50 text-[#16a34a] border-emerald-200",
+    btnColor: "bg-[#16a34a] hover:bg-[#15803d]",
   },
   {
     id: "animals",
@@ -30,13 +30,31 @@ const INITIATIVES = [
     btnColor: "bg-amber-600 hover:bg-amber-700",
   },
   {
+    id: "health",
+    title: "Healthcare & Free Surgeries",
+    desc: "Direct subsidies for clinical consultations, corrective surgeries, and pharmacy pools for approximately 25–30 destitute patients.",
+    icon: "🏥",
+    href: "/our-work/medical-assistance",
+    accent: "bg-teal-50 text-[#005972] border-teal-200",
+    btnColor: "bg-[#005972] hover:bg-[#004356]",
+  },
+  {
+    id: "hospital",
+    title: "Charity Hospital Network",
+    desc: "Actively constructing an institutional charity hospital in Lahore to provide round-the-clock emergency care and zero-fee healing.",
+    icon: "🏗️",
+    href: "/our-work/hospital",
+    accent: "bg-sky-50 text-[#009ee2] border-sky-200",
+    btnColor: "bg-[#009ee2] hover:bg-[#0085be]",
+  },
+  {
     id: "rations",
     title: "Food & Family Ration Relief",
     desc: "Distributing dignified monthly nutrition packs with flour, oil, and lentils to widowed mothers and families below poverty lines.",
     icon: "🌾",
     href: "/our-work/social-welfare",
-    accent: "bg-teal-50 text-[#005972] border-teal-200",
-    btnColor: "bg-[#005972] hover:bg-[#004356]",
+    accent: "bg-rose-50 text-[#d92525] border-rose-200",
+    btnColor: "bg-[#d92525] hover:bg-[#c81e1e]",
   },
 ];
 
@@ -60,8 +78,8 @@ export function CoreInitiativesCarousel() {
           Your donations are directed with zero administrative loss to real beneficiaries, verified medical cases, and active hospital construction.
         </p>
 
-        {/* 4 Circular-Icon Cards in Responsive Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-12">
+        {/* 6 Circular-Icon Cards in Responsive 3-Column Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-12">
           {INITIATIVES.map((item) => (
             <div
               key={item.id}

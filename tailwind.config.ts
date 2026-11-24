@@ -39,8 +39,11 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "Playfair Display", "Georgia", "serif"],
-        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        sans: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
+        serif: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
+        heading: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
+        poppins: ["var(--font-poppins)", "Poppins", "system-ui", "sans-serif"],
         urdu: ["var(--font-urdu)", "Noto Nastaliq Urdu", "Arial", "sans-serif"],
       },
     },

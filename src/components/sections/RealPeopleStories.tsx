@@ -47,7 +47,7 @@ export function RealPeopleStories() {
         {/* MTJ Exact Subtitle Pill */}
         <div className="flex items-center gap-2 text-amber-600 font-bold text-xs uppercase tracking-widest mb-2">
           <span className="w-8 h-[2px] bg-amber-500 inline-block" />
-          <span>Stories of Hope</span>
+          <span>Verified Patient Videos &amp; Stories of Hope</span>
           <span className="w-8 h-[2px] bg-amber-500 inline-block" />
         </div>
 
@@ -55,8 +55,8 @@ export function RealPeopleStories() {
           Real People: Real Impact
         </h2>
 
-        <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-xl text-center">
-          Lives transformed through your generosity, recorded strictly under recorded informed consent.
+        <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl text-center">
+          Watch authentic patient care videos and recovery records facilitated by founder Zulaid Chaudhary in Shorkot and District Jhang, documented with informed consent.
         </p>
 
         {/* Stories Grid */}
@@ -67,37 +67,46 @@ export function RealPeopleStories() {
               className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
-                {/* Thumbnail with Play Icon */}
-                <div className="relative w-full aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={s.image}
-                    alt={s.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/40 transition-colors" />
-
-                  {/* Play Button Overlay */}
-                  <button
-                    onClick={() => setActiveStory(s)}
-                    className="absolute inset-0 m-auto w-14 h-14 rounded-full bg-white/95 hover:bg-white text-[#009ee2] shadow-xl flex items-center justify-center transition-transform hover:scale-110"
-                    aria-label={`View story ${s.title}`}
-                  >
-                    <Play className="w-6 h-6 fill-[#009ee2] ms-1 text-[#009ee2]" />
-                  </button>
-
-                  <div className="absolute bottom-3 start-3 flex items-center gap-2">
-                    <span className="text-[10px] font-bold bg-[#009ee2] text-white px-3 py-1 rounded-full uppercase tracking-wider shadow">
-                      {s.category}
-                    </span>
-                    {s.video && (
-                      <span className="text-[10px] font-bold bg-rose-600 text-white px-2.5 py-1 rounded-full uppercase tracking-wider shadow flex items-center gap-1 animate-pulse">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white inline-block"></span>
-                        Watch Video
+                {/* Media: Video Player if available, or Image */}
+                {s.video ? (
+                  <div className="relative w-full aspect-[16/10] bg-black overflow-hidden flex items-center justify-center border-b border-slate-200">
+                    <video
+                      src={s.video}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-contain"
+                    >
+                      Your browser does not support HTML5 video.
+                    </video>
+                    <div className="absolute top-3 start-3 pointer-events-none z-10">
+                      <span className="text-[10px] font-bold bg-rose-600 text-white px-2.5 py-1 rounded-full uppercase tracking-wider shadow flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                        Patient Video
                       </span>
-                    )}
+                    </div>
+                    <div className="absolute bottom-3 end-3 pointer-events-none z-10">
+                      <span className="text-[10px] font-bold bg-black/70 backdrop-blur text-white px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                        {s.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="relative w-full aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/30 transition-colors" />
+                    <div className="absolute bottom-3 start-3">
+                      <span className="text-[10px] font-bold bg-[#009ee2] text-white px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                        {s.category}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Details */}
                 <div className="p-6 flex flex-col gap-3">

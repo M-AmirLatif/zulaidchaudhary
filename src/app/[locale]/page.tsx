@@ -23,20 +23,20 @@ export default function HomePage() {
       {/* 3. Core Program Initiatives Grid */}
       <CoreInitiativesCarousel />
 
-      {/* 4. Dual Action Triptych (Make Donation / Real Human Connection / Become Volunteer) */}
+      {/* 4. "Real People: Real Impact" (Verified Patient Videos & Case Records) */}
+      <RealPeopleStories />
+
+      {/* 5. Dual Action Triptych (Make Donation / Real Human Connection / Become Volunteer) */}
       <DualActionTriptych />
 
-      {/* 5. Live Impact Projects with Progress Bars & Action Verbs */}
+      {/* 6. Live Impact Projects with Progress Bars & Action Verbs */}
       <LiveProjectsShowcase />
 
-      {/* 6. Cumulative Verified Impact Statistics (9 Counters Grid) */}
+      {/* 7. Cumulative Verified Impact Statistics (9 Counters Grid) */}
       <CumulativeImpactGrid />
 
-      {/* 7. UN Sustainable Development Goals Alignment */}
+      {/* 8. UN Sustainable Development Goals Alignment */}
       <GlobalGoalsSDG />
-
-      {/* 8. "Real People: Real Impact" (Verified Patient & Recovery Stories) */}
-      <RealPeopleStories />
 
       {/* 9. "Other Ways to Donate" (Online, WhatsApp, Phone, Bank Wire) */}
       <OtherWaysToDonate />

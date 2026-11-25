@@ -450,7 +450,7 @@ export function Hero() {
                 placeholder={`Other Amount (${currency})`}
                 value={customAmount}
                 onChange={(e) => setCustomAmount(e.target.value)}
-                className="w-36 sm:w-44 bg-white text-xs font-bold text-slate-800 p-2.5 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a]"
+                className="w-36 sm:w-48 bg-white text-xs font-bold text-slate-800 p-2.5 rounded-lg border border-[#badfc4] focus:outline-none focus:ring-2 focus:ring-[#16a34a] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
 
               {/* MTJ Exact Solid Red Donate Button */}

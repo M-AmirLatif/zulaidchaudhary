@@ -455,7 +455,7 @@ export default function DonatePage() {
                       placeholder="e.g. 15000"
                       value={customAmount}
                       onChange={(e) => setCustomAmount(e.target.value)}
-                      className="w-full ps-12 pe-4 py-2.5 rounded-xl border border-zinc-300 text-xs font-semibold focus:outline-none focus:border-accent-gold bg-surface-cream"
+                      className="w-full ps-12 pe-4 py-2.5 rounded-xl border border-zinc-300 text-xs font-semibold focus:outline-none focus:border-accent-gold bg-surface-cream [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                   </div>
                 </div>

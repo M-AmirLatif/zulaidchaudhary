@@ -28,7 +28,7 @@ export function StickyQuickDonateBar() {
 
   return (
     <div className="hidden md:flex fixed bottom-5 inset-x-0 z-40 justify-center px-4 animate-in slide-in-from-bottom duration-300 pointer-events-none">
-      <div className="pointer-events-auto bg-white border border-[#cbe7f7] text-slate-800 rounded-full shadow-2xl p-2 sm:p-2.5 flex items-center gap-2.5 max-w-3xl backdrop-blur-md">
+      <div className="pointer-events-auto bg-white border border-[#cbe7f7] text-slate-800 rounded-full shadow-2xl p-2 sm:p-2.5 flex items-center gap-2.5 max-w-4xl backdrop-blur-md">
         
         {/* Label */}
         <div className="flex items-center gap-1.5 ps-3">
@@ -63,13 +63,16 @@ export function StickyQuickDonateBar() {
         </select>
 
         {/* Amount Input */}
-        <div className="relative w-28">
+        <div className="relative w-36 sm:w-44">
+          <span className="absolute start-3 top-1/2 -translate-y-1/2 text-[11px] font-bold text-slate-400 pointer-events-none">
+            PKR
+          </span>
           <input
             type="number"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            placeholder="PKR"
-            className="w-full bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900 rounded-full px-3 py-1.5 focus:outline-none"
+            placeholder="5000"
+            className="w-full bg-slate-50 border border-slate-200 text-xs font-bold text-slate-900 rounded-full ps-11 pe-3 py-1.5 focus:outline-none focus:border-[#009ee2] focus:ring-1 focus:ring-[#009ee2] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
         </div>
 

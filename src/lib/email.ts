@@ -19,7 +19,7 @@ export interface EmailDeliveryResult {
  * or falls back to an audited console logger in development/test.
  */
 export async function sendEmail(options: SendEmailOptions): Promise<EmailDeliveryResult> {
-  const from = options.from || process.env.EMAIL_FROM || "Zulaid Chaudhary Foundation <receipts@zulaidchaudharyfoundation.com>";
+  const from = options.from || process.env.EMAIL_FROM || "Zulaid Chaudhary Foundation <zulaidchaudharyfoundation@gmail.com>";
   const apiKey = process.env.RESEND_API_KEY;
 
   // 1. Resend API Delivery
@@ -140,6 +140,7 @@ export async function sendDonationReceiptEmail(donation: {
           </div>
           <div class="footer">
             <p>Zulaid Chaudhary Foundation • Head Office: Tehsil Shorkot, District Jhang, Punjab, Pakistan</p>
+            <p>Official Contact: +92 301 6242067 • Email: zulaidchaudharyfoundation@gmail.com</p>
             <p>Regulatory Notice: Registration in progress under the Companies Act.</p>
           </div>
         </div>

@@ -107,8 +107,8 @@ export default function PrivacyPolicyPage() {
               </span>
               <p className="text-sm text-charcoal-muted">
                 رازداری کے حوالے سے کسی بھی سوال، رضامندی واپس لینے یا کوائف حذف کرنے کی درخواست کے لیے رابطہ کریں:{" "}
-                <a href="mailto:privacy@zulaidchaudharyfoundation.com" className="font-semibold text-[#166534] underline font-sans">
-                  privacy@zulaidchaudharyfoundation.com
+                <a href="mailto:zulaidchaudharyfoundation@gmail.com" className="font-semibold text-[#166534] underline font-sans">
+                  zulaidchaudharyfoundation@gmail.com
                 </a>
               </p>
             </div>
@@ -247,8 +247,8 @@ export default function PrivacyPolicyPage() {
             </span>
             <p className="text-xs text-charcoal-muted">
               For privacy inquiries, consent revocations, or data deletion requests, contact our legal oversight desk at:{" "}
-              <a href="mailto:privacy@zulaidchaudharyfoundation.com" className="font-semibold text-[#166534] underline">
-                privacy@zulaidchaudharyfoundation.com
+              <a href="mailto:zulaidchaudharyfoundation@gmail.com" className="font-semibold text-[#166534] underline">
+                zulaidchaudharyfoundation@gmail.com
               </a>
             </p>
           </div>

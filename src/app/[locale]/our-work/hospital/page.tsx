@@ -132,6 +132,7 @@ export default function HospitalPage() {
               <a href="https://wa.me/923016242067" target="_blank" rel="noopener noreferrer" className="font-mono font-bold text-[#005972] text-sm hover:underline block">
                 0301-6242067
               </a>
+              <span className="text-[10px] text-amber-700 font-semibold block">JazzCash: 0301-6242067 (Zulaid Chaudhary)</span>
               <span className="text-[10px] text-slate-400 block">Bank Account: Pending</span>
             </div>
           </div>

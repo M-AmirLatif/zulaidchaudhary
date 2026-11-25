@@ -43,13 +43,13 @@ export function Header() {
           {/* Left: Email & Phone */}
           <div className="flex items-center gap-3 sm:gap-6 min-w-0">
             <a
-              href="mailto:info@zulaidchaudharyfoundation.com"
+              href="mailto:zulaidchaudharyfoundation@gmail.com"
               className="inline-flex items-center gap-1.5 hover:text-white/80 transition-colors font-sans text-[11px] sm:text-xs"
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span className="truncate">info@zulaidchaudharyfoundation.com</span>
+              <span className="truncate">zulaidchaudharyfoundation@gmail.com</span>
             </a>
 
             <a

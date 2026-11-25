@@ -676,17 +676,59 @@ export default function DonatePage() {
                 {(paymentMethod === "JAZZCASH" || paymentMethod === "EASYPAISA") && (
                   <div className="p-4 rounded-2xl bg-surface-cream border border-zinc-200 flex flex-col gap-2.5 text-xs">
                     <span className="font-bold text-primary-900 text-xs">
-                      Pakistani Mobile Wallet Gateway
+                      Official JazzCash Account (Founder Direct)
                     </span>
-                    <p className="text-[11px] text-charcoal-muted leading-relaxed">
-                      Enter your mobile wallet number to simulate simulated OTP push authorization.
+                    <div className="space-y-1.5 text-[11px] text-charcoal bg-surface-card p-3.5 rounded-xl border border-zinc-200">
+                      <div className="flex items-center justify-between">
+                        <strong className="text-zinc-600">Account Title:</strong>
+                        <span className="font-bold text-primary-900">Zulaid Chaudhary</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <strong className="text-zinc-600">JazzCash Mobile Number:</strong>
+                        <span className="font-mono font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+                          0301-6242067
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <strong className="text-zinc-600">Founder Direct WhatsApp:</strong>
+                        <span className="font-mono font-bold text-emerald-700">
+                          +92 301 6242067
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <strong className="text-zinc-600">Founder Official Email:</strong>
+                        <span className="font-mono font-medium text-blue-700">
+                          zulaidchaudharyfoundation@gmail.com
+                        </span>
+                      </div>
+                    </div>
+                    <p className="text-[11px] text-charcoal-muted leading-relaxed pt-1">
+                      Send your contribution via your JazzCash app to <strong>0301-6242067</strong> (Title: Zulaid Chaudhary), then enter your Sender Number &amp; Transaction ID (TID) below to generate your official digital receipt:
                     </p>
-                    <input
-                      type="tel"
-                      placeholder="0300 1234567"
-                      defaultValue="0300 9876543"
-                      className="w-full p-2 rounded-lg border border-zinc-300 font-mono text-xs bg-surface-card"
-                    />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                      <div>
+                        <label className="text-[11px] font-medium text-zinc-500 block mb-1">
+                          Your Mobile / Sender Number
+                        </label>
+                        <input
+                          type="tel"
+                          placeholder="e.g. 0300 1234567"
+                          className="w-full p-2 rounded-lg border border-zinc-300 font-mono text-xs bg-surface-card"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-[11px] font-medium text-zinc-500 block mb-1">
+                          JazzCash TID / Reference ID
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g. JC-98231024"
+                          value={bankRef}
+                          onChange={(e) => setBankRef(e.target.value)}
+                          className="w-full p-2 rounded-lg border border-zinc-300 font-mono text-xs bg-surface-card"
+                        />
+                      </div>
+                    </div>
                   </div>
                 )}
 

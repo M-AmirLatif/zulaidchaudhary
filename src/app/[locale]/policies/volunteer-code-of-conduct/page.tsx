@@ -186,8 +186,8 @@ export default function VolunteerCodeOfConductPage() {
             </h3>
             <p className="text-charcoal-muted text-xs sm:text-sm">
               Failure to adhere to this Code of Conduct will result in immediate suspension, revocation of membership credentials, and removal from chapter registries. If you observe any volunteer or staff misconduct, file a confidential report through our Whistleblower channel on the Contact page or email:{" "}
-              <a href="mailto:conduct@zulaidchaudharyfoundation.com" className="font-semibold text-primary-900 underline">
-                conduct@zulaidchaudharyfoundation.com
+              <a href="mailto:zulaidchaudharyfoundation@gmail.com" className="font-semibold text-primary-900 underline">
+                zulaidchaudharyfoundation@gmail.com
               </a>.
             </p>
           </section>

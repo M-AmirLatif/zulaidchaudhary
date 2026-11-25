@@ -10,6 +10,8 @@ import {
   Copy,
   Check,
   ArrowRight,
+  Mail,
+  Smartphone,
 } from "lucide-react";
 
 export function OtherWaysToDonate() {
@@ -96,48 +98,55 @@ export function OtherWaysToDonate() {
             </a>
           </div>
 
-          {/* Card 3: Verification & Phone (Red) */}
+          {/* Card 3: Founder Contact & JazzCash (Red/Rose) */}
           <div className="bg-white rounded-3xl border border-slate-200 p-7 flex flex-col justify-between gap-5 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all group">
             <div className="flex flex-col gap-4">
               <div className="w-16 h-16 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-                <Phone className="w-8 h-8" />
+                <Smartphone className="w-8 h-8" />
               </div>
               <h3 className="font-serif font-bold text-lg text-slate-900 group-hover:text-rose-600 transition-colors">
-                Verification Line
+                Founder Desk &amp; JazzCash
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Connect with our verification and coordination desk in Shorkot for patient cases, hospital updates, or donation queries.
+                Direct contact with founder Zulaid Chaudhary (+92 301 6242067) or send contributions directly via JazzCash.
               </p>
+              <div className="text-[11px] bg-rose-50 border border-rose-200 p-2 rounded-xl text-rose-800">
+                <span className="font-bold block">JazzCash Title: Zulaid Chaudhary</span>
+                <span className="font-mono">Account: 0301-6242067</span>
+              </div>
             </div>
             <button
               onClick={handleCopyPhone}
               className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1 transition-colors text-start"
             >
-              <span>{copiedPhone ? "Number Copied!" : "0301-6242067"}</span>
+              <span>{copiedPhone ? "JazzCash Number Copied!" : "Copy JazzCash: 0301-6242067"}</span>
               {copiedPhone ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             </button>
           </div>
 
-          {/* Card 4: Bank Transfer (Sky Blue) */}
+          {/* Card 4: Official Email & Bank Wire (Sky Blue) */}
           <div className="bg-white rounded-3xl border border-slate-200 p-7 flex flex-col justify-between gap-5 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all group">
             <div className="flex flex-col gap-4">
               <div className="w-16 h-16 rounded-full bg-sky-100 text-[#009ee2] flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
-                <Building2 className="w-8 h-8" />
+                <Mail className="w-8 h-8" />
               </div>
               <h3 className="font-serif font-bold text-lg text-slate-900 group-hover:text-[#009ee2] transition-colors">
-                Direct Bank Transfer
+                Official Founder Email
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Direct RTGS, Raast ID, and wire transfers directly into the dedicated institutional foundation accounts.
+                Direct inquiries, clinical referrals, transparency requests, and institutional collaboration proposals.
               </p>
+              <div className="text-[11px] bg-sky-50 border border-sky-200 p-2 rounded-xl text-sky-800">
+                <span className="font-mono break-all font-semibold">zulaidchaudharyfoundation@gmail.com</span>
+              </div>
             </div>
-            <Link
-              href="/donate#bank"
+            <a
+              href="mailto:zulaidchaudharyfoundation@gmail.com"
               className="text-xs font-bold text-[#009ee2] hover:text-[#007cb0] flex items-center gap-1 transition-colors"
             >
-              <span>View IBAN Details</span>
+              <span>Email Founder Directly</span>
               <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180" />
-            </Link>
+            </a>
           </div>
 
         </div>

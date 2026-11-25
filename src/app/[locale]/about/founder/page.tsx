@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { CheckCircle2, ShieldCheck, Heart, Building2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ShieldCheck, Heart, Building2, ArrowRight, Mail, Phone, Smartphone } from "lucide-react";
 
 export default function FounderPage() {
   const t = useTranslations("founder");
@@ -105,6 +105,69 @@ export default function FounderPage() {
               fill
               className="object-cover object-[25%_center]"
             />
+          </div>
+        </div>
+
+        {/* Section 3: Official Founder Desk & Direct Channels */}
+        <div className="bg-primary-950 text-surface-cream rounded-3xl p-8 sm:p-10 shadow-lg flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <span className="text-xs uppercase font-bold tracking-widest text-accent-gold">
+              Direct Contact &amp; Giving
+            </span>
+            <h2 className="font-serif font-bold text-2xl sm:text-3xl text-surface-cream">
+              Founder&apos;s Secretariat &amp; Official Accounts
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-300 max-w-2xl leading-relaxed">
+              Connect directly with founder Zulaid Chaudhary for patient sponsorships, community initiatives, or institutional partnerships.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            {/* Phone & WhatsApp */}
+            <div className="bg-primary-900/80 border border-primary-800 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="w-10 h-10 rounded-xl bg-primary-800 text-accent-gold flex items-center justify-center">
+                <Phone className="w-5 h-5" />
+              </div>
+              <span className="text-xs text-zinc-400 font-medium">Direct Phone &amp; WhatsApp</span>
+              <a
+                href="https://wa.me/923016242067"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono font-bold text-sm sm:text-base text-surface-cream hover:text-accent-gold transition-colors"
+              >
+                +92 301 6242067
+              </a>
+              <span className="text-[11px] text-zinc-400 font-mono">0301-6242067</span>
+            </div>
+
+            {/* JazzCash Account */}
+            <div className="bg-primary-900/80 border border-primary-800 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="w-10 h-10 rounded-xl bg-rose-950 text-rose-400 border border-rose-800 flex items-center justify-center">
+                <Smartphone className="w-5 h-5" />
+              </div>
+              <span className="text-xs text-zinc-400 font-medium">Official JazzCash Account</span>
+              <span className="font-mono font-bold text-sm sm:text-base text-rose-300">
+                0301-6242067
+              </span>
+              <span className="text-[11px] text-zinc-300">
+                Title: <strong className="text-white">Zulaid Chaudhary</strong>
+              </span>
+            </div>
+
+            {/* Official Gmail */}
+            <div className="bg-primary-900/80 border border-primary-800 p-5 rounded-2xl flex flex-col gap-2">
+              <div className="w-10 h-10 rounded-xl bg-primary-800 text-sky-400 flex items-center justify-center">
+                <Mail className="w-5 h-5" />
+              </div>
+              <span className="text-xs text-zinc-400 font-medium">Official Founder Email</span>
+              <a
+                href="mailto:zulaidchaudharyfoundation@gmail.com"
+                className="font-mono font-medium text-xs sm:text-sm text-surface-cream hover:text-sky-300 transition-colors break-all"
+              >
+                zulaidchaudharyfoundation@gmail.com
+              </a>
+              <span className="text-[11px] text-zinc-400">Official Correspondence Desk</span>
+            </div>
           </div>
         </div>
       </div>

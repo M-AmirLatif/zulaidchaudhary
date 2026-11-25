@@ -196,10 +196,11 @@ export default function DonationPolicyPage() {
               Finance & Donor Accounts Desk
             </span>
             <p className="text-xs text-charcoal-muted">
-              For receipt inquiries, bank wire proof-of-payment verifications, or refund questions, email:{" "}
-              <a href="mailto:finance@zulaidchaudharyfoundation.com" className="font-semibold text-primary-900 underline">
-                finance@zulaidchaudharyfoundation.com
-              </a>
+              For receipt inquiries, bank wire proof-of-payment verifications, or refund questions, contact our donor desk at:{" "}
+              <a href="mailto:zulaidchaudharyfoundation@gmail.com" className="font-semibold text-primary-900 underline">
+                zulaidchaudharyfoundation@gmail.com
+              </a>{" "}
+              or WhatsApp / Call: <strong>+92 301 6242067</strong> (JazzCash: 0301-6242067)
             </p>
           </div>
 

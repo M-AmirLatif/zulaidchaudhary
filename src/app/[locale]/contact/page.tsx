@@ -114,7 +114,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="text-zinc-400 block text-[11px] uppercase tracking-wider font-semibold">
-                    Verification / WhatsApp Number
+                    Founder Contact / WhatsApp / JazzCash
                   </span>
                   <a
                     href="https://wa.me/923016242067"
@@ -122,10 +122,13 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="font-medium text-surface-cream hover:text-accent-gold transition-colors block text-sm"
                   >
-                    0301-6242067
+                    +92 301 6242067 (0301-6242067)
                   </a>
+                  <span className="text-[11px] text-amber-300 block font-semibold mt-0.5">
+                    JazzCash Account: 0301-6242067 (Title: Zulaid Chaudhary)
+                  </span>
                   <span className="text-[10px] text-zinc-400 block mt-0.5">
-                    Helpline: Not Confirmed for Now
+                    Official Helpline: Not Confirmed for Now
                   </span>
                 </div>
               </div>
@@ -136,13 +139,13 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="text-zinc-400 block text-[11px] uppercase tracking-wider font-semibold">
-                    Email Inquiries
+                    Official Founder Email
                   </span>
                   <a
-                    href="mailto:info@zulaidchaudharyfoundation.com"
-                    className="font-medium text-surface-cream hover:text-accent-gold transition-colors block text-sm"
+                    href="mailto:zulaidchaudharyfoundation@gmail.com"
+                    className="font-medium text-surface-cream hover:text-accent-gold transition-colors block text-sm break-all"
                   >
-                    info@zulaidchaudharyfoundation.com
+                    zulaidchaudharyfoundation@gmail.com
                   </a>
                 </div>
               </div>

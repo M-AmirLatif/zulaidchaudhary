@@ -38,6 +38,24 @@ export function Footer() {
               An emerging international humanitarian organization founded by Zulaid Chaudhary, dedicated to free surgical healthcare access, construction of ZCF General & Welfare Hospital in Shorkot, community relief across District Jhang, working animal equine care, and lawful human rights advocacy.
             </p>
 
+            {/* Founder Official Contact & JazzCash Quick Strip */}
+            <div className="p-3.5 rounded-2xl bg-white border border-[#cbe7f7] shadow-sm flex flex-col gap-1.5 text-xs">
+              <span className="font-bold text-slate-900 text-[11px] uppercase tracking-wider text-[#005972]">
+                Founder Official Desk
+              </span>
+              <div className="flex flex-col gap-1 text-[11px] text-slate-600">
+                <a href="mailto:zulaidchaudharyfoundation@gmail.com" className="hover:text-[#009ee2] font-mono break-all">
+                  ✉️ zulaidchaudharyfoundation@gmail.com
+                </a>
+                <a href="https://wa.me/923016242067" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600 font-mono">
+                  📞 Contact / WhatsApp: +92 301 6242067
+                </a>
+                <span className="text-amber-800 font-semibold font-mono bg-amber-50 px-2 py-0.5 rounded border border-amber-200 self-start">
+                  JazzCash: 0301-6242067 (Zulaid Chaudhary)
+                </span>
+              </div>
+            </div>
+
             {/* Live Case & Application Tracking Quick CTA */}
             <div className="mt-2 p-3 rounded-2xl bg-white border border-[#cbe7f7] shadow-sm flex items-center justify-between gap-3">
               <div className="flex items-center gap-2.5">

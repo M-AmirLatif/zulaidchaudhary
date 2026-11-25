@@ -191,41 +191,91 @@ export default function MedicalAssistancePage() {
           </div>
         </div>
 
-        {/* Visual Dual Photo Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-          <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
-            <Image
-              src="/images/programs/healthcare.jpg"
-              alt="Direct Clinical Patient Care & Surgical Sponsorship"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 text-white">
-              <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
-                Clinical Care Pool
-              </span>
-              <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
-                Subsidized Surgeries & Consultations
-              </h3>
+        {/* Verified Patient Video Case Documentation (Replacing dummy placeholders with real videos) */}
+        <div className="w-full bg-slate-900 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-6 border-b border-slate-800">
+            <div className="flex flex-col gap-2">
+              <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-full text-xs font-bold w-fit">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Verified Patient Video Records</span>
+              </div>
+              <h2 className="font-serif font-bold text-2xl sm:text-3xl text-white">
+                Authentic Treatment &amp; Clinical Follow-up Videos
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+                Documenting real clinical care sponsorships and post-treatment monitoring arranged by founder Zulaid Chaudhary, recorded with informed consent.
+              </p>
+            </div>
+            <div className="text-xs text-slate-400 bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-700/80 self-start sm:self-auto">
+              Total Patients Facilitated: <strong className="text-white">~25–30 Patients</strong>
             </div>
           </div>
 
-          <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
-            <Image
-              src="/images/2ndimg.jpg"
-              alt="Medical Coordination on Ground"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 text-white">
-              <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
-                Physician Advisory
-              </span>
-              <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
-                Coordinated Free Treatment For ~25-30 Destitute Patients
-              </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Video 1 */}
+            <div className="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-between shadow-lg group">
+              <div className="relative w-full aspect-[16/10] bg-black flex items-center justify-center">
+                <video
+                  src="/videos/patient-case-1.mp4"
+                  controls
+                  preload="metadata"
+                  playsInline
+                  className="w-full h-full object-contain"
+                >
+                  Your browser does not support HTML5 video.
+                </video>
+              </div>
+              <div className="p-5 flex flex-col gap-2.5">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 px-2.5 py-0.5 rounded-full">
+                    Case Record: ZCF-MED-028
+                  </span>
+                  <span className="text-slate-400 font-medium">Shorkot / District Jhang</span>
+                </div>
+                <h3 className="font-serif font-bold text-base text-white">
+                  Direct Clinical Care &amp; Treatment Assistance
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Real clinical video documentation of patient consultation and treatment coordination facilitated through our welfare fund.
+                </p>
+                <div className="pt-2 border-t border-slate-800 text-[10px] text-emerald-400 flex items-center gap-1.5 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Informed Guardian Consent Verified &bull; Supervised by Advisory Physicians</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Video 2 */}
+            <div className="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden flex flex-col justify-between shadow-lg group">
+              <div className="relative w-full aspect-[16/10] bg-black flex items-center justify-center">
+                <video
+                  src="/videos/patient-case-2.mp4"
+                  controls
+                  preload="metadata"
+                  playsInline
+                  className="w-full h-full object-contain"
+                >
+                  Your browser does not support HTML5 video.
+                </video>
+              </div>
+              <div className="p-5 flex flex-col gap-2.5">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/80 px-2.5 py-0.5 rounded-full">
+                    Case Record: ZCF-MED-029
+                  </span>
+                  <span className="text-slate-400 font-medium">District Jhang Network</span>
+                </div>
+                <h3 className="font-serif font-bold text-base text-white">
+                  Post-Treatment Recovery &amp; Clinical Progress
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Follow-up and ongoing care monitoring for subsidized patient treatment arranged under the foundation&apos;s medical relief program.
+                </p>
+                <div className="pt-2 border-t border-slate-800 text-[10px] text-emerald-400 flex items-center gap-1.5 font-medium">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Informed Patient Consent Verified &bull; Free Surgical &amp; Medicine Support</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@ export function DualActionTriptych() {
           <div className="relative rounded-t-[140px] sm:rounded-t-[170px] rounded-b-3xl overflow-hidden shadow-2xl border-4 border-amber-300/60 bg-slate-900 group min-h-[490px] flex flex-col justify-end -mt-0 md:-mt-4">
             <Image
               src="/images/3rdimg.jpg"
-              alt="Hospital Construction Lahore"
+              alt="ZCF General & Welfare Hospital Construction Shorkot"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-85"
               style={{ objectPosition: "center 20%" }}
@@ -75,10 +75,10 @@ export function DualActionTriptych() {
                 Institutional Sanctuary
               </span>
               <h3 className="font-serif font-extrabold text-2xl sm:text-3xl text-white mb-2">
-                Charity Hospital Construction
+                ZCF General & Welfare Hospital
               </h3>
               <p className="text-xs sm:text-sm text-slate-200 mb-6 leading-relaxed">
-                Help build our state-of-the-art charitable hospital in Lahore, creating an enduring legacy of zero-fee medical treatment.
+                Help build our charitable hospital on Dabklan Road, Shorkot, creating an enduring legacy of zero-fee medical treatment for District Jhang.
               </p>
               <Link
                 href="/donate?project=Hospital%20Construction%20Fund"

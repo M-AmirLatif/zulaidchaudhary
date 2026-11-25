@@ -23,7 +23,7 @@ export function OtherWaysToDonate() {
   };
 
   const handleCopyPhone = () => {
-    navigator.clipboard.writeText("+924230000000");
+    navigator.clipboard.writeText("03016242067");
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
@@ -86,7 +86,7 @@ export function OtherWaysToDonate() {
               </p>
             </div>
             <a
-              href="https://wa.me/923000000000"
+              href="https://wa.me/923016242067"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs font-bold text-[#16a34a] hover:text-[#15803d] flex items-center gap-1 transition-colors"
@@ -96,24 +96,24 @@ export function OtherWaysToDonate() {
             </a>
           </div>
 
-          {/* Card 3: Phone Helpline (Red) */}
+          {/* Card 3: Verification & Phone (Red) */}
           <div className="bg-white rounded-3xl border border-slate-200 p-7 flex flex-col justify-between gap-5 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all group">
             <div className="flex flex-col gap-4">
               <div className="w-16 h-16 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xl shadow-inner group-hover:scale-110 transition-transform">
                 <Phone className="w-8 h-8" />
               </div>
               <h3 className="font-serif font-bold text-lg text-slate-900 group-hover:text-rose-600 transition-colors">
-                Call our Helpline
+                Verification Line
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Speak directly with our donor services team for guidance on bank transfers, patient files, or Zakat calculation.
+                Connect with our verification and coordination desk in Shorkot for patient cases, hospital updates, or donation queries.
               </p>
             </div>
             <button
               onClick={handleCopyPhone}
               className="text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1 transition-colors text-start"
             >
-              <span>{copiedPhone ? "Phone Copied!" : "+92 42 3000 0000"}</span>
+              <span>{copiedPhone ? "Number Copied!" : "0301-6242067"}</span>
               {copiedPhone ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
             </button>
           </div>

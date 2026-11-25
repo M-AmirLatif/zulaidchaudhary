@@ -21,7 +21,7 @@ const STATS = [
   {
     value: "1",
     label: "Charity Hospital Facility",
-    desc: "Active structural groundwork underway in Lahore for free institutional care.",
+    desc: "Active structural groundwork underway in Shorkot for free institutional care.",
     icon: Building2,
     bgCircle: "bg-sky-100 text-[#009ee2]",
   },

@@ -139,7 +139,7 @@ export async function sendDonationReceiptEmail(donation: {
             </p>
           </div>
           <div class="footer">
-            <p>Zulaid Chaudhary Foundation • Lahore Headquarters, Punjab, Pakistan</p>
+            <p>Zulaid Chaudhary Foundation • Head Office: Tehsil Shorkot, District Jhang, Punjab, Pakistan</p>
             <p>Regulatory Notice: Registration in progress under the Companies Act.</p>
           </div>
         </div>

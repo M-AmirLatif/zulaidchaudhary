@@ -108,7 +108,7 @@ export async function GET() {
                   required: ["patientInitials", "city", "diagnosisSummary", "estimatedCostPKR", "hasInformedConsent"],
                   properties: {
                     patientInitials: { type: "string", example: "M.A." },
-                    city: { type: "string", example: "Lahore" },
+                    city: { type: "string", example: "Shorkot" },
                     age: { type: "integer", example: 42 },
                     gender: { type: "string", example: "Male" },
                     diagnosisSummary: { type: "string", example: "Bilateral Cataract Surgery" },

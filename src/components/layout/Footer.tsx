@@ -35,7 +35,7 @@ export function Footer() {
             </Link>
 
             <p className="text-xs text-slate-600 leading-relaxed font-sans">
-              An emerging international humanitarian organization founded by Zulaid Chaudhary, dedicated to free surgical healthcare access, modern hospital construction in Lahore, working animal equine care, and lawful human rights advocacy.
+              An emerging international humanitarian organization founded by Zulaid Chaudhary, dedicated to free surgical healthcare access, construction of ZCF General & Welfare Hospital in Shorkot, community relief across District Jhang, working animal equine care, and lawful human rights advocacy.
             </p>
 
             {/* Live Case & Application Tracking Quick CTA */}
@@ -94,7 +94,7 @@ export function Footer() {
                 <span className="font-bold text-xs">in</span>
               </a>
               <a
-                href="https://wa.me/923000000000"
+                href="https://wa.me/923016242067"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:scale-110 transition-transform shadow-sm"
@@ -203,61 +203,79 @@ export function Footer() {
 
         {/* Full-Width Multi-City Regional Directory */}
         <div className="py-10 border-b border-[#c2e2f5]">
-          <h4 className="font-serif font-bold text-sm text-[#005972] uppercase tracking-wider mb-6 text-center">
-            Regional Secretariats & Chapter Liaison
-          </h4>
+          <div className="text-center mb-6">
+            <h4 className="font-serif font-bold text-sm text-[#005972] uppercase tracking-wider">
+              Main Secretariat & Regional Branches
+            </h4>
+            <p className="text-[11px] text-slate-500 mt-1">
+              Serving District Jhang communities through direct clinical, humanitarian, and emergency relief operations.
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs text-slate-600">
-            {/* Lahore */}
-            <div className="bg-white p-4 rounded-2xl border border-[#cbe7f7] shadow-sm flex flex-col gap-1.5">
-              <span className="font-serif font-bold text-slate-900 text-sm">
-                Lahore (Headquarters)
+            {/* Shorkot - Main Branch & Head Office */}
+            <div className="bg-white p-4 rounded-2xl border-2 border-emerald-300/80 shadow-sm flex flex-col gap-1.5 relative overflow-hidden">
+              <span className="text-[9px] uppercase font-bold tracking-widest bg-emerald-600 text-white px-2 py-0.5 rounded-full self-start">
+                Head Office & Hospital Site
+              </span>
+              <span className="font-serif font-bold text-slate-900 text-sm mt-1">
+                Shorkot (Main Branch)
               </span>
               <p className="text-[11px] leading-relaxed text-slate-500">
-                Gulberg III, Main Boulevard, Lahore, Punjab, Pakistan
+                Opposite Government Elementary School, Mirali Wala, Dabklan Road, Tehsil Shorkot, District Jhang
               </p>
-              <span className="text-[11px] font-mono font-semibold text-[#005972]">
-                Tel: +92 42 30000000
-              </span>
+              <div className="mt-auto pt-2 border-t border-slate-100 flex flex-col gap-0.5 text-[11px] font-mono text-[#005972]">
+                <span>WhatsApp: 0301-6242067</span>
+                <span className="text-[10px] text-emerald-700 font-sans font-semibold">ZCF General & Welfare Hospital</span>
+              </div>
             </div>
 
-            {/* Karachi */}
+            {/* Jhang */}
             <div className="bg-white p-4 rounded-2xl border border-[#cbe7f7] shadow-sm flex flex-col gap-1.5">
-              <span className="font-serif font-bold text-slate-900 text-sm">
-                Karachi Chapter
+              <span className="text-[9px] uppercase font-bold tracking-widest bg-blue-100 text-[#005972] px-2 py-0.5 rounded-full self-start">
+                Regional Center
+              </span>
+              <span className="font-serif font-bold text-slate-900 text-sm mt-1">
+                Jhang Branch
               </span>
               <p className="text-[11px] leading-relaxed text-slate-500">
-                PECHS Block 2, Shahrah-e-Faisal, Karachi, Sindh
+                District Headquarters Public Welfare & Healthcare Liaison, Jhang, Punjab
               </p>
-              <span className="text-[11px] font-mono font-semibold text-[#005972]">
-                Tel: +92 21 30000000
-              </span>
+              <div className="mt-auto pt-2 border-t border-slate-100 text-[11px] font-mono text-[#005972]">
+                <span>Contact: 0301-6242067</span>
+              </div>
             </div>
 
-            {/* Islamabad */}
+            {/* Athara Hazari */}
             <div className="bg-white p-4 rounded-2xl border border-[#cbe7f7] shadow-sm flex flex-col gap-1.5">
-              <span className="font-serif font-bold text-slate-900 text-sm">
-                Islamabad / Rawalpindi
+              <span className="text-[9px] uppercase font-bold tracking-widest bg-blue-100 text-[#005972] px-2 py-0.5 rounded-full self-start">
+                Regional Center
+              </span>
+              <span className="font-serif font-bold text-slate-900 text-sm mt-1">
+                Athara Hazari Branch
               </span>
               <p className="text-[11px] leading-relaxed text-slate-500">
-                Blue Area, Jinnah Avenue, Islamabad, Capital Territory
+                Community Outreach & Family Assistance Liaison, Tehsil Athara Hazari, District Jhang
               </p>
-              <span className="text-[11px] font-mono font-semibold text-[#005972]">
-                Tel: +92 51 30000000
-              </span>
+              <div className="mt-auto pt-2 border-t border-slate-100 text-[11px] font-mono text-[#005972]">
+                <span>Contact: 0301-6242067</span>
+              </div>
             </div>
 
-            {/* International Diaspora */}
+            {/* Ahmedpur Sial */}
             <div className="bg-white p-4 rounded-2xl border border-[#cbe7f7] shadow-sm flex flex-col gap-1.5">
-              <span className="font-serif font-bold text-slate-900 text-sm">
-                International (USA / UK Desk)
+              <span className="text-[9px] uppercase font-bold tracking-widest bg-blue-100 text-[#005972] px-2 py-0.5 rounded-full self-start">
+                Regional Center
+              </span>
+              <span className="font-serif font-bold text-slate-900 text-sm mt-1">
+                Ahmedpur Sial Branch
               </span>
               <p className="text-[11px] leading-relaxed text-slate-500">
-                Liaison via Physician Advisory Council, New York / London
+                Welfare & Emergency Relief Desk, Tehsil Ahmedpur Sial, District Jhang
               </p>
-              <span className="text-[11px] font-mono font-semibold text-[#005972]">
-                global@zulaidchaudharyfoundation.com
-              </span>
+              <div className="mt-auto pt-2 border-t border-slate-100 text-[11px] font-mono text-[#005972]">
+                <span>Contact: 0301-6242067</span>
+              </div>
             </div>
           </div>
         </div>

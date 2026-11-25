@@ -18,7 +18,7 @@ export default function MembershipDashboardPage() {
     membershipNumber: "ZCF-MEM-2026-0001",
     tier: "Founding Member",
     status: "APPROVED",
-    chapter: "Lahore Central",
+    chapter: "Shorkot / District Jhang",
     issued: "11 Nov 2026",
     validThru: "11 Nov 2027",
   });

@@ -362,7 +362,7 @@ export default function GetInvolvedPage() {
                       required
                       value={volunteerForm.city}
                       onChange={(e) => setVolunteerForm({ ...volunteerForm, city: e.target.value })}
-                      placeholder="e.g. Lahore, Pakistan or London, UK"
+                      placeholder="e.g. Shorkot, Jhang, Athara Hazari, or London, UK"
                       className="bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2 text-xs text-charcoal focus:outline-none focus:border-[#1A56DB]"
                     />
                   </div>

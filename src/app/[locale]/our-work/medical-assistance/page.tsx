@@ -23,7 +23,7 @@ const VERIFIED_CASES = [
   {
     caseId: "ZCF-MED-029",
     category: "Pediatric Cardiac Care",
-    hospital: "Specialized Children's Hospital, Lahore",
+    hospital: "Specialized Pediatric Surgical Center",
     status: "COMPLETED",
     description: "Ventricular septal defect corrective procedure facilitated via physician advisory network.",
     supportType: "Full Clinical Sponsorship",
@@ -32,7 +32,7 @@ const VERIFIED_CASES = [
   {
     caseId: "ZCF-MED-028",
     category: "Orthopedic Trauma Reconstruction",
-    hospital: "Jinnah Hospital Network, Lahore",
+    hospital: "Tertiary Trauma Reconstruction Center",
     status: "COMPLETED",
     description: "Emergency compound fracture fixation for daily-wage earner injured in workplace accident.",
     supportType: "Implants & Surgical Costs",
@@ -41,7 +41,7 @@ const VERIFIED_CASES = [
   {
     caseId: "ZCF-MED-027",
     category: "Ophthalmic Cataract & Lens Replacement",
-    hospital: "Mayo Hospital Eye Wing, Lahore",
+    hospital: "Specialized Ophthalmic Eye Center",
     status: "COMPLETED",
     description: "Bilateral intraocular lens implantation for elderly widow restoring independent vision.",
     supportType: "Surgical Consumables Pool",
@@ -50,7 +50,7 @@ const VERIFIED_CASES = [
   {
     caseId: "ZCF-MED-026",
     category: "Critical Oncology Chemotherapy Support",
-    hospital: "Tertiary Cancer Institute, Lahore",
+    hospital: "Regional Oncology Institute",
     status: "IN_PROGRESS",
     description: "Cycle 4 and 5 adjuvant chemotherapy medication funding for impoverished maternal patient.",
     supportType: "Direct Pharmacy Subsidy",
@@ -59,7 +59,7 @@ const VERIFIED_CASES = [
   {
     caseId: "ZCF-MED-025",
     category: "Chronic Renal Dialysis Subsidy",
-    hospital: "Public Dialysis Centre, Lahore",
+    hospital: "Dialysis Welfare Partner Center",
     status: "IN_PROGRESS",
     description: "Twice-weekly hemodialysis session support and erythropoietin injections pool.",
     supportType: "Recurring Treatment Pool",
@@ -68,7 +68,7 @@ const VERIFIED_CASES = [
   {
     caseId: "ZCF-MED-024",
     category: "Emergency Laparoscopic Intervention",
-    hospital: "General Hospital, Lahore",
+    hospital: "Emergency Surgical Department",
     status: "COMPLETED",
     description: "Emergency acute perforated appendicitis surgical care for destitute orphan adolescent.",
     supportType: "Full Medical Coverage",
@@ -186,7 +186,7 @@ export default function MedicalAssistancePage() {
 
             <div className="bg-blue-50 border border-blue-200 px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-semibold text-[#1A56DB] shadow-sm">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>Backed by certified physician network in Lahore & the USA</span>
+              <span>Clinical Oversight by Dr. Muhammad Khalid Abbas, Dr. Muhammad Zahid Abbas & USA Advisors</span>
             </div>
           </div>
         </div>
@@ -449,7 +449,7 @@ export default function MedicalAssistancePage() {
                         required
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        placeholder="e.g. Lahore, Faisalabad, Kasur"
+                        placeholder="e.g. Shorkot, Jhang, Athara Hazari, Ahmedpur Sial"
                         className="bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2 text-xs text-charcoal focus:outline-none focus:border-[#1A56DB]"
                       />
                     </div>
@@ -491,7 +491,7 @@ export default function MedicalAssistancePage() {
                         required
                         value={formData.hospitalName}
                         onChange={(e) => setFormData({ ...formData, hospitalName: e.target.value })}
-                        placeholder="e.g. Services Hospital Lahore, Mayo Hospital"
+                        placeholder="e.g. THQ Hospital Shorkot, DHQ Hospital Jhang"
                         className="bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2 text-xs text-charcoal focus:outline-none focus:border-[#1A56DB]"
                       />
                     </div>
@@ -687,22 +687,22 @@ export default function MedicalAssistancePage() {
                   Family & Clinical Network
                 </span>
                 <h3 className="font-serif font-bold text-2xl sm:text-3xl text-primary-900">
-                  Medical Oversight from Lahore to the United States
+                  Clinical Oversight: Shorkot, District Jhang & International Advisory
                 </h3>
                 <p>
-                  A cornerstone of Zulaid Chaudhary Foundation&apos;s healthcare access is the founder&apos;s family physician circle. With qualified doctors practicing across prominent tertiary hospitals in Lahore and reputable healthcare institutions in the United States, patient cases undergo professional evaluation before funding.
+                  A cornerstone of Zulaid Chaudhary Foundation&apos;s healthcare access is the founder&apos;s medical circle, supervised by family physicians <strong>Dr. Muhammad Khalid Abbas</strong> and <strong>Dr. Muhammad Zahid Abbas</strong>, in collaboration with family doctors practicing in the United States.
                 </p>
                 <p>
-                  This advisory council assists in reviewing diagnostic reports, recommending second opinions, coordinating surgical schedules, and securing subsidized rates from partner clinical departments.
+                  This clinical network oversees patient case verification across Shorkot, Jhang, Athara Hazari, and Ahmedpur Sial, reviewing surgical quotes, hospital admissions, and pharmacy dispensations to ensure zero administrative leakage.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                   <div className="bg-blue-50 border border-blue-200 rounded-2xl p-4 flex flex-col gap-1">
                     <span className="font-serif font-bold text-primary-900 text-sm">
-                      Lahore Physician Desk
+                      Supervising Physicians Desk
                     </span>
                     <span className="text-xs text-zinc-600">
-                      Coordinating direct patient admissions, pharmacy subsidies, and follow-up clinical visits across major public & private wards.
+                      Led by Dr. Muhammad Khalid Abbas & Dr. Muhammad Zahid Abbas, coordinating direct surgical clearances and clinical subsidies.
                     </span>
                   </div>
 
@@ -711,7 +711,7 @@ export default function MedicalAssistancePage() {
                       USA Diaspora Advisory Desk
                     </span>
                     <span className="text-xs text-zinc-600">
-                      Overseas Pakistani physicians providing expert diagnostics review, surgical guidance, and philanthropic sponsorship.
+                      Overseas Pakistani physicians providing expert diagnostics review, second opinions, and philanthropic medical sponsorships.
                     </span>
                   </div>
                 </div>
@@ -722,10 +722,10 @@ export default function MedicalAssistancePage() {
                   🏥
                 </div>
                 <h4 className="font-serif font-bold text-lg text-primary-900">
-                  Hospital Under Construction
+                  ZCF General & Welfare Hospital
                 </h4>
                 <p className="text-xs text-charcoal-muted leading-relaxed">
-                  To transition from temporary hospital sponsorships to permanent institutional care, the founder is actively constructing a dedicated charity hospital facility.
+                  Actively under construction on Dabklan Road, Shorkot, providing a permanent institutional haven for free clinical care.
                 </p>
                 <Link
                   href="/our-work/hospital"

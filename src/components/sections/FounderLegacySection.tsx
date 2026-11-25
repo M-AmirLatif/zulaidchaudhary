@@ -35,7 +35,7 @@ export function FounderLegacySection() {
             {/* Middle Column: Core Impact Facts */}
             <div className="lg:col-span-5 flex flex-col gap-4 border-t lg:border-t-0 lg:border-s lg:border-e border-[#c2e2f5] py-4 lg:py-0 lg:px-8">
               <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
-                Supported by a dedicated family of medical doctors in the USA and Lahore, Zulaid Chaudhary has personally arranged and facilitated free clinical surgeries, OPD consultations, and life-saving medicines for <strong>approximately 25–30 destitute patients</strong> to date.
+                Supported by a dedicated family of medical doctors in Pakistan (including supervising physicians Dr. Muhammad Khalid Abbas and Dr. Muhammad Zahid Abbas) and the United States, Zulaid Chaudhary has personally arranged and facilitated free clinical surgeries, OPD consultations, and life-saving medicines for <strong>approximately 25–30 destitute patients</strong> to date.
               </p>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
@@ -45,7 +45,7 @@ export function FounderLegacySection() {
                 </div>
                 <div className="bg-white/90 rounded-xl p-3 border border-[#cae4f5] shadow-sm">
                   <div className="text-xl font-bold font-serif text-[#005972]">Under Construction</div>
-                  <div className="text-[11px] font-semibold text-slate-600">Community Hospital (Lahore)</div>
+                  <div className="text-[11px] font-semibold text-slate-600">ZCF Hospital (Shorkot)</div>
                 </div>
               </div>
 

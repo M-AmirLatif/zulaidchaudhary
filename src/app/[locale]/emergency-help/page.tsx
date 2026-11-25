@@ -95,7 +95,7 @@ export default function EmergencyHelpPage() {
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Lahore, Kasur, Sheikhupura"
+                  placeholder="e.g. Shorkot, Jhang, Athara Hazari, Ahmedpur Sial"
                   className="p-3 rounded-xl border border-zinc-300 focus:outline-none focus:border-accent-gold bg-surface-cream"
                 />
               </div>

@@ -360,7 +360,7 @@ export default function EducationPage() {
                         required
                         value={formData.city}
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        placeholder="e.g. Lahore, Sheikhupura"
+                        placeholder="e.g. Shorkot, Jhang, Athara Hazari, Ahmedpur Sial"
                         className="bg-zinc-50 border border-zinc-300 rounded-xl px-3.5 py-2 text-xs text-charcoal focus:outline-none focus:border-[#1A56DB]"
                       />
                     </div>

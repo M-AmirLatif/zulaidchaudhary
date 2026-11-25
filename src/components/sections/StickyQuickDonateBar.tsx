@@ -45,7 +45,7 @@ export function StickyQuickDonateBar() {
           className="bg-slate-50 border border-slate-200 text-slate-800 text-xs font-semibold rounded-full px-3 py-1.5 focus:outline-none cursor-pointer"
         >
           <option value="Health & Free Surgeries">🏥 Free Medical & Surgeries</option>
-          <option value="Hospital Construction Fund">🏗️ Hospital Construction (Lahore)</option>
+          <option value="Hospital Construction Fund">🏗️ ZCF Hospital Construction (Shorkot)</option>
           <option value="Animal Welfare & Rescue">🐾 Animal Welfare & Rescue</option>
           <option value="Food & Monthly Ration Relief">🌾 Family Ration Bags</option>
           <option value="Clean Water & Environment">🌱 Clean Water Wells</option>

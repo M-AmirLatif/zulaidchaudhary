@@ -53,11 +53,13 @@ export function Header() {
             </a>
 
             <a
-              href="tel:+924230000000"
+              href="https://wa.me/923016242067"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 hover:text-white/80 transition-colors font-sans text-[11px] sm:text-xs"
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>042-30000000</span>
+              <span>0301-6242067</span>
             </a>
           </div>
 

@@ -180,7 +180,7 @@ export default function TermsOfServicePage() {
               <span>Governing Law & Legal Jurisdiction</span>
             </h3>
             <p className="text-charcoal-muted text-xs sm:text-sm">
-              These terms are governed by the laws of the Islamic Republic of Pakistan. Any legal proceedings or disputes arising from foundation operations or website usage shall be subject to the exclusive jurisdiction of the competent courts in Lahore, Punjab, Pakistan.
+              These terms are governed by the laws of the Islamic Republic of Pakistan. Any legal proceedings or disputes arising from foundation operations or website usage shall be subject to the exclusive jurisdiction of the competent courts in District Jhang, Punjab, Pakistan.
             </p>
           </section>
 

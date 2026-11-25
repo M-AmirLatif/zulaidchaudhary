@@ -19,7 +19,7 @@ const PROJECTS = [
   {
     id: "proj-2",
     title: "Hospital Construction Fund",
-    subtitle: "Building Zero-Fee Hospital in Lahore",
+    subtitle: "Building ZCF General & Welfare Hospital (Shorkot)",
     category: "Infrastructure",
     image: "/images/3rdimg.jpg",
     desc: "Civil groundwork, emergency trauma units, and future charitable diagnostic wings for underserved families.",

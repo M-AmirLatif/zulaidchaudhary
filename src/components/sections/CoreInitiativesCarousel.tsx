@@ -46,7 +46,7 @@ const INITIATIVES = [
   {
     id: "hospital",
     title: "Charity Hospital Network",
-    desc: "Actively constructing an institutional charity hospital in Lahore to provide round-the-clock emergency care and zero-fee healing.",
+    desc: "Actively constructing ZCF General & Welfare Hospital in Shorkot to provide round-the-clock emergency care and zero-fee healing.",
     icon: "🏗️",
     image: "/images/programs/hospital_construction.jpg",
     href: "/our-work/hospital",

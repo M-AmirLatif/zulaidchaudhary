@@ -641,18 +641,26 @@ export default function DonatePage() {
                 {paymentMethod === "BANK_TRANSFER" && (
                   <div className="p-4 rounded-2xl bg-surface-cream border border-zinc-200 flex flex-col gap-2.5 text-xs">
                     <span className="font-bold text-primary-900 text-xs">
-                      Meezan Bank Foundation Account
+                      Official Bank Account Status
                     </span>
-                    <div className="space-y-1 font-mono text-[11px] text-charcoal bg-surface-card p-3 rounded-lg border border-zinc-200">
-                      <div><strong className="text-zinc-500 font-sans">Title:</strong> Zulaid Chaudhary Foundation</div>
-                      <div><strong className="text-zinc-500 font-sans">IBAN:</strong> PK36MEZN0001020304050607</div>
-                      <div><strong className="text-zinc-500 font-sans">Account:</strong> 01020304050607</div>
-                      <div><strong className="text-zinc-500 font-sans">Branch:</strong> Gulberg Branch, Lahore</div>
+                    <div className="space-y-1.5 text-[11px] text-charcoal bg-surface-card p-3.5 rounded-xl border border-zinc-200">
+                      <div className="flex items-center justify-between">
+                        <strong className="text-zinc-600">Bank Account:</strong>
+                        <span className="font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                          Pending - To Be Updated
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-zinc-500 leading-relaxed pt-1 border-t border-zinc-100">
+                        In accordance with official registration and regulatory protocol, our dedicated foundation bank accounts will be published once officially confirmed.
+                      </p>
+                      <div className="text-[11px] text-[#005972] font-semibold pt-1">
+                        Verification / Pledges WhatsApp: <span className="font-mono font-bold">0301-6242067</span>
+                      </div>
                     </div>
 
                     <div className="pt-1">
                       <label className="text-[11px] font-medium text-zinc-500 block mb-1">
-                        Bank Transfer Reference / Transaction ID
+                        Bank Transfer Reference / Transaction ID (For Pledged Records)
                       </label>
                       <input
                         type="text"

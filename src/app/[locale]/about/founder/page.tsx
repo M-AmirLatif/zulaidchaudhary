@@ -29,7 +29,7 @@ export default function FounderPage() {
           <div className="md:col-span-5 relative aspect-[3/4] rounded-2xl overflow-hidden shadow-md">
             <Image
               src="/images/3rdimg.jpg"
-              alt="Zulaid Chaudhary seated in community streetscape of Lahore"
+              alt="Zulaid Chaudhary in community streetscape of Pakistan"
               fill
               className="object-cover object-bottom"
             />

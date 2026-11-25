@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       animalType,
       condition,
       urgency: urgency || "HIGH",
-      locationCity: locationCity || "Lahore",
+      locationCity: locationCity || "Shorkot",
       locationAddress,
       reporterName: reporterName || "Concerned Citizen",
       reporterPhone,

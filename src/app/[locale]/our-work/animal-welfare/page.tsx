@@ -52,7 +52,7 @@ export default function AnimalWelfarePage() {
   const [animalType, setAnimalType] = useState<"DOG" | "CAT" | "DONKEY_HORSE" | "BIRD" | "WILDLIFE" | "OTHER">("DOG");
   const [condition, setCondition] = useState<"FRACTURE_TRAUMA" | "HIT_AND_RUN" | "POISONING_ILLNESS" | "CRUELTY_ABUSE" | "TRAPPED">("HIT_AND_RUN");
   const [urgency, setUrgency] = useState<"EMERGENCY_CRITICAL" | "HIGH" | "MEDIUM">("EMERGENCY_CRITICAL");
-  const [locationCity, setLocationCity] = useState("Lahore");
+  const [locationCity, setLocationCity] = useState("Shorkot");
   const [locationAddress, setLocationAddress] = useState("");
   const [reporterName, setReporterName] = useState("");
   const [reporterPhone, setReporterPhone] = useState("");
@@ -233,7 +233,7 @@ export default function AnimalWelfarePage() {
             </div>
 
             <p className="text-xs text-charcoal-muted leading-relaxed">
-              If you spot a hit-and-run animal, an overburdened injured donkey/horse, or trapped wildlife in Lahore or surrounding areas, submit immediate coordinates below.
+              If you spot a hit-and-run animal, an overburdened injured donkey/horse, or trapped wildlife across Shorkot, Jhang, Athara Hazari, Ahmedpur Sial, or surrounding areas, submit immediate coordinates below.
             </p>
 
             {submittedRescue ? (

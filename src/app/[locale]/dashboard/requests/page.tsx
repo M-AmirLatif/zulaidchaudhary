@@ -18,7 +18,7 @@ export default function HealthcareTrackingPage() {
   const sampleResult = {
     code: "ZCF-MED-2026-0028",
     patientInitials: "M. A.",
-    city: "Lahore",
+    city: "Shorkot",
     category: "Pediatric Cardiac Surgical Care",
     status: "APPROVED FOR SURGERY",
     submitted: "15 Nov 2026",

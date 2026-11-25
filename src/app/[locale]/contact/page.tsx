@@ -114,10 +114,18 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="text-zinc-400 block text-[11px] uppercase tracking-wider font-semibold">
-                    Phone & WhatsApp
+                    Verification / WhatsApp Number
                   </span>
-                  <span className="font-medium text-surface-cream">
-                    +92 42 3XXXXXXX
+                  <a
+                    href="https://wa.me/923016242067"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-surface-cream hover:text-accent-gold transition-colors block text-sm"
+                  >
+                    0301-6242067
+                  </a>
+                  <span className="text-[10px] text-zinc-400 block mt-0.5">
+                    Helpline: Not Confirmed for Now
                   </span>
                 </div>
               </div>
@@ -130,9 +138,12 @@ export default function ContactPage() {
                   <span className="text-zinc-400 block text-[11px] uppercase tracking-wider font-semibold">
                     Email Inquiries
                   </span>
-                  <span className="font-medium text-surface-cream">
+                  <a
+                    href="mailto:info@zulaidchaudharyfoundation.com"
+                    className="font-medium text-surface-cream hover:text-accent-gold transition-colors block text-sm"
+                  >
                     info@zulaidchaudharyfoundation.com
-                  </span>
+                  </a>
                 </div>
               </div>
 
@@ -140,13 +151,19 @@ export default function ContactPage() {
                 <div className="w-10 h-10 rounded-xl bg-primary-800 text-accent-gold flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <div>
+                <div className="flex flex-col gap-1.5">
                   <span className="text-zinc-400 block text-[11px] uppercase tracking-wider font-semibold">
-                    Location
+                    Head Office & Registered Address
                   </span>
                   <span className="font-medium text-surface-cream">
-                    Lahore, Punjab, Pakistan
+                    Tehsil Shorkot, District Jhang, Punjab, Pakistan
                   </span>
+                  <div className="pt-2 border-t border-primary-800/60 flex flex-col gap-1 text-[11px] text-zinc-300">
+                    <span className="font-semibold text-accent-gold">Hospital Permanent Site:</span>
+                    <span>Opposite Government Elementary School, Mirali Wala, Dabklan Road, Tehsil Shorkot, District Jhang</span>
+                    <span className="font-semibold text-accent-gold mt-1">Regional Branch Centers:</span>
+                    <span>Jhang • Athara Hazari • Ahmedpur Sial</span>
+                  </div>
                 </div>
               </div>
             </div>

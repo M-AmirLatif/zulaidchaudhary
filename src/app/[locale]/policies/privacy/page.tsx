@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
               <span>Scope & Controller Information</span>
             </h3>
             <p className="text-charcoal-muted text-xs sm:text-sm">
-              This Privacy Policy applies to personal, financial, and clinical information collected through <strong>ZulaidChaudharyFoundation.com</strong>, associated subdomains, volunteer registration portals, and clinical liaison offices. The data controller is the Board of Trustees of Zulaid Chaudhary Foundation (Lahore, Pakistan).
+              This Privacy Policy applies to personal, financial, and clinical information collected through <strong>ZulaidChaudharyFoundation.com</strong>, associated subdomains, volunteer registration portals, and clinical liaison offices. The data controller is the Board of Trustees of Zulaid Chaudhary Foundation (Tehsil Shorkot, District Jhang, Punjab, Pakistan).
             </p>
           </section>
 

@@ -18,7 +18,7 @@ export default function VolunteerDashboardPage() {
   const [skills, setSkills] = useState(["Medical Care", "Patient Rehabilitation"]);
   const [hours, setHours] = useState(8);
   const [profession, setProfession] = useState("Physiotherapist");
-  const [city, setCity] = useState("Lahore");
+  const [city, setCity] = useState("Shorkot");
   const [notes, setNotes] = useState("Credentials verified with medical council. Assigned to local hospital follow-up team.");
   const [appNumber, setAppNumber] = useState("ZCF-VOL-2026-001");
 

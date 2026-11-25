@@ -55,7 +55,7 @@ const DEVELOPMENT_UPDATES = [
     phase: "Milestone 01",
     title: "Vision & Architectural Planning",
     status: "COMPLETED",
-    desc: "Conceptual blueprint finalized under guidance from physician family council members in Lahore and the United States.",
+    desc: "Conceptual blueprint finalized under guidance from supervising family physicians Dr. Muhammad Khalid Abbas & Dr. Muhammad Zahid Abbas, and advisors in the United States.",
     date: "Groundwork Phase",
   },
   {
@@ -98,27 +98,54 @@ export default function HospitalPage() {
         <div className="flex flex-col gap-4 text-center items-center">
           <div className="inline-flex items-center gap-2 bg-emerald-100 text-[#166534] border border-emerald-200 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide">
             <Building2 className="w-4 h-4" />
-            <span>OUR FUTURE HOSPITAL & HEALTHCARE NETWORK</span>
+            <span>ZCF GENERAL & WELFARE HOSPITAL (TEMPORARY NAME)</span>
           </div>
 
           <h1 className="font-serif font-bold text-3xl sm:text-5xl text-primary-900 tracking-tight max-w-3xl">
-            A Permanent Sanctuary of Healing & Free Healthcare
+            A Permanent Sanctuary of Free Healthcare in Shorkot
           </h1>
 
           <p className="text-base sm:text-lg text-charcoal-muted max-w-2xl leading-relaxed">
-            Transitioning from individual medical sponsorships to a permanent healthcare institution. The founder is actively constructing a dedicated charity hospital to provide comprehensive, dignified treatment to those in need.
+            Transitioning from individual patient sponsorships to a permanent healthcare institution. The foundation is actively constructing <strong>ZCF General & Welfare Hospital</strong> in Tehsil Shorkot, District Jhang to serve underprivileged families across Shorkot, Jhang, Athara Hazari, and Ahmedpur Sial.
           </p>
 
+          {/* Official Registered Specs Strip */}
+          <div className="w-full max-w-4xl bg-white border border-emerald-200 rounded-3xl p-5 sm:p-6 shadow-sm text-left grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Hospital Name (Temp)</span>
+              <span className="font-serif font-bold text-slate-900 text-sm">ZCF General & Welfare Hospital</span>
+              <span className="text-[10px] text-emerald-700 block mt-0.5">Address is permanent</span>
+            </div>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Permanent Location</span>
+              <span className="font-medium text-slate-800 text-[11px] leading-snug block">
+                Opposite Govt Elementary School, Mirali Wala, Dabklan Road, Shorkot
+              </span>
+            </div>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Supervising Physicians</span>
+              <span className="font-bold text-slate-900 text-[11px] block">Dr. Muhammad Khalid Abbas</span>
+              <span className="font-bold text-slate-900 text-[11px] block">Dr. Muhammad Zahid Abbas</span>
+            </div>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">Verification / WhatsApp</span>
+              <a href="https://wa.me/923016242067" target="_blank" rel="noopener noreferrer" className="font-mono font-bold text-[#005972] text-sm hover:underline block">
+                0301-6242067
+              </a>
+              <span className="text-[10px] text-slate-400 block">Bank Account: Pending</span>
+            </div>
+          </div>
+
           {/* Status Badge */}
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-2">
+          <div className="flex flex-wrap items-center justify-center gap-4 mt-1">
             <div className="bg-amber-50 border-2 border-amber-300 px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-bold text-amber-900 shadow-sm animate-pulse">
               <Clock className="w-4 h-4 text-amber-700 shrink-0" />
-              <span>Current Status: Hospital Actively Under Construction</span>
+              <span>Current Status: Hospital Actively Under Construction (Shorkot)</span>
             </div>
 
             <div className="bg-blue-50 border border-blue-200 px-4 py-2 rounded-2xl flex items-center gap-2 text-xs font-semibold text-[#1A56DB] shadow-sm">
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>Ethical Governance: Separate Financial & Operational Ledgers</span>
+              <span>Serving District Jhang: Shorkot • Jhang • Athara Hazari • Ahmedpur Sial</span>
             </div>
           </div>
         </div>
@@ -128,17 +155,17 @@ export default function HospitalPage() {
           <div className="relative h-64 sm:h-72 rounded-3xl overflow-hidden shadow-md border border-slate-200">
             <Image
               src="/images/programs/hospital_construction.jpg"
-              alt="Charity Hospital Construction in Lahore"
+              alt="ZCF General & Welfare Hospital Construction Site Shorkot"
               fill
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
               <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
-                Lahore Medical Facility
+                Shorkot Healthcare Facility
               </span>
               <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
-                Modern Charitable Healthcare Infrastructure
+                ZCF General & Welfare Hospital Groundwork
               </h3>
             </div>
           </div>
@@ -153,10 +180,10 @@ export default function HospitalPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
               <span className="text-[11px] uppercase font-bold tracking-wider bg-white/20 backdrop-blur px-2.5 py-1 rounded-full inline-block mb-1.5">
-                Active Groundwork
+                Dabklan Road Site
               </span>
               <h3 className="text-lg sm:text-xl font-bold font-serif text-white">
-                Under Active Construction in Lahore
+                Under Active Construction in Tehsil Shorkot
               </h3>
             </div>
           </div>
@@ -214,7 +241,7 @@ export default function HospitalPage() {
                   Having already facilitated free surgical treatments for approximately 25–30 destitute patients, founder Zulaid Chaudhary identified the critical need for a permanent, self-sustaining clinical facility.
                 </p>
                 <p>
-                  This hospital is envisioned as an anchor of humanitarian hope where no destitute human is turned away due to poverty. With brothers, sisters, and extended family serving as qualified medical doctors in both Lahore and the United States, the project blends grassroots compassion with international clinical expertise.
+                  This hospital is envisioned as an anchor of humanitarian hope where no destitute human is turned away due to poverty. With family members including supervising physicians Dr. Muhammad Khalid Abbas and Dr. Muhammad Zahid Abbas, alongside family doctors in the United States, the project blends grassroots compassion with international clinical expertise.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-semibold text-zinc-700">

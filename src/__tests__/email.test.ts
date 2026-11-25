@@ -35,7 +35,7 @@ describe("Email Delivery Layer", () => {
       fullName: "Ali Khan",
       email: "ali@example.com",
       applicationNumber: "V-2026-TEST",
-      city: "Lahore",
+      city: "Shorkot",
     });
 
     expect(result.success).toBe(true);

@@ -23,7 +23,7 @@ const HERO_SLIDES = [
     subtitleUrdu: "ہر مستحق کے ساتھ",
     titleEn: "A Little From You, A LOT FOR SOMEONE",
     subtitleEn:
-      "Facilitating free clinical surgeries and medicines for approximately 25–30 destitute patients to date, with our charity hospital actively under construction in Lahore.",
+      "Facilitating free clinical surgeries and medicines for approximately 25–30 destitute patients to date, with ZCF General & Welfare Hospital actively under construction in Shorkot.",
     primaryCtaText: "Support Healthcare Now",
     primaryCtaLink: "/donate",
   },
@@ -60,7 +60,7 @@ const PROJECT_OPTIONS: Record<string, string[]> = {
     "Prescription Medicine & Pharmacy Pool",
   ],
   "Hospital Construction Fund": [
-    "Hospital Structural Groundwork (Lahore)",
+    "ZCF General & Welfare Hospital Groundwork (Shorkot)",
     "Future Emergency & Clinical Zones",
     "Charity Dialysis & Diagnostic Ward",
   ],
@@ -155,7 +155,7 @@ export function Hero() {
                 <div className="absolute bottom-4 start-4 end-4 text-white">
                   <p className="text-xs uppercase tracking-wider text-sky-200 font-semibold">Founder & Patron</p>
                   <p className="text-base sm:text-lg font-bold font-serif">Zulaid Chaudhary</p>
-                  <p className="text-[11px] text-zinc-300">~25-30 Free Patient Surgeries • Lahore Hospital Under Construction</p>
+                  <p className="text-[11px] text-zinc-300">~25-30 Free Patient Surgeries • ZCF General & Welfare Hospital (Shorkot)</p>
                 </div>
               </div>
 

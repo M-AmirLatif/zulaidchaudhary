@@ -103,7 +103,7 @@ export default function FounderPage() {
               src="/images/4th.jpg"
               alt="Zulaid Chaudhary, founder official portrait"
               fill
-              className="object-cover object-[25%_center]"
+              className="object-cover object-[center_top]"
             />
           </div>
         </div>

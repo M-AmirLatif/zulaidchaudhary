@@ -174,7 +174,7 @@ export default function AnimalWelfarePage() {
               src="/images/4th.jpg"
               alt="Active Field Animal Rescue & Care"
               fill
-              className="object-cover"
+              className="object-cover object-[center_top]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 text-white">
